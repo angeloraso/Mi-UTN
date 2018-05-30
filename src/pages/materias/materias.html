@@ -1,0 +1,86 @@
+
+  <style type="text/css">
+		#imagen {
+			width:100%;
+			height:100%;
+			position:relative;
+      opacity:1;
+		}
+		#imagen>div
+		{
+			position: absolute;
+			bottom:0px;
+            width: 100%;
+			color:#fff;
+			background-color:#000;
+			padding:10px 10px;
+			font-weight:bold;
+      font-size:15px;
+      opacity:0.5;
+    }
+  </style>
+
+<ion-content no-padding>
+    <div cards>
+        <div class="grid-full">
+            <ion-row>
+                <ion-col>
+                    <ion-card (click)="goToNivel('1er Nivel')">
+                        <div id="imagen">
+                            <img width="100%" height="100%" src= "assets/imgs/1er_nivel.jpg">
+                            <div>1er Año</div>
+                        </div>
+                    </ion-card>
+                </ion-col>
+    
+                <ion-col>
+                    <ion-card (click)="goToNivel('2do Nivel')">
+                        <div id="imagen">
+                            <img width="100%" height="100%" src="assets/imgs/2do_nivel.jpg">
+                            <div>2do Año</div>
+                        </div>
+                    </ion-card>
+                </ion-col>
+    
+                <ion-col>
+                    <ion-card (click)="goToNivel('3er Nivel')">
+                        <div id="imagen">
+                            <img width="100%" height="100%" src="assets/imgs/3er_nivel.jpg">
+                            <div>3er Año</div>
+                        </div>
+                    </ion-card>
+                </ion-col>
+    
+                <ion-col>
+                    <ion-card (click)="goToNivel('4to Nivel')">
+                        <div id="imagen">
+                            <img width="100%" height="100%" src="assets/imgs/4to_nivel.jpg">
+                            <div>4to Año</div>
+                        </div>
+                    </ion-card>
+                </ion-col>
+
+                <ion-col>
+                    <ion-card (click)="goToNivel('5to Nivel')">
+                        <div id="imagen">
+                            <img width="100%" height="100%" src="assets/imgs/5to_nivel.jpg">
+                            <div>5to Año</div>
+                        </div>
+                    </ion-card>
+                </ion-col>
+
+                <ion-col>
+                    <ion-card (click)="goToNivel('Electivas')">
+                        <div id="imagen">
+                            <img width="100%" height="100%" src="assets/imgs/electivas.jpg">
+                            <div>Electivas</div>
+                        </div>
+                    </ion-card>
+                </ion-col>
+
+            </ion-row>
+        </div>
+    
+    </div>
+
+</ion-content>

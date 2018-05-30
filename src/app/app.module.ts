@@ -3,28 +3,76 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { AuthProvider } from '../providers/auth/auth';
+import { LoginPage } from '../pages/login/login';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { InstitucionPage } from '../pages/institucion/institucion';
+import { MateriasPage } from '../pages/materias/materias';
+import { NoticiasPage } from '../pages/noticias/noticias';
+
+import { NivelPage } from '../pages/nivel/nivel';
+import { MateriaPage } from '../pages/materia/materia';
+
+import { SuperTabsModule } from 'ionic2-super-tabs';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+import { ExpandableListModule } from 'angular2-expandable-list';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyCVSKHVTedumeqbPbp32jaSefk0SDQQ5nk",
+  authDomain: "miutn-bbb58.firebaseapp.com",
+  databaseURL: "https://miutn-bbb58.firebaseio.com",
+  projectId: "miutn-bbb58",
+  storageBucket: "",
+  messagingSenderId: '372411765036'
+};
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    NoticiasPage,
+    MateriasPage,
+    InstitucionPage,
+    NivelPage,
+    MateriaPage,
+    LoginPage,
   ],
   imports: [
+    IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    ExpandableListModule,
+    BrowserAnimationsModule,
+    SuperTabsModule.forRoot(),
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule.enablePersistence(),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    NoticiasPage,
+    MateriasPage,
+    InstitucionPage,
+    NivelPage,
+    LoginPage,
+    MateriaPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    AuthProvider,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {}

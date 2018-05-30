@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color=aquamarine>
+    <ion-title> {{ title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+    <ion-list>
+        <ion-card *ngFor="let materia of (materiasNivel | async)" (click)="goToMateria(materia)">
+            <ion-item color=aquamarine>
+                <ion-icon name="bookmark"></ion-icon>
+                &nbsp;
+                <label>{{materia.nombre}}</label>
+                <p>{{materia.periodo}}</p>
+            </ion-item>
+        </ion-card>
+    </ion-list>
+
+</ion-content>

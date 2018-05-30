@@ -1,0 +1,52 @@
+.ios, .md {
+
+page-login {
+
+    .profile { 
+        position: relative;
+        margin: 5%;
+        padding-bottom: 5%;
+     } 
+
+    .scroll-content {
+        background-color: #7D9FA7;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .card {
+        border-radius: 22px;
+        height: 60%;
+    }
+
+    .item ion-avatar img {
+        margin-left: 28%;
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    ion-input {
+        background-color: map-get($colors, light);
+        padding-left: 10px;
+        color: #6c6c6c;
+        border-radius: 5px;
+        margin-bottom: 5%;
+    }
+
+    ion-label {
+        color: #6c6c6c;
+    }
+
+    [floating] {
+        margin-left: 10px;
+    }
+
+    button {
+        width: 87%;
+        margin-left: 7%;
+    }
+
+}
+}

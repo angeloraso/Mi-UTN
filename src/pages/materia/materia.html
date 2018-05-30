@@ -1,0 +1,84 @@
+<ion-header>
+    <ion-navbar color=aquamarine>
+      <ion-title> {{ title }}</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content>
+
+  <ion-card>
+    <expandable-list >
+        <expandable-list-item (onExpanded)="showInfoCursadas()">
+          <span title>Necesito para Cursar</span>
+          <!-- <span secondary>Secondary</span> -->
+              <a item >La Cursada de:</a>
+                  <a item *ngFor="let cursada of (cursadas | async)?.cursadasParaCursar">{{ cursada }}</a>
+
+              <a item >El Final de:</a> 
+                  <a item *ngFor="let final of (cursadas | async)?.finalesParaCursar">{{ final }}</a>
+
+
+        </expandable-list-item>
+      </expandable-list>
+    </ion-card>
+
+    <ion-card>
+        <expandable-list >
+            <expandable-list-item (onExpanded)="showInfoFinales()">
+              <span title>Necesito para Rendir</span>
+              <!-- <span secondary>Secondary</span> -->    
+                  <a item>El Final de:</a>
+                      <a item *ngFor="let final of (finales | async)?.finalesParaRendir">{{ final }}</a>
+
+            </expandable-list-item>   
+          </expandable-list>
+        </ion-card>
+
+        <ion-card>
+            <expandable-list>
+                <expandable-list-item (onExpanded)="showInfoProfesores()">
+                  <span title>Profesores</span>
+                  <!-- <span secondary>Secondary</span> -->
+                      <a item *ngFor="let profesor of (profesores | async)?.profesores">{{ profesor }}</a>
+
+                </expandable-list-item>
+              </expandable-list>
+            </ion-card>
+
+            <ion-card>
+                <expandable-list>
+                    <expandable-list-item (onExpanded)="showInfoDiasHorarios()">
+                      <span title>Días y Horarios</span>
+                      <!-- <span secondary>Secondary</span> -->
+                          <a item *ngFor="let diaHorario of (diasHorarios | async)?.diasHorarios">{{ diaHorario }}</a>
+
+                    </expandable-list-item>  
+                  </expandable-list>
+                </ion-card>
+
+                <ion-card>
+                    <expandable-list>
+                        <expandable-list-item (onExpanded)="showInfoConsultas()">
+                          <span title>Clases de Consulta</span>
+                          <!-- <span secondary>Secondary</span> -->
+                              <a item *ngFor="let claseConsulta of (consultas | async)?.clasesConsulta">
+                                Día: {{claseConsulta.diaHorario}} <br>
+                                Profesor/a: {{claseConsulta.profesor}} <br>
+                                Aula: {{claseConsulta.aula}}                              
+                              </a>
+
+                        </expandable-list-item>  
+                      </expandable-list>
+     </ion-card>
+     <ion-card>
+        <expandable-list>
+            <expandable-list-item (onExpanded)="showInfoLinks()">
+              <span title>Links de la Materia</span>
+              <!-- <span secondary>Secondary</span> -->
+                  <!--<a item *ngFor="let link of (links | async)?.links" href=link.link>{{link.titulo}}</a> -->
+
+            </expandable-list-item>  
+          </expandable-list>
+        </ion-card>
+</ion-content>
