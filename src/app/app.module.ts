@@ -15,8 +15,6 @@ import { NoticiasPage } from '../pages/noticias/noticias';
 import { NivelPage } from '../pages/nivel/nivel';
 import { MateriaPage } from '../pages/materia/materia';
 
-import { SuperTabsModule } from 'ionic2-super-tabs';
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -50,7 +48,6 @@ export const firebaseConfig = {
     BrowserModule,
     ExpandableListModule,
     BrowserAnimationsModule,
-    SuperTabsModule.forRoot(),
     AngularFirestoreModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule.enablePersistence(),

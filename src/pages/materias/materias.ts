@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { SuperTabsController } from 'ionic2-super-tabs';
 import { NivelPage } from '../nivel/nivel';
 
 
@@ -20,8 +19,7 @@ import { NivelPage } from '../nivel/nivel';
 export class MateriasPage {
 
   constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              private superTabsCtrl: SuperTabsController) {
+              public navParams: NavParams) {
   
   
   }
@@ -36,21 +34,5 @@ export class MateriasPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad InformacionPage');
   }
-
-  showToolbar() {
-    this.superTabsCtrl.showToolbar(true);
-  }
-
-  hideToolbar() {
-    this.superTabsCtrl.showToolbar(false);
-  }
-
-  ionViewWillLeave(){
-    this.hideToolbar(); 
-  }
-
-  ionViewWillEnter(){
-    this.showToolbar(); 
- }
 
 }

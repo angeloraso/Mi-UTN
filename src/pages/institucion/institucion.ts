@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
-import { SuperTabsController } from 'ionic2-super-tabs';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 
@@ -21,7 +20,6 @@ export class InstitucionPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              private superTabsCtrl: SuperTabsController,
               public alertCtrl: AlertController,
               private afAuth :  AngularFireAuth,) {
   }
@@ -52,21 +50,5 @@ export class InstitucionPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad InformacionPage');
   }
-
-  showToolbar() {
-    this.superTabsCtrl.showToolbar(true);
-  }
-
-  hideToolbar() {
-    this.superTabsCtrl.showToolbar(false);
-  }
-
-  ionViewWillLeave(){
-    this.hideToolbar(); 
-  }
-
-  ionViewWillEnter(){
-    this.showToolbar(); 
- }
 
 }

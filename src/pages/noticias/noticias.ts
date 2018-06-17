@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { SuperTabsController } from 'ionic2-super-tabs';
-
 import { Observable } from 'rxjs/Rx';  
 import 'rxjs/add/operator/map';
 
@@ -14,28 +12,11 @@ import 'rxjs/add/operator/map';
 export class NoticiasPage {  
   public posts: Observable<any[]>;
 
-  constructor(public navCtrl: NavController,
-              private superTabsCtrl: SuperTabsController) {   
+  constructor(public navCtrl: NavController) {   
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InformacionPage');
   }
-
-  showToolbar() {
-    this.superTabsCtrl.showToolbar(true);
-  }
-
-  hideToolbar() {
-    this.superTabsCtrl.showToolbar(false);
-  }
-
-  ionViewWillLeave(){
-    this.hideToolbar(); 
-  }
-
-  ionViewWillEnter(){
-    this.showToolbar(); 
- }
 
 }
