@@ -1,18 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { MateriaPage } from '../materia/materia';
 
-/**
- * Generated class for the NivelPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-nivel',
   templateUrl: 'nivel.html',
@@ -23,7 +15,7 @@ export class NivelPage {
   title: string;
 
   materiasNivelRef: AngularFirestoreCollection<any>;
-  materiasNivel: Observable<any[]>;
+  materiasNivel: Observable<any>;
 
 
   constructor(public navCtrl: NavController, 

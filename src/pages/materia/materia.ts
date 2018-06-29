@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
@@ -20,7 +20,6 @@ export interface Materia {
   links: Array<{link:string, titulo:string}>;
 }
 
-@IonicPage()
 @Component({
   selector: 'page-materia',
   templateUrl: 'materia.html',
@@ -57,8 +56,6 @@ export class MateriaPage {
               public navParams: NavParams,
               public db: AngularFirestore,
             ) {
-
-              //this.cosas = ["cosa 1", "cosa 2", "cosa 3"];
 
       this.title = navParams.get('title');
 
@@ -102,6 +99,7 @@ export class MateriaPage {
 
     }
 
+    // Todos estos metodos son para mostrar la info de cada Select y ocultar los otros.
     showInfoCursadas() {
       console.log("DENTRO DEL SHOW (Cursadas): " + this.listExpandedCursadas);
       if(!this.listExpandedCursadas){
