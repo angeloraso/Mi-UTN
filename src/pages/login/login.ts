@@ -1,14 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController, Platform } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController, Platform } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-@IonicPage({})
 
 @Component({
   selector: 'page-login',
@@ -18,7 +10,7 @@ export class LoginPage {
 
   user= { email : '', password : ''};
 
-  profilePicture: any = 'assets/icon/logo_utn.png';
+  profilePicture: any = 'assets/icon/user_icon.png';
 
   constructor(
     public navCtrl: NavController,
