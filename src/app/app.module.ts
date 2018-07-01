@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { InstitucionPage } from '../pages/institucion/institucion';
 import { MateriasPage } from '../pages/materias/materias';
 import { NoticiasPage } from '../pages/noticias/noticias';
+import { PerfilPage } from '../pages/perfil/perfil';
 
 import { NivelPage } from '../pages/nivel/nivel';
 import { MateriaPage } from '../pages/materia/materia';
@@ -22,6 +23,9 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { ExpandableListModule } from 'angular2-expandable-list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { FlashCardComponent } from '../components/flash-card/flash-card';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCVSKHVTedumeqbPbp32jaSefk0SDQQ5nk",
@@ -42,6 +46,8 @@ export const firebaseConfig = {
     NivelPage,
     MateriaPage,
     LoginPage,
+    PerfilPage,
+    FlashCardComponent,
   ],
   imports: [
     IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
@@ -64,6 +70,7 @@ export const firebaseConfig = {
     NivelPage,
     LoginPage,
     MateriaPage,
+    PerfilPage,
   ],
   providers: [
     StatusBar,

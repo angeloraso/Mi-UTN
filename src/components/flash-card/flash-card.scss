@@ -1,0 +1,64 @@
+.ios, .md {
+ 
+    flash-card {
+
+        .flip-container {
+            perspective: 1000px;
+        }
+ 
+        .flip-container.flipped .flipper {
+            transform: rotateY(180deg);
+        }
+ 
+        .flip-container, .front, .back {
+            width: 90vw;
+            height: 40vh;
+            margin: 20px auto;
+        }
+ 
+        /* flip speed goes here */
+        .flipper {
+            transition: 1s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+ 
+        /* hide back of pane during swap */
+        .front, .back {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            backface-visibility: hidden;
+            -webkit-box-shadow: 5px 7px 9px -4px rgba(163,163,163,0.25);
+            -moz-box-shadow: 5px 7px 9px -4px rgba(163,163,163,0.25);
+            box-shadow: 5px 7px 9px -4px rgba(163,163,163,0.25);
+            border: none;
+            min-width: 265px;
+            min-height: 460px;
+            margin: 0;
+            padding: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+ 
+        /* front pane, placed above back */
+        .front {
+            z-index: 2;
+            /* for firefox 31 */
+            transform: rotateY(0deg);
+        }
+ 
+        /* back, initially hidden pane */
+        .back {
+            transform: rotateY(180deg);
+        }
+
+        .imagen-perfil {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+        }
+    }
+ 
+}
