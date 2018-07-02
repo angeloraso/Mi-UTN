@@ -2,9 +2,9 @@
     <flash-card>
  
         <div class="flash-card-front text-center">
-            <p><img class="imagen-perfil" src="assets/icon/user_icon.png"></p>
-            <h4 class="card-title">Nombre de perfil</h4>
-            <p class="card-text">Esto es un texto con información del perfil del usuario</p>
+                <p><img class="imagen-perfil" src="assets/icon/user_icon.png"></p>
+                <h4 class="card-title">Información Principal</h4>
+                <p class="card-text">En esta seccion se mostrará información importante para el usuario, tal como su nombre, apellido, legajo, promedio, año que se encuentra cursando, etc</p>
         </div>
  
         <div class="flash-card-back text-center">
@@ -14,4 +14,14 @@
         </div>
  
     </flash-card>
+    <ion-card (click)="salir()">
+        <ion-item>
+            <ion-avatar item-start>
+                <img src='assets/icon/turn_off.png'>
+            </ion-avatar>
+            <ion-label>
+                &nbsp; Cerrar Sesión
+            </ion-label> 
+        </ion-item>
+    </ion-card>
 </ion-content>

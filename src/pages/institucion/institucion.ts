@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
-
-import { AngularFireAuth } from 'angularfire2/auth';
+import { NavController, NavParams } from 'ionic-angular';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'page-institucion',
@@ -9,33 +9,15 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class InstitucionPage {
 
+  opcionesInstitucionRef: AngularFirestoreCollection<any>;
+  opcionesInstitucion: Observable<any>;
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public alertCtrl: AlertController,
-              private afAuth :  AngularFireAuth,) {
-  }
+              public db: AngularFirestore) {
 
-  salir(){
-    let confirm = this.alertCtrl.create({
-      title: 'Desea cerrar su sesión?',
-      buttons: [
-      {
-          text: 'Cancelar',
-          handler: () => {
-              console.log('Cancelar clicked');
-          }
-      },
-      {
-          text: 'Aceptar',
-          handler: () => {
-            this.afAuth.auth.signOut().then(()=>{
-
-            }
-            )}
-      }
-      ]
-  });
-  confirm.present();
+      this.opcionesInstitucionRef = this.db.collection('/Opciones Institucion/');
+      this.opcionesInstitucion = this.opcionesInstitucionRef.valueChanges()
   }
 
   ionViewDidLoad() {

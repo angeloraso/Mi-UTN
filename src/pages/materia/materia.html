@@ -13,10 +13,10 @@
           <span title>Necesito para Cursar</span>
           <!-- <span secondary>Secondary</span> -->
               <a item >La Cursada de:</a>
-                  <a item *ngFor="let cursada of (cursadas | async)?.cursadasParaCursar">{{ cursada }}</a>
+                  <a item *ngFor="let cursada of (cursadas | async)?.cursadasParaCursar">-- {{ cursada }}</a>
 
               <a item >El Final de:</a> 
-                  <a item *ngFor="let final of (cursadas | async)?.finalesParaCursar">{{ final }}</a>
+                  <a item *ngFor="let final of (cursadas | async)?.finalesParaCursar">-- {{ final }}</a>
 
 
         </expandable-list-item>
@@ -29,7 +29,7 @@
               <span title>Necesito para Rendir</span>
               <!-- <span secondary>Secondary</span> -->    
                   <a item>El Final de:</a>
-                      <a item *ngFor="let final of (finales | async)?.finalesParaRendir">{{ final }}</a>
+                      <a item *ngFor="let final of (finales | async)?.finalesParaRendir">-- {{ final }}</a>
 
             </expandable-list-item>   
           </expandable-list>
@@ -40,7 +40,7 @@
                 <expandable-list-item (onExpanded)="showInfoProfesores()">
                   <span title>Profesores</span>
                   <!-- <span secondary>Secondary</span> -->
-                      <a item *ngFor="let profesor of (profesores | async)?.profesores">{{ profesor }}</a>
+                      <a item *ngFor="let profesor of (profesores | async)?.profesores">-- {{ profesor }}</a>
 
                 </expandable-list-item>
               </expandable-list>
@@ -51,7 +51,7 @@
                     <expandable-list-item (onExpanded)="showInfoDiasHorarios()">
                       <span title>Días y Horarios</span>
                       <!-- <span secondary>Secondary</span> -->
-                          <a item *ngFor="let diaHorario of (diasHorarios | async)?.diasHorarios">{{ diaHorario }}</a>
+                          <a item *ngFor="let diaHorario of (diasHorarios | async)?.diasHorarios">-- {{ diaHorario }}</a>
 
                     </expandable-list-item>  
                   </expandable-list>

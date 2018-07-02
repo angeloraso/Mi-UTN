@@ -8,6 +8,16 @@ page-institucion {
 
     .card {
         border-radius: 22px;
-        margin-top: 130%;
+        h1 {
+            font-weight: 4;
+            font-size: 2rem;
+            color:white
+        }
+        p {
+            margin-left: 9%;
+            margin-top: 1%;
+            font-size: 1rem;
+            color:white;
+        }
     }
 }
