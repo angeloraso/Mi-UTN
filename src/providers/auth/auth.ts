@@ -13,7 +13,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class AuthProvider {
 
   constructor(private afAuth : AngularFireAuth) {
-    console.log('Hello AuthProvider Provider');
   }
       /*
       //Registro de usuario

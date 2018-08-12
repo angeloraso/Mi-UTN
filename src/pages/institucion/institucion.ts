@@ -20,8 +20,4 @@ export class InstitucionPage {
       this.opcionesInstitucion = this.opcionesInstitucionRef.valueChanges()
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InformacionPage');
-  }
-
 }

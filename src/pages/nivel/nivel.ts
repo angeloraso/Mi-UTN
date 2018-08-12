@@ -4,6 +4,14 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { MateriaPage } from '../materia/materia';
+import { Data } from '../../providers/data/data';
+
+interface Materia {
+  nombre: string; // Nombre de la Materia
+  periodo: string; // Anual, 1er Cuatrimestre, 2do Cuatrimestre
+  modalidad?: string; // Presencial o Remota
+  horas?: string; // Cantidad de horas de la electiva
+}
 
 @Component({
   selector: 'page-nivel',
@@ -12,34 +20,34 @@ import { MateriaPage } from '../materia/materia';
 
 export class NivelPage {
 
-  title: string;
+  titulo: string;
+  ruta_database: string;
 
-  materiasNivelRef: AngularFirestoreCollection<any>;
-  materiasNivel: Observable<any>;
+/*   materiasNivelRef: AngularFirestoreCollection<any>;
+  materiasNivel: Observable<any>; */
+
+  materias = [];
 
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public db: AngularFirestore,) {
+              public db: AngularFirestore,
+              public dataService: Data) {
 
-      this.title = navParams.get('title');
+      this.titulo = navParams.get('titulo');
+      this.ruta_database = navParams.get('ruta_database');
 
-      this.materiasNivelRef = this.db.collection('/' + this.title + '/');
-      this.materiasNivel = this.materiasNivelRef.valueChanges()
+      this.materias = dataService.getTodosLosDocumentos(this.ruta_database, true);
+
+/*       this.materiasNivelRef = this.db.collection('/' + this.titulo + '/');
+      this.materiasNivelRef.ref.orderBy("nombre");
+      this.materiasNivel = this.materiasNivelRef.valueChanges(); */
   }
 
-  goToMateria(materia){
+  irALaMateria(materia){
     this.navCtrl.push(MateriaPage, 
       
       {title: materia.nombre});
-  }
-
-  ionViewWillEnter() {
-    
- }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NivelPage');
   }
 
 }

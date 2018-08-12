@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color=aquamarine>
-    <ion-title> {{ title }}</ion-title>
+    <ion-title> {{ titulo }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -8,7 +8,7 @@
 <ion-content>
 
     <ion-list>
-        <ion-card *ngFor="let materia of (materiasNivel | async)" (click)="goToMateria(materia)">
+        <ion-card *ngFor="let materia of materias" (click)="irALaMateria(materia)">
             <ion-item color=aquamarine>
                 <ion-icon name="bookmark"></ion-icon>
                 &nbsp;

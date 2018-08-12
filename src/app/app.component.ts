@@ -13,7 +13,7 @@ import { AuthProvider } from '../providers/auth/auth';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any = HomePage;
 
   constructor(private platform: Platform, 
               private statusBar: StatusBar, 
@@ -35,7 +35,8 @@ export class MyApp {
             this.rootPage = HomePage;
         }
           else{
-            this.rootPage = LoginPage;
+            //this.rootPage = LoginPage;
+            this.rootPage = HomePage;
           }
       });
 

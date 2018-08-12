@@ -9,9 +9,4 @@ import { NavController } from 'ionic-angular';
 export class NoticiasPage {  
   constructor(public navCtrl: NavController) {   
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InformacionPage');
-  }
-
 }

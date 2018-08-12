@@ -46,8 +46,4 @@ export class PerfilPage {
   confirm.present();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PerfilPage');
-  }
-
 }

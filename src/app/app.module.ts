@@ -25,6 +25,7 @@ import { ExpandableListModule } from 'angular2-expandable-list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FlashCardComponent } from '../components/flash-card/flash-card';
+import { Data } from '../providers/data/data';
 
 
 export const firebaseConfig = {
@@ -77,6 +78,7 @@ export const firebaseConfig = {
     SplashScreen,
     AuthProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Data,
   ]
 })
 export class AppModule {}

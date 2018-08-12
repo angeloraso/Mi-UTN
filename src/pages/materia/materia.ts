@@ -66,7 +66,6 @@ export class MateriaPage {
       // Se eliminan los acentos
       this.materiaTitle = this.materiaTitle.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
-      console.log(this.materiaTitle);
       this.materiasCol = this.db.collection('Materias');
       this.materiaDoc = this.materiasCol.doc(this.materiaTitle);  
 
@@ -101,7 +100,6 @@ export class MateriaPage {
 
     // Todos estos metodos son para mostrar la info de cada Select y ocultar los otros.
     showInfoCursadas() {
-      console.log("DENTRO DEL SHOW (Cursadas): " + this.listExpandedCursadas);
       if(!this.listExpandedCursadas){
       
         this.cursadas = this.materiaDoc.valueChanges();
@@ -116,7 +114,6 @@ export class MateriaPage {
 
       }
       else{
-        console.log("DENTRO DEL ELSE (Cursadas): " + this.listExpandedCursadas);
         this.cursadas = null;
         this.listExpandedCursadas = false;
 
@@ -126,7 +123,6 @@ export class MateriaPage {
     }
 
     showInfoFinales() {
-      console.log("DENTRO DEL SHOW (Finales): " + this.listExpandedFinales);
       if(!this.listExpandedFinales){
 
         this.cursadas = null;
@@ -140,7 +136,6 @@ export class MateriaPage {
 
       }
       else{
-        console.log("DENTRO DEL ELSE (Finales): " + this.listExpandedFinales);
         this.finales = null;
         this.listExpandedFinales = false;
 
@@ -150,7 +145,6 @@ export class MateriaPage {
     }
 
     showInfoDiasHorarios() {
-      console.log("DENTRO DEL SHOW (DiasHorarios): " + this.listExpandedDiasHorarios);
       if(!this.listExpandedDiasHorarios){
 
         this.cursadas = null;
@@ -165,7 +159,6 @@ export class MateriaPage {
 
       }
       else{
-        console.log("DENTRO DEL ELSE (DiasHorarios): " + this.listExpandedDiasHorarios);
         this.diasHorarios = null;
         this.listExpandedDiasHorarios = false;
 
@@ -175,7 +168,6 @@ export class MateriaPage {
     }
 
     showInfoProfesores() {
-      console.log("DENTRO DEL SHOW (Profesores): " + this.listExpandedProfesores);
       if(!this.listExpandedProfesores){
 
         this.cursadas = null;
@@ -190,7 +182,6 @@ export class MateriaPage {
 
       }
       else{
-        console.log("DENTRO DEL ELSE (Profesores): " + this.listExpandedProfesores);
         this.profesores = null;
         this.listExpandedProfesores = false;
 
@@ -200,7 +191,6 @@ export class MateriaPage {
     }
 
     showInfoConsultas() {
-      console.log("DENTRO DEL SHOW (Consultas): " + this.listExpandedConsultas);
       if(!this.listExpandedConsultas){
 
         this.cursadas = null;
@@ -214,7 +204,6 @@ export class MateriaPage {
 
       }
       else{
-        console.log("DENTRO DEL ELSE (Consultas): " + this.listExpandedConsultas);
         this.consultas = null;
         this.listExpandedConsultas = false;
 
@@ -224,7 +213,6 @@ export class MateriaPage {
     }
 
     showInfoLinks() {
-      console.log("DENTRO DEL SHOW (links): " + this.listExpandedLinks);
       if(!this.listExpandedLinks){
 
         this.cursadas = null;
@@ -239,7 +227,6 @@ export class MateriaPage {
 
       }
       else{
-        console.log("DENTRO DEL ELSE (links): " + this.listExpandedLinks);
         this.links = null;
         this.listExpandedLinks = false;
 
@@ -247,13 +234,4 @@ export class MateriaPage {
       } 
 
     }
-
-
-    mostrarConsole(){
-      console.log("Prueba 3");
-    }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MateriaPage');
-  }
-
 }

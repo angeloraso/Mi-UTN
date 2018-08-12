@@ -12,25 +12,61 @@ page-materias {
         bottom: 0;
     } 
 
-    [cards] {
-        .grid-full ion-col {
-            flex: 0 0 50%;
+    .nivel-imagen {
+			width:100%;
+			height:100%;
+			position:relative;
+            opacity:1;
+    }
+
+    .nivel-imagen>div{
+        position: absolute;
+        bottom:0px;
+        width: 100%;
+        color:#fff;
+        background-color:#000;
+        padding:10px 10px;
+        font-weight:bold;
+        font-size:15px;
+        opacity:0.5;
+    }
+
+    .nivel-row {
+        padding: 0 12px;
+    }
+    .nivel-col {
+        padding: 5px 0;
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 5px 0px;
+    }
+    .nivel-card {
+        margin: 0 5px;
+        padding: 0px;
+        width: calc(100% - 10px);
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10);
+        border-radius: 4px;
+    }
+
+    @media all and (min-width: 800px) {
+        .nivel-col {
+            flex: 0 0 33%;
             max-width: 50%;
             padding: 5px 0px;
-        }
-        .row {
-            padding: 0 12px;
-        }
-        .col {
-            padding: 5px 0;
-        }
-        .card {
-            margin: 0 5px;
-            padding: 0px;
-            width: calc(100% - 10px);
-            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10);
-            border-radius: 4px;
+            margin-top: 10%;
         }
     }
+
+    @media all and (min-width: 1200px) {
+        .nivel-col {
+            margin: 2%; 
+            margin-left: 5%;
+            margin-top: 5%;
+            flex: 0 0 25%;
+            max-width: 30%;
+            padding: 10px 0px;
+        }
+    }
+
 
 }
