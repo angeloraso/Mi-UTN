@@ -8,6 +8,17 @@ page-materia {
 
     .card {
         border-radius: 18px;
+        cursor: pointer; 
+        cursor: hand;
+    }
+
+    .card-header{
+        height: 50px;
+        margin-top: 5px;
+    }
+
+    .accordion {
+
     }
 
 }
