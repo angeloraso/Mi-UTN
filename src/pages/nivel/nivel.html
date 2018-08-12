@@ -13,7 +13,8 @@
                 <ion-icon name="bookmark"></ion-icon>
                 &nbsp;
                 <label>{{materia.nombre}}</label>
-                <p>{{materia.periodo}}</p>
+                <p *ngIf="materia.horas">{{materia.periodo}} - {{materia.horas}}</p>
+                <p *ngIf="!materia.horas">{{materia.periodo}}</p>
             </ion-item>
         </ion-card>
     </ion-list>

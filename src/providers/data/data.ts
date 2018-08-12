@@ -31,7 +31,6 @@ export class Data {
 
     const localDB = new PouchDB(ruta_de_la_tabla); 
 
-    console.log(localDB.info());
     localDB.info().then(function (details) { 
     if (details.doc_count == 0 && details.update_seq == 0) { 
         // La base de datos NO existe en memoria
