@@ -4,6 +4,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 /**
  * Generated class for the MateriaPage page.
  *
@@ -26,6 +28,8 @@ export interface Materia {
 })
 
 export class MateriaPage {
+
+  faCoffee = faCoffee;
 
   
   listExpandedCursadas = false;
