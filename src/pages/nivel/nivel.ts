@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
@@ -13,6 +13,7 @@ interface Materia {
   horas?: string; // Cantidad de horas de la electiva
 }
 
+@IonicPage()
 @Component({
   selector: 'page-nivel',
   templateUrl: 'nivel.html',

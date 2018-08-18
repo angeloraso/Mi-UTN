@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
@@ -22,6 +22,7 @@ export interface Materia {
   links: Array<{link:string, titulo:string}>;
 }
 
+@IonicPage()
 @Component({
   selector: 'page-materia',
   templateUrl: 'materia.html',

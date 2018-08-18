@@ -8,13 +8,6 @@ import { LoginPage } from '../pages/login/login';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { InstitucionPage } from '../pages/institucion/institucion';
-import { MateriasPage } from '../pages/materias/materias';
-import { NoticiasPage } from '../pages/noticias/noticias';
-import { PerfilPage } from '../pages/perfil/perfil';
-
-import { NivelPage } from '../pages/nivel/nivel';
-import { MateriaPage } from '../pages/materia/materia';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -28,6 +21,12 @@ import { FlashCardComponent } from '../components/flash-card/flash-card';
 import { Data } from '../providers/data/data';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NoticiasPage } from '../pages/noticias/noticias';
+import { MateriasPage } from '../pages/materias/materias';
+import { PerfilPage } from '../pages/perfil/perfil';
+import { InstitucionPage } from '../pages/institucion/institucion';
+import { MateriaPage } from '../pages/materia/materia';
+import { NivelPage } from '../pages/nivel/nivel';
 
 
 
@@ -44,14 +43,14 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
+    LoginPage,
+    FlashCardComponent,
     NoticiasPage,
     MateriasPage,
-    InstitucionPage,
-    NivelPage,
-    MateriaPage,
-    LoginPage,
     PerfilPage,
-    FlashCardComponent,
+    InstitucionPage,
+    MateriaPage,
+    NivelPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
@@ -72,13 +71,13 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
+    LoginPage,
     NoticiasPage,
     MateriasPage,
-    InstitucionPage,
-    NivelPage,
-    LoginPage,
-    MateriaPage,
     PerfilPage,
+    InstitucionPage,
+    MateriaPage,
+    NivelPage,
   ],
   providers: [
     StatusBar,
