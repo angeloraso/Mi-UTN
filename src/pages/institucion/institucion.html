@@ -1,6 +1,6 @@
 <ion-content>
     <ion-list>
-        <ion-card *ngFor="let opcion of (opcionesInstitucion | async)" (click)="irAPagina(opcion)">
+        <ion-card *ngFor="let opcion of opciones" (click)="irAPaginaElegida(opcion)">
             <ion-item color=aquamarine>
                 <ion-icon name={{opcion.icono}}></ion-icon>
                 &nbsp;

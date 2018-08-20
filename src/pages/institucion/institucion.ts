@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
+
+import { Data } from '../../providers/data/data';
+
+
+interface Opcion{
+    nombre: string, // Nombre de la opcion
+    icono: string // Icono que acompaña a la opcion
+}
 
 @IonicPage()
 @Component({
@@ -10,15 +16,21 @@ import { Observable } from 'rxjs';
 })
 export class InstitucionPage {
 
-  opcionesInstitucionRef: AngularFirestoreCollection<any>;
-  opcionesInstitucion: Observable<any>;
+  institucion: any; // En institucion[0].opciones se guardan las opciones de la seccion Institucion 
+  opciones: Opcion[]; // Arreglo con las opciones
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public db: AngularFirestore) {
+              public dataService: Data) {
 
-      this.opcionesInstitucionRef = this.db.collection('/Opciones Institucion/');
-      this.opcionesInstitucion = this.opcionesInstitucionRef.valueChanges()
+              dataService.getTodosLosDocumentos("institucion").then((result) => {
+                  this.institucion = result;
+                  this.opciones = result[0].opciones;    
+              });
+  }
+
+  irAPaginaElegida(opcion: Opcion){
+
   }
 
 }
