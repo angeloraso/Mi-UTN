@@ -1,6 +1,4 @@
-<ion-content style="margin-top: 20px;">
-
-    <!-- ESTO ES UN COMENTARIO SIN SENTIDO-->
+<ion-content>
     <ion-list>
         <ion-card *ngFor="let opcion of (opcionesInstitucion | async)" (click)="irAPagina(opcion)">
             <ion-item color=aquamarine>
@@ -10,5 +8,4 @@
             </ion-item>
         </ion-card>
     </ion-list>
-
 </ion-content>

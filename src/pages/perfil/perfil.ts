@@ -10,13 +10,32 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 export class PerfilPage {
 
-  usuario = {
-    nombre: "Angelo",
-    apellido: "Raso",
-    legajo: "05-5124-4",
-    anio: "5to",
-    promedio: 8.30,
-  }
+  following = false;
+  user = {
+    name: 'Alumno FRLP',
+    profileImage: 'assets/icon/user_icon.png',
+    coverImage: 'assets/imgs/1er_nivel.jpg',
+    occupation: 'Estudiante',
+    location: 'Localidad',
+    description: 'Alguna descripción opcional',
+    materias: 33,
+    horas_electivas: 18,
+    promedio: 8.30
+  };
+
+  // En los posteos en realidad irian los mensajes para el alumno, como puede ser que su beca fue 
+  // aprobada/rechazada, que su analitico ya esta listo para retirar, etc
+  posts = [
+    {
+      emisor: 'Nombre Entidad Facultad',
+      postImageUrl: 'assets/icon/logo_utn.png',
+      text: `Mensaje para el alumno, como puede ser que su beca fue aprobada/rechazada, que su analitico ya esta listo para retirar, su certificado de examen ya fue creado, etc`,
+      date: 'Fecha del mensaje',
+      borrar: 'Borrar',
+      responder: 'Responder',
+      timestamp: '11hs ago'
+    },
+  ]
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,

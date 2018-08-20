@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { NivelPage } from '../nivel/nivel';
+import { Data } from '../../providers/data/data';
 
 @IonicPage()
 @Component({
@@ -20,10 +21,13 @@ export class MateriasPage {
   ]
 
   constructor(public navCtrl: NavController, 
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              public dataService: Data) {
+
+              dataService.destroyAll();
   
   }
-  irAlNivel(nivel: any){
+  irAlNivelElegido(nivel: any){
     this.navCtrl.push(NivelPage, 
       
       {titulo: nivel.titulo, ruta_database: nivel.ruta_database});

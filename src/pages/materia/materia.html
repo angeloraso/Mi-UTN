@@ -1,42 +1,20 @@
 <ion-header>
     <ion-navbar color=aquamarine>
-      <ion-title> {{ title }}</ion-title>
+      <ion-title> {{ titulo }}</ion-title>
     </ion-navbar>
-  </ion-header>
+ </ion-header>
 
 
 <ion-content>
   <ion-card>
-
-      <div class="accordion" id="necesitoParaCursar">
-          <div class="card">
-            <div class="card-header" id="headingOne">
-              <h2 class="mb-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Necesito Para Cursar
-                  <fa-icon style="float: right; size: 5x; font-size: 20px"[icon]="faChevronDown"></fa-icon>
-              </h2>
-              
-            </div>
-        
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#necesitoParaCursar">
-              <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-              </div>
-            </div>
-          </div>
-      </div>
-  </ion-card>
-
-  <ion-card>
     <expandable-list >
-        <expandable-list-item (onExpanded)="showInfoCursadas()">
-          <span title>Necesito para Cursar</span>
-          <!-- <span secondary>Secondary</span> -->
-              <a item >La Cursada de:</a>
-                  <a item *ngFor="let cursada of (cursadas | async)?.cursadasParaCursar">-- {{ cursada }}</a>
+        <expandable-list-item>
+          <span style="font-family: 'Roboto', sans-serif;" title>Necesito para Cursar</span>
+              <a style="background-color: rgb(241, 241, 241);" item >La Cursada de:</a>
+                  <a item *ngFor="let cursada of materia.cursadas_para_cursar">-- {{ cursada }}</a>
 
-              <a item >El Final de:</a> 
-                  <a item *ngFor="let final of (cursadas | async)?.finalesParaCursar">-- {{ final }}</a>
+              <a style="background-color: rgb(241, 241, 241);" item >El Final de:</a> 
+                  <a item *ngFor="let final of materia.finales_para_cursar">-- {{ final }}</a>
 
 
         </expandable-list-item>
@@ -45,22 +23,19 @@
 
     <ion-card>
         <expandable-list >
-            <expandable-list-item (onExpanded)="showInfoFinales()">
+            <expandable-list-item>
               <span title>Necesito para Rendir</span>
-              <!-- <span secondary>Secondary</span> -->    
-                  <a item>El Final de:</a>
-                      <a item *ngFor="let final of (finales | async)?.finalesParaRendir">-- {{ final }}</a>
-
+                  <a style="background-color: rgb(241, 241, 241);" item>El Final de:</a>
+                      <a item *ngFor="let final of materia.finales_para_rendir">-- {{ final }}</a>
             </expandable-list-item>   
           </expandable-list>
         </ion-card>
 
         <ion-card>
             <expandable-list>
-                <expandable-list-item (onExpanded)="showInfoProfesores()">
+                <expandable-list-item>
                   <span title>Profesores</span>
-                  <!-- <span secondary>Secondary</span> -->
-                      <a item *ngFor="let profesor of (profesores | async)?.profesores">-- {{ profesor }}</a>
+                      <a item *ngFor="let profesor of materia.profesores">-- {{ profesor }}</a>
 
                 </expandable-list-item>
               </expandable-list>
@@ -68,10 +43,13 @@
 
             <ion-card>
                 <expandable-list>
-                    <expandable-list-item (onExpanded)="showInfoDiasHorarios()">
+                    <expandable-list-item>
                       <span title>Días y Horarios</span>
-                      <!-- <span secondary>Secondary</span> -->
-                          <a item *ngFor="let diaHorario of (diasHorarios | async)?.diasHorarios">-- {{ diaHorario }}</a>
+                          <a item *ngFor="let cronograma of materia.cronogramas">
+                              <b>{{ cronograma.comision }}</b>
+                              <br>
+                              <a item *ngFor="let dia_horario of cronograma.dias_horarios">-- {{ dia_horario }}<br> </a>
+                          </a>
 
                     </expandable-list-item>  
                   </expandable-list>
@@ -79,24 +57,21 @@
 
                 <ion-card>
                     <expandable-list>
-                        <expandable-list-item (onExpanded)="showInfoConsultas()">
+                        <expandable-list-item>
                           <span title>Clases de Consulta</span>
-                          <!-- <span secondary>Secondary</span> -->
-                              <a item *ngFor="let claseConsulta of (consultas | async)?.clasesConsulta">
-                                Día: {{claseConsulta.diaHorario}} <br>
-                                Profesor/a: {{claseConsulta.profesor}} <br>
-                                Aula: {{claseConsulta.aula}}                              
+                              <a item *ngFor="let claseConsulta of materia.clases_consulta">
+                                <b>Aula:</b> {{claseConsulta.aula}} <br>                              
+                                <b>Día:</b> {{claseConsulta.dia_horario}} <br>
+                                <b>Profesor/a:</b> {{claseConsulta.profesor}} <br><br>
                               </a>
-
                         </expandable-list-item>  
                       </expandable-list>
      </ion-card>
      <ion-card>
         <expandable-list>
-            <expandable-list-item (onExpanded)="showInfoLinks()">
+            <expandable-list-item>
               <span title>Links de la Materia</span>
-              <!-- <span secondary>Secondary</span> -->
-                  <!--<a item *ngFor="let link of (links | async)?.links" href=link.link>{{link.titulo}}</a> -->
+                  <a item *ngFor="let link of materia.links" href=link.link>{{link.titulo}}</a>
 
             </expandable-list-item>  
           </expandable-list>

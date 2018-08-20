@@ -20,7 +20,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlashCardComponent } from '../components/flash-card/flash-card';
 import { Data } from '../providers/data/data';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NoticiasPage } from '../pages/noticias/noticias';
 import { MateriasPage } from '../pages/materias/materias';
 import { PerfilPage } from '../pages/perfil/perfil';
@@ -61,9 +60,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule.enablePersistence(),
     AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    FontAwesomeModule,
-  ],
+    AngularFireAuthModule
+    ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
