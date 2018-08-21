@@ -26,6 +26,7 @@ import { PerfilPage } from '../pages/perfil/perfil';
 import { InstitucionPage } from '../pages/institucion/institucion';
 import { MateriaPage } from '../pages/materia/materia';
 import { NivelPage } from '../pages/nivel/nivel';
+import { InstitucionOpcionPage } from '../pages/institucion-opcion/institucion-opcion';
 
 
 
@@ -50,6 +51,7 @@ export const firebaseConfig = {
     InstitucionPage,
     MateriaPage,
     NivelPage,
+    InstitucionOpcionPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
@@ -76,6 +78,7 @@ export const firebaseConfig = {
     InstitucionPage,
     MateriaPage,
     NivelPage,
+    InstitucionOpcionPage,
   ],
   providers: [
     StatusBar,

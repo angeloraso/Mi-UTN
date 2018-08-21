@@ -17,13 +17,50 @@ export class Data {
  
   }
 
-  destroyAll(){
-    new PouchDB('primer-nivel').destroy();
-    new PouchDB('segundo-nivel').destroy();
-    new PouchDB('tercer-nivel').destroy();
-    new PouchDB('cuarto-nivel').destroy();
-    new PouchDB('quinto-nivel').destroy();
-    new PouchDB('electivas').destroy();
+  
+  // Devuelve el documento con el id_documento de la tabla "ruta_tabla"
+  // ruta_tabla no debe comenzar con /
+  getDocumento(ruta_tabla: string, id_documento: string, quiero_guardarlos_localmente?: boolean){
+    if(_.isEmpty(quiero_guardarlos_localmente)) quiero_guardarlos_localmente = true;
+
+    var that = this;
+    return new Promise(resolve => {
+        var documento = {};
+
+        const localDB = new PouchDB(ruta_tabla); 
+
+        localDB.info().then(function (details) { 
+        if (details.doc_count == 0 && details.update_seq == 0) { 
+            // La base de datos NO existe en memoria
+
+            let url = that.URL_DATABASE + ruta_tabla;
+            var remoteDB = new PouchDB(url); // Genero un vinculo con la base de datos remota
+
+            if(quiero_guardarlos_localmente){
+              localDB.replicate.from(remoteDB, {live: true, retry: true});
+            }
+            remoteDB.get(id_documento).then((result) => {
+                documento = result;
+                resolve(documento); // Devuelvo el documento buscado de la base de datos remota
+            }).catch(function (err) {
+              console.log(err);
+            });
+        } 
+        else {
+          // La base de datos SI existe en memoria
+            localDB.get(id_documento).then((result) => {
+                documento = result;
+                resolve(documento); // Devuelvo el documento buscado de la base de datos local
+            }).catch(function (err) {
+              console.log(err);
+            });
+        } 
+        }) 
+        .catch(function (err) { 
+            console.log('error: ' + err); 
+        }); 
+    });
+
   }
 
   // Devuelve todos los documentos de la tabla "ruta_tabla"

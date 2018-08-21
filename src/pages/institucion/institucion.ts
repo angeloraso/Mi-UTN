@@ -2,12 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Data } from '../../providers/data/data';
+import { InstitucionOpcionPage } from '../institucion-opcion/institucion-opcion';
 
-
-interface Opcion{
-    nombre: string, // Nombre de la opcion
-    icono: string // Icono que acompaña a la opcion
-}
+import {Opcion} from '../../interfaces/institucion.interface'
 
 @IonicPage()
 @Component({
@@ -23,14 +20,15 @@ export class InstitucionPage {
               public navParams: NavParams,
               public dataService: Data) {
 
-              dataService.getTodosLosDocumentos("institucion").then((result) => {
-                  this.institucion = result;
-                  this.opciones = result[0].opciones;    
+              var that = this;
+              dataService.getDocumento("institucion", "institucion").then((result: any) =>{
+                  that.opciones = result.opciones;
               });
   }
 
   irAPaginaElegida(opcion: Opcion){
-
+    this.navCtrl.push(InstitucionOpcionPage,  
+        {opcion: opcion});
   }
 
 }

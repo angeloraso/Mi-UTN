@@ -23,8 +23,6 @@ export class MateriasPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public dataService: Data) {
-
-              dataService.destroyAll();
   
   }
   irAlNivelElegido(nivel: any){

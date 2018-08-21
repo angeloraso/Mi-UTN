@@ -1,0 +1,22 @@
+
+<ion-header>
+  <ion-navbar color=aquamarine>
+    <ion-title> {{ opcion.nombre }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+    <ion-list>
+        <ion-card *ngFor="let elemento of elementos" (click)="abrirModalElegido(elemento)">
+            <ion-item color=aquamarine>
+                <ion-icon name={{opcion.icono}}></ion-icon>
+                &nbsp;
+                <label>{{elemento.nombre}}</label>
+                <p *ngIf="elemento.subtitulo">{{elemento.subtitulo}}</p>
+            </ion-item>
+        </ion-card>
+    </ion-list>
+
+</ion-content>
