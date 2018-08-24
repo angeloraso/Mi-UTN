@@ -8,7 +8,7 @@
         <h4> {{elementoElegido.data.subtitulo}}</h4>  
       </ion-item>
       <ion-buttons end>
-          <button ion-button icon-only (click)="dismiss()">
+          <button ion-button icon-only style="margin-right: 10px;" (click)="dismiss()">
               <ion-icon name="close"></ion-icon>
           </button>
       </ion-buttons>
@@ -30,17 +30,11 @@
                               class="swiper-no-swiping"
                               [ngStyle]="{'background' : 'url(' + slide + ')'}">
                   </ion-slide>
-                  <!-- Add Pagination -->
-                  <div *ngIf="currentIndex > 0"
-                        class="swiper-button-prev swiper-button-white"
-                        (click)="previousSlide()"></div>
-                  <div *ngIf="currentIndex < elementoElegido.data.fotos.length-1"
-                        class="swiper-button-next swiper-button-white"
-                        (click)="nextSlide()"></div>
                 </ion-slides>
                 <br/>
                 <div>
-                {{elementoElegido.data.descripcion}} 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {{elementoElegido.data.descripcion}} 
                 </div>
             </ion-item>
 
