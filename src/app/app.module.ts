@@ -9,11 +9,6 @@ import { LoginPage } from '../pages/login/login';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-
 import { ExpandableListModule } from 'angular2-expandable-list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -27,7 +22,16 @@ import { InstitucionPage } from '../pages/institucion/institucion';
 import { MateriaPage } from '../pages/materia/materia';
 import { NivelPage } from '../pages/nivel/nivel';
 import { InstitucionOpcionPage } from '../pages/institucion-opcion/institucion-opcion';
+import { ModalContentPage } from '../pages/institucion-opcion/modal-content/modal-content';
 
+import { IonicImageLoader } from 'ionic-image-loader';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 export const firebaseConfig = {
@@ -51,18 +55,21 @@ export const firebaseConfig = {
     InstitucionPage,
     MateriaPage,
     NivelPage,
-    InstitucionOpcionPage
+    InstitucionOpcionPage,
+    ModalContentPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
     BrowserModule,
     ExpandableListModule,
     BrowserAnimationsModule,
+
     AngularFirestoreModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule.enablePersistence(),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,    
+    IonicImageLoader.forRoot(),
     ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -79,11 +86,13 @@ export const firebaseConfig = {
     MateriaPage,
     NivelPage,
     InstitucionOpcionPage,
+    ModalContentPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AuthProvider,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Data,
   ]

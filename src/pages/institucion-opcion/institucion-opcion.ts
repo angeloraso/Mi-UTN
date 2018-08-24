@@ -32,8 +32,8 @@ export class InstitucionOpcionPage {
   }
 
   abrirModalElegido(elemento){
-    /* let modal = this.modalCtrl.create(ModalContentPage, elemento);
-    modal.present(); */
+    let modal = this.modalCtrl.create(ModalContentPage, elemento);
+    modal.present();
   }
 
 

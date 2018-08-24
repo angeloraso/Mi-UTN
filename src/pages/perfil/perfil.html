@@ -40,16 +40,7 @@
               <span>{{user.promedio}}</span>
             </ion-col>
           </ion-row>
-          <ion-card (click)="salir()">
-            <ion-item>
-                <ion-avatar item-start>
-                    <img src='assets/icon/turn_off.png'>
-                </ion-avatar>
-                <ion-label>
-                    &nbsp; Cerrar Sesión
-                </ion-label> 
-            </ion-item>
-          </ion-card>
+          
           <div id="posts">
             <ion-card *ngFor="let post of posts">
               <ion-item>
@@ -80,4 +71,16 @@
             </ion-card>
           </div>
         </div>
+
+        <ion-card (click)="salir()">
+          <ion-item>
+              <ion-avatar item-start>
+                  <img src='assets/icon/turn_off.png'>
+              </ion-avatar>
+              <ion-label>
+                  &nbsp; Cerrar Sesión
+              </ion-label> 
+          </ion-item>
+        </ion-card>
+        
       </ion-content>
