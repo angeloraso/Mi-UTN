@@ -13,5 +13,6 @@ export interface Laboratorio{
     descripcion: string, // Descripcion de las actividades del laboratorio
     horario: string, // Horario de atencion del laboratorio
     fotos: Array<string>, // Arreglo con urls de fotos
-    links: Array<{titulo:string, link:string}>, // Arreglo con links oficiales del laboratorio
+    emails: Array<string>, // Arreglo de emails de contacto
+    links: Array<{titulo:string, link:string, icono:string}>, // Arreglo con links oficiales del laboratorio
 }

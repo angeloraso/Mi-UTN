@@ -22,9 +22,8 @@ import { InstitucionPage } from '../pages/institucion/institucion';
 import { MateriaPage } from '../pages/materia/materia';
 import { NivelPage } from '../pages/nivel/nivel';
 import { InstitucionOpcionPage } from '../pages/institucion-opcion/institucion-opcion';
-import { ModalContentPage } from '../pages/institucion-opcion/modal-content/modal-content';
-
-import { IonicImageLoader } from 'ionic-image-loader';
+import { ModalesPage } from '../pages/institucion-opcion/modales/modales';
+import { ModalUnoComponent } from '../pages/institucion-opcion/modales/modal-uno/modal-uno';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -56,7 +55,8 @@ export const firebaseConfig = {
     MateriaPage,
     NivelPage,
     InstitucionOpcionPage,
-    ModalContentPage
+    ModalesPage,
+    ModalUnoComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
@@ -69,7 +69,6 @@ export const firebaseConfig = {
     AngularFirestoreModule.enablePersistence(),
     AngularFireDatabaseModule,
     AngularFireAuthModule,    
-    IonicImageLoader.forRoot(),
     ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -86,7 +85,8 @@ export const firebaseConfig = {
     MateriaPage,
     NivelPage,
     InstitucionOpcionPage,
-    ModalContentPage
+    ModalesPage,
+    ModalUnoComponent
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar transparent>
+      <ion-item no-lines>
+        <ion-avatar item-start>
+            <img [src]="elementoElegido.data.url_imagen_perfil ? elementoElegido.data.url_imagen_perfil : imagen_perfil">
+        </ion-avatar>
+        <label> {{elementoElegido.data.nombre}} </label>
+        <h4 *ngIf="elementoElegido.data.subtitulo"> {{elementoElegido.data.subtitulo}}</h4>  
+      </ion-item>
+      <ion-buttons end>
+          <button ion-button icon-only style="margin-right: 10px;" (click)="dismiss()">
+              <ion-icon name="close"></ion-icon>
+          </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+        <!-- MODAL UNO -->
+        <modal-uno 
+            [fotos]="elementoElegido.data.fotos"
+            [descripcion]="elementoElegido.data.descripcion"
+            [horario]="elementoElegido.data.horario"
+            [links]="elementoElegido.data.links"
+            [emails]="elementoElegido.data.emails"
+             *ngIf="elementoElegido.data.tipo_modal === 'modal_uno'">
+        </modal-uno>  
+
+
+  </ion-content>

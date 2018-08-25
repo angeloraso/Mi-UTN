@@ -1,0 +1,72 @@
+<ion-content>
+    <ion-item text-wrap>
+        <div>
+        <h1>
+            Qué Hacemos?
+        </h1>
+        </div>
+        <br/>
+        <ion-slides 
+            #slider 
+            *ngIf="fotos && fotos.length"
+            pager=true 
+            autoplay=1500 
+            effect="slide" 
+            loop=true 
+            (ionSlideWillChange)="onSlideChanged()">
+
+            <ion-slide *ngFor="let foto of fotos"
+                        class="swiper-no-swiping"
+                        [ngStyle]="{'background' : 'url(' + foto + ')'}">
+            </ion-slide>
+
+        </ion-slides>
+        <br/>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {{descripcion}} 
+        </div>
+    </ion-item>
+
+    <ion-item text-wrap>
+        <div>
+            <h1>
+                Horario:
+            </h1>
+        </div>
+        <ion-item no-lines>
+            <ion-icon color=aquamarine name="time"></ion-icon>
+            &nbsp;&nbsp;{{horario}} 
+        </ion-item>
+    </ion-item>
+    <ion-item text-wrap>
+        <div>
+            <h1>
+                Emails de Contacto:
+            </h1>
+        </div>
+        <ion-item no-lines *ngFor="let email of emails">
+            <ion-icon 
+                name="mail" 
+                color=aquamarine>
+                &nbsp;&nbsp;
+                <a href="mailto:{{mail}}">{{email}}</a>
+            </ion-icon>  
+        </ion-item>
+    </ion-item>
+
+    <ion-item>
+        <h1>
+            Links:
+        </h1>
+        <ion-list>
+            <a *ngFor="let link of links" 
+                href="#" 
+                ion-item
+                (click)="openWithSystemBrowser(link.link)">
+                <ion-icon color=aquamarine name={{link.icono}}></ion-icon>
+                &nbsp;&nbsp;{{link.titulo}}
+            </a>
+        </ion-list>
+    </ion-item>
+</ion-content>

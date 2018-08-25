@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import _ from 'lodash';
 
-import {Opcion} from '../../interfaces/institucion.interface'
+import { Opcion} from '../../interfaces/institucion.interface'
 import { Data } from '../../providers/data/data';
-import { ModalContentPage } from './modal-content/modal-content';
+import { ModalesPage } from './modales/modales';
 
 @IonicPage()
 @Component({
@@ -22,7 +22,7 @@ export class InstitucionOpcionPage {
               public modalCtrl: ModalController,
               public dataService: Data) {
 
-      this.opcion = navParams.get('opcion');
+      this.opcion = navParams.get('opcion'); //Opcion elegida
 
       var that = this;
 
@@ -32,7 +32,7 @@ export class InstitucionOpcionPage {
   }
 
   abrirModalElegido(elemento){
-    let modal = this.modalCtrl.create(ModalContentPage, elemento);
+    let modal = this.modalCtrl.create(ModalesPage, elemento);
     modal.present();
   }
 
