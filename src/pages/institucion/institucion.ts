@@ -66,7 +66,13 @@ export class InstitucionPage {
     else if (opcion.id_documento === "biblioteca"){
       this.mostrarAdvertencia(this.biblioteca);
     }
-    else if (opcion.id_documento === "becas" || "deportes" || "colaboradores" || "secretarias" || "entidades-academicas" || "utn-frlp"){
+    else if (opcion.id_documento === "becas" || 
+             opcion.id_documento === "bolsa-de-proyectos" || 
+             opcion.id_documento === "deportes" || 
+             opcion.id_documento === "colaboradores" || 
+             opcion.id_documento === "secretarias" || 
+             opcion.id_documento === "entidades-academicas" || 
+             opcion.id_documento === "utn-frlp"){
       this.mostrarProximamente();
     }
     else if (opcion.id_documento === "calendario-academico"){
@@ -103,7 +109,7 @@ export class InstitucionPage {
 
   mostrarProximamente(){
     const confirm = this.alertCtrl.create({
-      title: 'Proximamente',
+      title: 'Próximamente',
       message: 'Disculpe las molestias. Esta función aún no esta disponible.',
       buttons: [
         {
