@@ -15,10 +15,12 @@ import { CalendarioAcademicoPage } from './calendario-academico/calendario-acade
 export class InstitucionPage {
 
   comedor: UrlOpcion = {
+      titulo: "Ir a Comedor",
       url: "https://ticket.frlp.utn.edu.ar/u/#/ticket", 
       mensaje: "Será redirigido a la página oficial del Comedor para la compra de Tickets"
   }
   biblioteca: UrlOpcion =  {
+    titulo: "Ir a Biblioteca",
     url: "https://biblioteca.frlp.utn.edu.ar/", 
     mensaje: "Será redirigido a la página oficial de la Biblioteca"
   }
@@ -59,10 +61,13 @@ export class InstitucionPage {
 
   irAPaginaElegida(opcion: Opcion){
     if(opcion.id_documento === "comedor"){
-      this.mostrarAdvertenciaComedor(this.comedor);
+      this.mostrarAdvertencia(this.comedor);
     }
     else if (opcion.id_documento === "biblioteca"){
-      this.mostrarAdvertenciaComedor(this.biblioteca);
+      this.mostrarAdvertencia(this.biblioteca);
+    }
+    else if (opcion.id_documento === "becas" || "deportes" || "colaboradores" || "secretarias" || "entidades-academicas" || "utn-frlp"){
+      this.mostrarProximamente();
     }
     else if (opcion.id_documento === "calendario-academico"){
       this.navCtrl.push(CalendarioAcademicoPage,  
@@ -74,9 +79,9 @@ export class InstitucionPage {
     }
   }
 
-  mostrarAdvertenciaComedor(opcion: UrlOpcion){
+  mostrarAdvertencia(opcion: UrlOpcion){
     const confirm = this.alertCtrl.create({
-      title: 'Ir a Comedor',
+      title: opcion.titulo,
       message: opcion.mensaje,
       buttons: [
         {
@@ -89,6 +94,22 @@ export class InstitucionPage {
           handler: () => {
             let target = "_system";
             this.theInAppBrowser.create(opcion.url, target, this.options);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  mostrarProximamente(){
+    const confirm = this.alertCtrl.create({
+      title: 'Proximamente',
+      message: 'Disculpe las molestias. Esta función aún no esta disponible.',
+      buttons: [
+        {
+          text: 'Aceptar',
+          handler: () => {
+            
           }
         }
       ]

@@ -18,6 +18,7 @@ export interface Laboratorio{
 }
 
 export interface UrlOpcion {
+    titulo: string,
     url: string; 
     mensaje: string;
 }
