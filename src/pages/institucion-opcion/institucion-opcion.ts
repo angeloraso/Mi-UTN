@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import _ from 'lodash';
 
 import { Opcion} from '../../interfaces/institucion.interface'
 import { Data } from '../../providers/data/data';
-import { ModalesPage } from './modales/modales';
+import { ModalesPage } from '../../components/modales/modales';
 
 @IonicPage()
 @Component({

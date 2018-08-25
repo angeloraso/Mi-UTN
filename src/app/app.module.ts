@@ -22,8 +22,8 @@ import { InstitucionPage } from '../pages/institucion/institucion';
 import { MateriaPage } from '../pages/materia/materia';
 import { NivelPage } from '../pages/nivel/nivel';
 import { InstitucionOpcionPage } from '../pages/institucion-opcion/institucion-opcion';
-import { ModalesPage } from '../pages/institucion-opcion/modales/modales';
-import { ModalUnoComponent } from '../pages/institucion-opcion/modales/modal-uno/modal-uno';
+import { ModalesPage } from '../components/modales/modales';
+import { ModalUnoComponent } from '../components/modales/modal-uno/modal-uno';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
