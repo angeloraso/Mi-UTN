@@ -24,11 +24,13 @@ export class NivelPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public dataService: Data) {
+  }
+  
+  ngOnInit(){
+    this.titulo = this.navParams.get('titulo');
+      this.ruta_database = this.navParams.get('ruta_database');
 
-      this.titulo = navParams.get('titulo');
-      this.ruta_database = navParams.get('ruta_database');
-
-      dataService.getTodosLosDocumentos(this.ruta_database).then((result) => {
+      this.dataService.getTodosLosDocumentos(this.ruta_database).then((result) => {
         this.materias = result;
       });
   }

@@ -16,3 +16,8 @@ export interface Laboratorio{
     emails: Array<string>, // Arreglo de emails de contacto
     links: Array<{titulo:string, link:string, icono:string}>, // Arreglo con links oficiales del laboratorio
 }
+
+export interface UrlOpcion {
+    url: string; 
+    mensaje: string;
+}

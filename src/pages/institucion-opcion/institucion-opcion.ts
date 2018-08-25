@@ -20,14 +20,15 @@ export class InstitucionOpcionPage {
               public navParams: NavParams,
               public modalCtrl: ModalController,
               public dataService: Data) {
-
-      this.opcion = navParams.get('opcion'); //Opcion elegida
-
-      var that = this;
-
-      dataService.getDocumento(this.opcion.base_datos, this.opcion.id_documento).then((result: any) =>{
-          that.elementos = result.elementos;
-      });
+  }
+  ngOnInit(){
+    // Para leer las variables entrantes. En el constructor no se van a poder ver
+    this.opcion = this.navParams.get('opcion'); //Opcion elegida
+    
+    var that = this;
+    this.dataService.getDocumento(this.opcion.base_datos, this.opcion.id_documento).then((result: any) =>{
+        that.elementos = result.elementos;
+    });
   }
 
   abrirModalElegido(elemento){

@@ -32,7 +32,6 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-
 export const firebaseConfig = {
   apiKey: "AIzaSyCVSKHVTedumeqbPbp32jaSefk0SDQQ5nk",
   authDomain: "miutn-bbb58.firebaseapp.com",
@@ -97,4 +96,6 @@ export const firebaseConfig = {
     Data,
   ]
 })
+
+
 export class AppModule {}

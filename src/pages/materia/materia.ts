@@ -20,8 +20,9 @@ export class MateriaPage {
               public navParams: NavParams,
               public dataService: Data,
             ) {
-
-      this.materia = navParams.get('materia');
-      this.titulo = this.materia.nombre;
+  }
+  ngOnInit(){
+    this.materia = this.navParams.get('materia');
+    this.titulo = this.materia.nombre;
   }
 }
