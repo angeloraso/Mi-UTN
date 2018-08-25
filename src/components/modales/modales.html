@@ -26,5 +26,11 @@
              *ngIf="elementoElegido.data.tipo_modal === 'modal_uno'">
         </modal-uno>  
 
+        <!-- MODAL dos -->
+        <modal-dos 
+            [cronograma]="elementoElegido.data.cronograma"
+             *ngIf="elementoElegido.data.tipo_modal === 'modal_dos'">
+        </modal-dos>
+
 
   </ion-content>

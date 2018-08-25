@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { Data } from '../../providers/data/data';
-import { InstitucionOpcionPage } from '../institucion-opcion/institucion-opcion';
+import { InstitucionOpcionPage } from './institucion-opcion/institucion-opcion';
 
 import {Opcion, UrlOpcion} from '../../interfaces/institucion.interface'
+import { CalendarioAcademicoPage } from './calendario-academico/calendario-academico';
 
 @IonicPage()
 @Component({
@@ -57,14 +58,18 @@ export class InstitucionPage {
   }
 
   irAPaginaElegida(opcion: Opcion){
-    if(opcion.nombre === "Comedor"){
+    if(opcion.id_documento === "comedor"){
       this.mostrarAdvertenciaComedor(this.comedor);
     }
-    if (opcion.nombre === "Biblioteca"){
+    else if (opcion.id_documento === "biblioteca"){
       this.mostrarAdvertenciaComedor(this.biblioteca);
     }
+    else if (opcion.id_documento === "calendario-academico"){
+      this.navCtrl.push(CalendarioAcademicoPage,  
+        {opcion: opcion});
+    }
     else {
-    this.navCtrl.push(InstitucionOpcionPage,  
+      this.navCtrl.push(InstitucionOpcionPage,  
         {opcion: opcion});
     }
   }

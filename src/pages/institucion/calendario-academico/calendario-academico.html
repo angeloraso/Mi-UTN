@@ -1,0 +1,23 @@
+
+<ion-header>
+    <ion-navbar color=aquamarine>
+      <ion-title> {{ opcion.nombre }}</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content>
+      <ion-list>
+          <ion-item no-lines *ngFor="let calendarioAnual of calendariosAnuales">
+              <h1>{{calendarioAnual.anio}}</h1>
+              <ion-item *ngFor="let fecha of calendarioAnual.cronograma">
+                <div>
+                  <ion-icon name={{fecha.icono}} color={{fecha.color}}>&nbsp;&nbsp;{{fecha.fecha}}</ion-icon>
+                </div>
+                <div>
+                  <p>{{fecha.descripcion}}</p>
+                </div>
+              </ion-item>
+          </ion-item>
+      </ion-list>
+  </ion-content>

@@ -19,9 +19,9 @@ import { NoticiasPage } from '../pages/noticias/noticias';
 import { MateriasPage } from '../pages/materias/materias';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { InstitucionPage } from '../pages/institucion/institucion';
-import { MateriaPage } from '../pages/materia/materia';
-import { NivelPage } from '../pages/nivel/nivel';
-import { InstitucionOpcionPage } from '../pages/institucion-opcion/institucion-opcion';
+import { MateriaPage } from '../pages/materias/materia/materia';
+import { NivelPage } from '../pages/materias/nivel/nivel';
+import { InstitucionOpcionPage } from '../pages/institucion/institucion-opcion/institucion-opcion';
 import { ModalesPage } from '../components/modales/modales';
 import { ModalUnoComponent } from '../components/modales/modal-uno/modal-uno';
 
@@ -31,6 +31,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { CalendarioAcademicoPage } from '../pages/institucion/calendario-academico/calendario-academico';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCVSKHVTedumeqbPbp32jaSefk0SDQQ5nk",
@@ -55,7 +56,8 @@ export const firebaseConfig = {
     NivelPage,
     InstitucionOpcionPage,
     ModalesPage,
-    ModalUnoComponent
+    ModalUnoComponent,
+    CalendarioAcademicoPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
@@ -85,7 +87,8 @@ export const firebaseConfig = {
     NivelPage,
     InstitucionOpcionPage,
     ModalesPage,
-    ModalUnoComponent
+    ModalUnoComponent,
+    CalendarioAcademicoPage
   ],
   providers: [
     StatusBar,

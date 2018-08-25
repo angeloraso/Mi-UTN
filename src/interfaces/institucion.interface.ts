@@ -21,3 +21,13 @@ export interface UrlOpcion {
     url: string; 
     mensaje: string;
 }
+
+export interface CalendarioAnual {
+    anio: string, 
+    cronograma: Array<{
+        fecha: string,
+        icono: string,
+        color: string,
+        descripcion: string
+    }> 
+}

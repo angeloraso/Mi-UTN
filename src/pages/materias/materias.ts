@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { NivelPage } from '../nivel/nivel';
+import { NivelPage } from './nivel/nivel';
 import { Data } from '../../providers/data/data';
 
 @IonicPage()

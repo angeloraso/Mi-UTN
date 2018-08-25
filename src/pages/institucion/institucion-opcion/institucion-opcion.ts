@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
-import { Opcion} from '../../interfaces/institucion.interface'
-import { Data } from '../../providers/data/data';
-import { ModalesPage } from '../../components/modales/modales';
+import { Opcion} from '../../../interfaces/institucion.interface'
+import { Data } from '../../../providers/data/data';
+import { ModalesPage } from '../../../components/modales/modales';
 
 @IonicPage()
 @Component({
@@ -23,9 +23,9 @@ export class InstitucionOpcionPage {
   }
   ngOnInit(){
     // Para leer las variables entrantes. En el constructor no se van a poder ver
+    var that = this;
     this.opcion = this.navParams.get('opcion'); //Opcion elegida
     
-    var that = this;
     this.dataService.getDocumento(this.opcion.base_datos, this.opcion.id_documento).then((result: any) =>{
         that.elementos = result.elementos;
     });
