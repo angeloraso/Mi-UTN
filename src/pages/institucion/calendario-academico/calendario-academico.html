@@ -7,10 +7,21 @@
   
   
   <ion-content>
+      <ion-item id="select" no-lines>
+          <ion-label>Elegir Año</ion-label>
+          <ion-select cancelText="Cancelar" 
+                      okText="Aceptar"
+                      [(ngModel)]="anioElegido">
+            <ion-option *ngFor="let calendarioAnual of calendariosAnuales" 
+                        [value]="calendarioAnual">
+              {{calendarioAnual.anio}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
       <ion-list>
-          <ion-item no-lines *ngFor="let calendarioAnual of calendariosAnuales">
-              <h1>{{calendarioAnual.anio}}</h1>
-              <ion-item *ngFor="let fecha of calendarioAnual.cronograma">
+          <ion-item no-lines>
+              <h1>{{anioElegido.anio}}</h1>
+              <ion-item *ngFor="let fecha of anioElegido.cronograma">
                 <div>
                   <ion-icon name={{fecha.icono}} color={{fecha.color}}>&nbsp;&nbsp;{{fecha.fecha}}</ion-icon>
                 </div>
