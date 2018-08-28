@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
 
 @IonicPage()
 @Component({
@@ -39,8 +38,7 @@ export class PerfilPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public alertCtrl: AlertController,
-              private afAuth :  AngularFireAuth,) {
+              public alertCtrl: AlertController) {
   }
 
   salir(){
@@ -56,10 +54,7 @@ export class PerfilPage {
       {
           text: 'Aceptar',
           handler: () => {
-            this.afAuth.auth.signOut().then(()=>{
-
-            }
-            )}
+        }
       }
       ]
   });

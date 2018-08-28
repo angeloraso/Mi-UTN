@@ -3,14 +3,14 @@ import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { AuthProvider } from '../providers/auth/auth';
-import { LoginPage } from '../pages/login/login';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+// Plugins & 3tr Libraries
 import { ExpandableListModule } from 'angular2-expandable-list';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { FlashCardComponent } from '../components/flash-card/flash-card';
 import { Data } from '../providers/data/data';
@@ -24,29 +24,13 @@ import { NivelPage } from '../pages/materias/nivel/nivel';
 import { InstitucionOpcionPage } from '../pages/institucion/institucion-opcion/institucion-opcion';
 import { ModalesPage } from '../components/modales/modales';
 import { ModalUnoComponent } from '../components/modales/modal-uno/modal-uno';
-
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { CalendarioAcademicoPage } from '../pages/institucion/calendario-academico/calendario-academico';
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyCVSKHVTedumeqbPbp32jaSefk0SDQQ5nk",
-  authDomain: "miutn-bbb58.firebaseapp.com",
-  databaseURL: "https://miutn-bbb58.firebaseio.com",
-  projectId: "miutn-bbb58",
-  storageBucket: "",
-  messagingSenderId: '372411765036'
-};
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    LoginPage,
     FlashCardComponent,
     NoticiasPage,
     MateriasPage,
@@ -63,13 +47,7 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
     BrowserModule,
     ExpandableListModule,
-    BrowserAnimationsModule,
-
-    AngularFirestoreModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule.enablePersistence(),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,    
+    BrowserAnimationsModule
     ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -78,7 +56,6 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage,
     NoticiasPage,
     MateriasPage,
     PerfilPage,
@@ -93,7 +70,6 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    AuthProvider,
     InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Data,
