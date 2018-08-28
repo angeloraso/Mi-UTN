@@ -4,10 +4,10 @@ import { Slides, Platform, NavParams, ViewController } from "ionic-angular";
 
 
 @Component({
-  selector: 'modal-uno',
-  templateUrl: './modal-uno.html'
+  selector: 'modal-deporte',
+  templateUrl: './modal-deporte.html'
 })
-export class ModalUnoComponent {
+export class ModalDeporteComponent {
   @ViewChild('slider') slider: Slides;
 
   @Input() fotos: Array<string>;

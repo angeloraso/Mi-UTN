@@ -23,7 +23,7 @@ import { MateriaPage } from '../pages/materias/materia/materia';
 import { NivelPage } from '../pages/materias/nivel/nivel';
 import { InstitucionOpcionPage } from '../pages/institucion/institucion-opcion/institucion-opcion';
 import { ModalesPage } from '../components/modales/modales';
-import { ModalUnoComponent } from '../components/modales/modal-uno/modal-uno';
+import { ModalLaboratorioComponent } from '../components/modales/modal-laboratorio/modal-laboratorio';
 import { CalendarioAcademicoPage } from '../pages/institucion/calendario-academico/calendario-academico';
 
 
@@ -40,7 +40,7 @@ import { CalendarioAcademicoPage } from '../pages/institucion/calendario-academi
     NivelPage,
     InstitucionOpcionPage,
     ModalesPage,
-    ModalUnoComponent,
+    ModalLaboratorioComponent,
     CalendarioAcademicoPage
   ],
   imports: [
@@ -64,7 +64,7 @@ import { CalendarioAcademicoPage } from '../pages/institucion/calendario-academi
     NivelPage,
     InstitucionOpcionPage,
     ModalesPage,
-    ModalUnoComponent,
+    ModalLaboratorioComponent,
     CalendarioAcademicoPage
   ],
   providers: [

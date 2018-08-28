@@ -16,21 +16,16 @@
   </ion-header>
   
   <ion-content>
-        <!-- MODAL UNO -->
-        <modal-uno 
-            [fotos]="elementoElegido.data.fotos"
-            [descripcion]="elementoElegido.data.descripcion"
-            [horario]="elementoElegido.data.horario"
-            [links]="elementoElegido.data.links"
-            [emails]="elementoElegido.data.emails"
-             *ngIf="elementoElegido.data.tipo_modal === 'modal_uno'">
-        </modal-uno>  
+        <!-- MODAL LABORATORIO -->
+        <modal-laboratorio 
+            [elemento]="elementoElegido.data"
+             *ngIf="elementoElegido.data.tipo_modal === 'modal_laboratorio'">
+        </modal-laboratorio>  
 
-        <!-- MODAL dos -->
-        <modal-dos 
-            [cronograma]="elementoElegido.data.cronograma"
-             *ngIf="elementoElegido.data.tipo_modal === 'modal_dos'">
-        </modal-dos>
+        <!-- MODAL DEPORTES -->
+        <modal-deportes>
+
+        </modal-deportes> 
 
 
   </ion-content>
