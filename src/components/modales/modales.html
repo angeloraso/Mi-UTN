@@ -23,9 +23,10 @@
         </modal-laboratorio>  
 
         <!-- MODAL DEPORTES -->
-        <modal-deportes>
-
-        </modal-deportes> 
+        <modal-deporte
+            [elemento]="elementoElegido.data"
+            *ngIf="elementoElegido.data.tipo_modal === 'modal_deporte'">
+        </modal-deporte> 
 
 
   </ion-content>

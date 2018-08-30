@@ -68,7 +68,7 @@ export class InstitucionPage {
     }
     else if (opcion.id_documento === "becas" || 
              opcion.id_documento === "bolsa-de-proyectos" || 
-             opcion.id_documento === "deportes" || 
+             //opcion.id_documento === "deportes" || 
              opcion.id_documento === "colaboradores" || 
              opcion.id_documento === "secretarias" || 
              opcion.id_documento === "entidades-academicas" || 

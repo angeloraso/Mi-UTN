@@ -1,6 +1,7 @@
 import { Component, ViewChild, Input } from "@angular/core";
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { Slides, Platform, NavParams, ViewController } from "ionic-angular";
+import { Deporte } from "../../../interfaces/institucion.interface";
 
 
 @Component({
@@ -10,11 +11,7 @@ import { Slides, Platform, NavParams, ViewController } from "ionic-angular";
 export class ModalDeporteComponent {
   @ViewChild('slider') slider: Slides;
 
-  @Input() fotos: Array<string>;
-  @Input() links: Array<{titulo:string, link:string}>;
-  @Input() horario: string;
-  @Input() descripcion: string;
-  @Input() emails: string;
+  @Input() elemento: Deporte;
 
 
     options : InAppBrowserOptions = {

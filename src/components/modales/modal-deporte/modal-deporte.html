@@ -1,21 +1,21 @@
 <ion-content>
     <ion-item text-wrap>
         <div>
-        <h1>
-            Qué Hacemos?
+        <h1 style="color: #FF3F63;">
+            Sumate!
         </h1>
         </div>
         <br/>
         <ion-slides 
             #slider 
-            *ngIf="fotos && fotos.length"
+            *ngIf="elemento.fotos && elemento.fotos.length"
             pager=true 
             autoplay=1500 
             effect="slide" 
             loop=true 
             (ionSlideWillChange)="onSlideChanged()">
 
-            <ion-slide *ngFor="let foto of fotos"
+            <ion-slide *ngFor="let foto of elemento.fotos"
                         class="swiper-no-swiping"
                         [ngStyle]="{'background' : 'url(' + foto + ')'}">
             </ion-slide>
@@ -24,28 +24,31 @@
         <br/>
         <div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            {{descripcion}} 
+            {{elemento.descripcion}} 
         </div>
     </ion-item>
 
-    <ion-item text-wrap>
+    <ion-item text-wrap *ngFor="let subdivision of elemento.informacion">
         <div>
-            <h1>
-                Horario:
+            <h1 style="color: #FF3F63;">
+                {{subdivision.genero}}
             </h1>
         </div>
-        <ion-item no-lines>
-            <ion-icon color=aquamarine name="time"></ion-icon>
-            &nbsp;&nbsp;{{horario}} 
+        <ion-item no-lines *ngFor="let grupo of subdivision.cronograma">
+            <h2>{{grupo.ubicacion}}</h2>
+            <ion-item no-lines *ngFor="let dia_horario of grupo.dias_horarios">
+                <ion-icon color=aquamarine name="time"></ion-icon>
+                &nbsp;&nbsp;{{dia_horario}} 
+            </ion-item>
         </ion-item>
     </ion-item>
     <ion-item text-wrap>
         <div>
-            <h1>
+            <h1 style="color: #FF3F63;">
                 Emails de Contacto:
             </h1>
         </div>
-        <ion-item no-lines *ngFor="let email of emails">
+        <ion-item no-lines *ngFor="let email of elemento.emails">
             <ion-icon 
                 name="mail" 
                 color=aquamarine>
@@ -56,11 +59,11 @@
     </ion-item>
 
     <ion-item>
-        <h1>
+        <h1 style="color: #FF3F63;">
             Links:
         </h1>
         <ion-list>
-            <a *ngFor="let link of links" 
+            <a *ngFor="let link of elemento.links" 
                 href="#" 
                 ion-item
                 (click)="openWithSystemBrowser(link.link)">
