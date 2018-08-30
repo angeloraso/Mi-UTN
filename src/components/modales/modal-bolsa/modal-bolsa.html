@@ -1,0 +1,51 @@
+<ion-content>
+    <ion-item text-wrap>
+        <div>
+            <h2><b>
+                {{elemento.nombre_completo}}
+            </b></h2>
+        </div>
+    </ion-item>
+    <ion-item text-wrap>
+        <div>
+            <h1 style="color: #FF3F63;">
+                De que trata?
+            </h1>
+        </div>
+        <br/>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{elemento.descripcion}}
+        </div>
+    </ion-item>
+    <ion-item text-wrap>
+        <div>
+            <h1 style="color: #FF3F63;">
+                Qué objetivos busca?
+            </h1>
+        </div>
+        <br/>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{elemento.prestaciones}}
+        </div>
+    </ion-item>
+
+    <ion-item text-wrap>
+        <div>
+            <h1 style="color: #FF3F63;">
+                Querés unirte?
+            </h1>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aunque es aconsejable esperar hasta estar mas avanzado en la carrera, no es necesario que tengas muchos conocimientos.
+                Si tenés ganas de aprender y colaborar, Contactate con nosotros!</p>
+        </div>
+        <ion-item text-wrap no-lines *ngFor="let email of elemento.emails">
+            <ion-icon name="person" color=aquamarine>
+                &nbsp;&nbsp;
+                <a href="mailto:{{mail}} + '?Subject=Consulta">{{email.profesor}}</a>
+            </ion-icon>
+            <ion-icon name="mail" color=aquamarine>
+                &nbsp;&nbsp;
+                <a href="mailto:{{mail}} + '?Subject=Consulta">{{email.email}}</a>
+            </ion-icon>
+        </ion-item>
+    </ion-item>
+</ion-content>

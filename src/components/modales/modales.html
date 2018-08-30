@@ -1,32 +1,38 @@
 <ion-header>
-  <ion-navbar transparent>
-      <ion-item no-lines>
-        <ion-avatar item-start>
-            <img [src]="elementoElegido.data.url_imagen_perfil ? elementoElegido.data.url_imagen_perfil : imagen_perfil">
-        </ion-avatar>
-        <label> {{elementoElegido.data.nombre}} </label>
-        <h4 *ngIf="elementoElegido.data.subtitulo"> {{elementoElegido.data.subtitulo}}</h4>  
-      </ion-item>
-      <ion-buttons end>
-          <button ion-button icon-only style="margin-right: 10px;" (click)="dismiss()">
-              <ion-icon name="close"></ion-icon>
-          </button>
-      </ion-buttons>
+    <ion-navbar transparent>
+        <ion-item no-lines>
+            <ion-avatar item-start>
+                <img [src]="elementoElegido.data.url_imagen_perfil ? elementoElegido.data.url_imagen_perfil : imagen_perfil">
+            </ion-avatar>
+            <label> {{elementoElegido.data.nombre}} </label>
+            <h4 *ngIf="elementoElegido.data.subtitulo"> {{elementoElegido.data.subtitulo}}</h4>
+        </ion-item>
+        <ion-buttons end>
+            <button ion-button icon-only style="margin-right: 10px;" (click)="dismiss()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
-  </ion-header>
-  
-  <ion-content>
-        <!-- MODAL LABORATORIO -->
-        <modal-laboratorio 
-            [elemento]="elementoElegido.data"
-             *ngIf="elementoElegido.data.tipo_modal === 'modal_laboratorio'">
-        </modal-laboratorio>  
+</ion-header>
 
-        <!-- MODAL DEPORTES -->
-        <modal-deporte
-            [elemento]="elementoElegido.data"
+<ion-content>
+    <!-- MODAL LABORATORIO -->
+    <modal-laboratorio 
+            [elemento]="elementoElegido.data" 
+            *ngIf="elementoElegido.data.tipo_modal === 'modal_laboratorio'">
+    </modal-laboratorio>
+
+    <!-- MODAL DEPORTES -->
+    <modal-deporte 
+            [elemento]="elementoElegido.data" 
             *ngIf="elementoElegido.data.tipo_modal === 'modal_deporte'">
-        </modal-deporte> 
+    </modal-deporte>
+
+    <!-- MODAL DEPORTES -->
+    <modal-bolsa 
+            [elemento]="elementoElegido.data" 
+            *ngIf="elementoElegido.data.tipo_modal === 'modal_bolsa'">
+    </modal-bolsa>
 
 
-  </ion-content>
+</ion-content>

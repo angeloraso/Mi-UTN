@@ -40,6 +40,17 @@ export interface Deporte {
     ]
 }
 
+export interface Proyecto {
+    url_imagen_perfil: string; // Imagen de perfil para mostrar en el header del modal
+    nombre: string; // Nombre del proyecto
+    subitutlo: string; // Temática del proyecto. Ej: Programacion, Investigacion, etc
+    nombre_completo: string; // Nombre completo del proyecto. Sin siglas
+    tipo_modal: string; // String que define que modal utilizar
+    descripcion: string; // Descripcion del proyecto
+    prestaciones: string; // Objetivo del proyecto
+    emails: Array<{profesor: string, email: string}>; // Correos de contacto 
+}
+
 export interface UrlOpcion {
     titulo: string;
     url: string; 

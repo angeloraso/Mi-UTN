@@ -26,6 +26,7 @@ import { ModalesPage } from '../components/modales/modales';
 import { ModalLaboratorioComponent } from '../components/modales/modal-laboratorio/modal-laboratorio';
 import { CalendarioAcademicoPage } from '../pages/institucion/calendario-academico/calendario-academico';
 import { ModalDeporteComponent } from '../components/modales/modal-deporte/modal-deporte';
+import { ModalBolsaComponent } from '../components/modales/modal-bolsa/modal-bolsa';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ModalDeporteComponent } from '../components/modales/modal-deporte/modal
     ModalesPage,
     ModalLaboratorioComponent,
     CalendarioAcademicoPage,
-    ModalDeporteComponent
+    ModalDeporteComponent,
+    ModalBolsaComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
@@ -68,7 +70,8 @@ import { ModalDeporteComponent } from '../components/modales/modal-deporte/modal
     ModalesPage,
     ModalLaboratorioComponent,
     CalendarioAcademicoPage,
-    ModalDeporteComponent
+    ModalDeporteComponent,
+    ModalBolsaComponent
   ],
   providers: [
     StatusBar,
