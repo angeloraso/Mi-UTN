@@ -34,13 +34,18 @@
             <h1 style="color: #FF3F63;">
                 Querés unirte?
             </h1>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aunque es aconsejable esperar hasta estar mas avanzado en la carrera, no es necesario que tengas muchos conocimientos.
-                Si tenés ganas de aprender y colaborar, Contactate con nosotros!</p>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Aunque es aconsejable esperar hasta estar mas avanzado en la carrera, 
+                no es necesario que tengas muchos conocimientos.
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Si tenés ganas de aprender y colaborar, Contactate con nosotros!
+            </p>
         </div>
         <ion-item text-wrap no-lines *ngFor="let email of elemento.emails">
             <ion-icon name="person" color=aquamarine>
                 &nbsp;&nbsp;
-                <a href="mailto:{{mail}} + '?Subject=Consulta">{{email.profesor}}</a>
+                {{email.profesor}}
             </ion-icon>
             <ion-icon name="mail" color=aquamarine>
                 &nbsp;&nbsp;
