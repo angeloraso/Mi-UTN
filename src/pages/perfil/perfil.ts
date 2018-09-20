@@ -22,20 +22,6 @@ export class PerfilPage {
     promedio: 8.30
   };
 
-  // En los posteos en realidad irian los mensajes para el alumno, como puede ser que su beca fue 
-  // aprobada/rechazada, que su analitico ya esta listo para retirar, etc
-  posts = [
-    {
-      emisor: 'Nombre Entidad Facultad',
-      postImageUrl: 'assets/icon/logo_utn.png',
-      text: `Mensaje para el alumno, como puede ser que su beca fue aprobada/rechazada, que su analitico ya esta listo para retirar, su certificado de examen ya fue creado, etc`,
-      date: 'Fecha del mensaje',
-      borrar: 'Borrar',
-      responder: 'Responder',
-      timestamp: '11hs ago'
-    },
-  ]
-
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public alertCtrl: AlertController) {
