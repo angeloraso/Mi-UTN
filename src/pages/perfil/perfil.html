@@ -1,18 +1,18 @@
 <!-- <ion-content>
     <flash-card>
- 
+
         <div class="flash-card-front text-center">
                 <p><img class="imagen-perfil" src="assets/icon/user_icon.png"></p>
                 <h4 class="card-title">Información Principal</h4>
                 <p class="card-text">En esta seccion se mostrará información importante para el usuario, tal como su nombre, apellido, legajo, promedio, año que se encuentra cursando, etc</p>
         </div>
- 
+
         <div class="flash-card-back text-center">
             <p><img class="imagen-perfil" src="assets/icon/user_icon.png"></p>
             <h4 class="card-title">Información secundaria</h4>
             <p class="card-text">Esta es el espacio para agregar información secundaria o no tan importante como para estar en la primera vista del perfil</p>
         </div>
- 
+
     </flash-card>
 </ion-content> -->
 
@@ -42,6 +42,40 @@
           </ion-row>
         </div>
 
+        <ion-card>
+          <ion-item>
+              <ion-avatar item-start>
+                  <img src='assets/icon/bandeja_entrada_icon.svg'>
+              </ion-avatar>
+              <ion-label>
+                  &nbsp; Bandeja de Entrada
+              </ion-label>
+          </ion-item>
+        </ion-card>
+
+        <ion-card>
+          <ion-item>
+              <ion-avatar item-start>
+                  <img src='assets/icon/cursadas_icon.svg'>
+              </ion-avatar>
+              <ion-label>
+                  &nbsp; Mis Cursadas
+              </ion-label>
+          </ion-item>
+        </ion-card>
+
+
+        <ion-card>
+          <ion-item>
+              <ion-avatar item-start>
+                  <img src='assets/icon/cronorgrama_icon.svg'>
+              </ion-avatar>
+              <ion-label>
+                  &nbsp; Cronograma Personal
+              </ion-label>
+          </ion-item>
+        </ion-card>
+
         <ion-card (click)="salir()">
           <ion-item>
               <ion-avatar item-start>
@@ -49,8 +83,8 @@
               </ion-avatar>
               <ion-label>
                   &nbsp; Cerrar Sesión
-              </ion-label> 
+              </ion-label>
           </ion-item>
         </ion-card>
-        
+
       </ion-content>

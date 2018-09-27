@@ -2,6 +2,10 @@ page-perfil{
     ion-content {
       background: linear-gradient(0deg, #eeeef1 0%, white 80%, white 100%);
     }
+
+    .card {
+      border-radius: 12px;
+    }
     button,
     ion-button,
     .button-md,
