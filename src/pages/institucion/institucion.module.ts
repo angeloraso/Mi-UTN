@@ -10,7 +10,7 @@ import { ComedorPage } from './comedor/comedor';
     InstitucionPage,
     InstitucionOpcionPage,
     CalendarioAcademicoPage,
-    ComedorPage
+    ComedorPage,
   ],
   imports: [
     IonicPageModule.forChild(InstitucionPage),
