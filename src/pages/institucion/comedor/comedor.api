@@ -1,0 +1,92 @@
+
+url_base = 'https://ticket.frlp.utn.edu.ar/api/index.php'
+
+device = 2
+
+fcmToken = 1
+
+fechas = YYYY-MM-DD // EJ: 2018-05-27
+
+prev_token = token (el viejo que se desea refrescar)
+
+NOTA:
+    - Al comprar se debe prestar atencion que la lista de fechas coincida
+      con las fechas correspondientes a la semana en que se esté operando
+    - Al deshacer se debe prestar atencion que la lista de fechas coincida
+      con las fechas que se han comprado
+
+/* Devuelve el token para logearse */
+/getToken/{usu}/{pass}/{device}/{fcmToken}
+
+/* Checkea la validez token existente */
+/checkToken/{token}/{device}/{usu}
+
+/* Crea un nuevo token */
+/refreshToken/{prev_token}/{device}/{usu}
+
+/* Devuelve un objeto del tipo { saldo: "xx" } EJ: { saldo: "60" } */
+/saldo/{token}
+
+
+/* Devuelve el arreglo de objetos con la estructura:
+/  [
+/     {
+/       login: "nico",
+/       nombre: "Nicolas Muzzi",
+/       estado: "0"
+/     },
+/     {
+/       login: "nico",
+/       nombre: "Nicolas Muzzi",
+/       estado: "0"
+/     }
+/  ]
+/
+/   NOTA: Al no necesitar token, puede probarse libremente con la ruta
+/        - https://ticket.frlp.utn.edu.ar/api/index.php/vendedor
+*/
+/vendedor
+
+/* Devuelve un 200 (OK) */
+/comprar/{YYYY-MMM-DD,YYYY-MMM-DD, ...}/{token}
+
+
+/* Devuelve el arreglo de objetos con la estructura:
+/  [
+/     {
+/         dia_comprado: "YYYY-MMM-DD"
+/     },
+/     {
+/         dia_comprado: "YYYY-MMM-DD"
+/     }
+/  ]
+*/
+/diasComprados/{token}
+
+/* Devuelve un 200 (OK) */
+/deshacer/{YYYY-MMM-DD,YYYY-MMM-DD, ...}/{token}
+
+/* Devuelve un booleano: true o false */
+/periodoCompra/{token}
+
+/* Devuelve el arreglo 'feriados' de objetos con la estructura:
+/  {
+/     fecha: "YYYY-MM-DD",
+/     observacion: "una_observacion"
+/   }
+*/
+/feriadosSemana/{diaDesde}/{diaHasta}/{token}
+
+
+/* Devuelve el arreglo 'receso' de objetos con la estructura:
+/  {
+/     inicio: "YYYY-MM-DD",
+/     fin: "YYYY-MM-DD"
+/  }
+*/
+/getReceso/{token}
+
+
+EJEMPLO DE RUTA:
+
+    - https://ticket.frlp.utn.edu.ar/api/index.php/getReceso/un_token

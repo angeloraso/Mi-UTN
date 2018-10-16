@@ -1,7 +1,7 @@
-import { Component, ViewChild, Input } from "@angular/core";
+import { Component, ViewChild, Input } from '@angular/core';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
-import { Slides, Platform, NavParams, ViewController } from "ionic-angular";
-import { Deporte } from "../../../interfaces/institucion.interface";
+import { Slides, Platform, NavParams, ViewController } from 'ionic-angular';
+import { Deporte } from '../../../interfaces/institucion.interface';
 
 
 @Component({
@@ -11,26 +11,30 @@ import { Deporte } from "../../../interfaces/institucion.interface";
 export class ModalDeporteComponent {
   @ViewChild('slider') slider: Slides;
 
-  @Input() elemento: Deporte;
+  @Input( ) elemento: Deporte;
 
 
-    options : InAppBrowserOptions = {
-      location : 'yes',//Or 'no' 
-      hidden : 'no', //Or  'yes'
+  options: InAppBrowserOptions = {
+      location : 'yes', // Or 'no'
+      hidden : 'no', // Or 'yes'
       clearcache : 'yes',
       clearsessioncache : 'yes',
-      zoom : 'yes',//Android only ,shows browser zoom controls 
+      zoom : 'yes', // Android only ,shows browser zoom controls
       hardwareback : 'yes',
       mediaPlaybackRequiresUserAction : 'no',
-      shouldPauseOnSuspend : 'no', //Android only 
-      closebuttoncaption : 'Close', //iOS only
-      disallowoverscroll : 'no', //iOS only 
-      toolbar : 'yes', //iOS only 
-      enableViewportScale : 'no', //iOS only 
-      allowInlineMediaPlayback : 'no',//iOS only 
-      presentationstyle : 'pagesheet',//iOS only 
-      fullscreen : 'yes',//Windows only    
+      shouldPauseOnSuspend : 'no', // Android only
+      closebuttoncaption : 'Close', // iOS only
+      disallowoverscroll : 'no', // iOS only
+      toolbar : 'yes', // iOS only
+      enableViewportScale : 'no', // iOS only
+      allowInlineMediaPlayback : 'no', // iOS only
+      presentationstyle : 'pagesheet', // iOS only
+      fullscreen : 'yes', // Windows only
   };
+
+  // VARIABLES DEL ION-SLIDES
+  currentIndex = 0;
+
   constructor(
     public platform: Platform,
     public params: NavParams,
@@ -40,18 +44,15 @@ export class ModalDeporteComponent {
 
   }
 
-  ngOnInit(){
+  ngOnInit( ) {
     // Para leer las variables entrantes. En el constructor no se van a poder ver
   }
 
   // METODO PARA ABRIR ENLACE EN PAGINA APARTE
-  public openWithSystemBrowser(url : string){
-    let target = "_system";
+  public openWithSystemBrowser( url: string ) {
+    const target = '_system';
     this.theInAppBrowser.create(url, target, this.options);
   }
-  
-  // VARIABLES DEL ION-SLIDES
-  currentIndex = 0;
 
   nextSlide() {
     this.slider.slideNext();
@@ -63,6 +64,6 @@ export class ModalDeporteComponent {
 
   onSlideChanged() {
     this.currentIndex = this.slider.getActiveIndex();
-    //console.log('Slide changed! Current index is', this.currentIndex);
+    // console.log('Slide changed! Current index is', this.currentIndex);
   }
 }

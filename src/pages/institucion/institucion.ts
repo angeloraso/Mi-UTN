@@ -6,6 +6,7 @@ import { InstitucionOpcionPage } from './institucion-opcion/institucion-opcion';
 
 import {Opcion, UrlOpcion} from '../../interfaces/institucion.interface'
 import { CalendarioAcademicoPage } from './calendario-academico/calendario-academico';
+import { ComedorPage } from './comedor/comedor';
 
 @IonicPage()
 @Component({
@@ -15,77 +16,78 @@ import { CalendarioAcademicoPage } from './calendario-academico/calendario-acade
 export class InstitucionPage {
 
   comedor: UrlOpcion = {
-      titulo: "Ir a Comedor",
-      url: "https://ticket.frlp.utn.edu.ar/u/#/ticket", 
-      mensaje: "Será redirigido a la página oficial del Comedor para la compra de Tickets"
-  }
+      titulo: 'Ir a Comedor',
+      url: 'https:// ticket.frlp.utn.edu.ar/u/#/ticket',
+      mensaje: 'Será redirigido a la página oficial del Comedor para la compra de Tickets'
+  };
   biblioteca: UrlOpcion =  {
-    titulo: "Ir a Biblioteca",
-    url: "https://biblioteca.frlp.utn.edu.ar/", 
-    mensaje: "Será redirigido a la página oficial de la Biblioteca"
-  }
+    titulo: 'Ir a Biblioteca',
+    url: 'https:// biblioteca.frlp.utn.edu.ar/',
+    mensaje: 'Será redirigido a la página oficial de la Biblioteca'
+  };
 
-  options : InAppBrowserOptions = {
-    location : 'yes',//Or 'no' 
-    hidden : 'no', //Or  'yes'
+  options: InAppBrowserOptions = {
+    location : 'yes', // Or 'no'
+    hidden : 'no', // Or  'yes'
     clearcache : 'yes',
     clearsessioncache : 'yes',
-    zoom : 'yes',//Android only ,shows browser zoom controls 
+    zoom : 'yes', // Android only ,shows browser zoom controls
     hardwareback : 'yes',
     mediaPlaybackRequiresUserAction : 'no',
-    shouldPauseOnSuspend : 'no', //Android only 
-    closebuttoncaption : 'Close', //iOS only
-    disallowoverscroll : 'no', //iOS only 
-    toolbar : 'yes', //iOS only 
-    enableViewportScale : 'no', //iOS only 
-    allowInlineMediaPlayback : 'no',//iOS only 
-    presentationstyle : 'pagesheet',//iOS only 
-    fullscreen : 'yes',//Windows only    
+    shouldPauseOnSuspend : 'no', // Android only
+    closebuttoncaption : 'Close', // iOS only
+    disallowoverscroll : 'no', // iOS only
+    toolbar : 'yes', // iOS only
+    enableViewportScale : 'no', // iOS only
+    allowInlineMediaPlayback : 'no', // iOS only
+    presentationstyle : 'pagesheet', // iOS only
+    fullscreen : 'yes', // Windows only
 };
 
-  institucion: any; // En institucion[0].opciones se guardan las opciones de la seccion Institucion 
-  opciones: Opcion[]; // Arreglo con las opciones
+  institucion: any; //  En institucion[0].opciones se guardan las opciones de la seccion Institucion
+  opciones: Opcion[]; //  Arreglo con las opciones
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public dataService: Data,
               public theInAppBrowser: InAppBrowser,
               public alertCtrl: AlertController) {
   }
-  ngOnInit(){
-    var that = this;
-    this.dataService.getDocumento("institucion", "institucion").then((result: any) =>{
+  ngOnInit() {
+    const that = this;
+    this.dataService.getDocumento('institucion', 'institucion').then((result: any) =>{
         that.opciones = result.opciones;
     });
   }
 
-  irAPaginaElegida(opcion: Opcion){
-    if(opcion.id_documento === "comedor"){
+  irAPaginaElegida(opcion: Opcion) {
+    /* if(opcion.id_documento === 'comedor'){
       this.mostrarAdvertencia(this.comedor);
     }
-    else if (opcion.id_documento === "biblioteca"){
+    else  */
+    if (opcion.id_documento === 'biblioteca') {
       this.mostrarAdvertencia(this.biblioteca);
-    }
-    else if (opcion.id_documento === "becas" || 
-             //opcion.id_documento === "bolsa-de-proyectos" || 
-             //opcion.id_documento === "deportes" || 
-             opcion.id_documento === "colaboradores" || 
-             opcion.id_documento === "secretarias" || 
-             opcion.id_documento === "entidades-academicas" || 
-             opcion.id_documento === "utn-frlp"){
+    } else if (opcion.id_documento === 'becas' ||
+             // opcion.id_documento === 'bolsa-de-proyectos' ||
+             // opcion.id_documento === 'deportes' ||
+             opcion.id_documento === 'colaboradores' ||
+             opcion.id_documento === 'secretarias' ||
+             opcion.id_documento === 'entidades-academicas' ||
+             opcion.id_documento === 'utn-frlp') {
       this.mostrarProximamente();
-    }
-    else if (opcion.id_documento === "calendario-academico"){
-      this.navCtrl.push(CalendarioAcademicoPage,  
+    } else if (opcion.id_documento === 'calendario-academico') {
+      this.navCtrl.push(CalendarioAcademicoPage,
         {opcion: opcion});
-    }
-    else {
-      this.navCtrl.push(InstitucionOpcionPage,  
+    } else if (opcion.id_documento === 'comedor') {
+      this.navCtrl.push(ComedorPage,
+        {opcion: opcion});
+    } else {
+      this.navCtrl.push(InstitucionOpcionPage,
         {opcion: opcion});
     }
   }
 
-  mostrarAdvertencia(opcion: UrlOpcion){
+  mostrarAdvertencia(opcion: UrlOpcion) {
     const confirm = this.alertCtrl.create({
       title: opcion.titulo,
       message: opcion.mensaje,
@@ -98,7 +100,7 @@ export class InstitucionPage {
         {
           text: 'Aceptar',
           handler: () => {
-            let target = "_system";
+            const target = '_system';
             this.theInAppBrowser.create(opcion.url, target, this.options);
           }
         }
@@ -107,7 +109,7 @@ export class InstitucionPage {
     confirm.present();
   }
 
-  mostrarProximamente(){
+  mostrarProximamente() {
     const confirm = this.alertCtrl.create({
       title: 'Próximamente',
       message: 'Disculpe las molestias. Esta función aún no esta disponible.',
@@ -115,7 +117,7 @@ export class InstitucionPage {
         {
           text: 'Aceptar',
           handler: () => {
-            
+
           }
         }
       ]

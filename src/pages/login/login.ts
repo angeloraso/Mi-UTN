@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+/* import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Platform } from 'ionic-angular';
 
 @Component({
@@ -25,7 +25,6 @@ export class LoginPage {
     this.profilePicture = "https://pikmail.herokuapp.com/" + this.user.email + "?size=150";
   }
 
-  /*
   // Registro de un Usuario
   signin(){
     this.auth.registerUser(this.user.email,this.user.password)
@@ -42,7 +41,7 @@ export class LoginPage {
     })
 
   }
-  */
 
 
 }
+*/

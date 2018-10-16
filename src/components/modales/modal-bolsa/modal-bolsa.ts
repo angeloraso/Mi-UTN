@@ -1,7 +1,7 @@
-import { Component, ViewChild, Input } from "@angular/core";
+import { Component, ViewChild, Input } from '@angular/core';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
-import { Slides, Platform, NavParams, ViewController } from "ionic-angular";
-import { Proyecto } from "../../../interfaces/institucion.interface";
+import { Slides, Platform, NavParams, ViewController } from 'ionic-angular';
+import { Proyecto } from '../../../interfaces/institucion.interface';
 
 
 @Component({
@@ -9,26 +9,26 @@ import { Proyecto } from "../../../interfaces/institucion.interface";
   templateUrl: './modal-bolsa.html'
 })
 export class ModalBolsaComponent {
-  @ViewChild('slider') slider: Slides;
+  @ViewChild( 'slider' ) slider: Slides;
 
-  @Input() elemento: Proyecto;
+  @Input( ) elemento: Proyecto;
 
-    options : InAppBrowserOptions = {
-      location : 'yes',//Or 'no' 
-      hidden : 'no', //Or  'yes'
+    options: InAppBrowserOptions = {
+      location : 'yes', // Or 'no'
+      hidden : 'no', // Or  'yes'
       clearcache : 'yes',
       clearsessioncache : 'yes',
-      zoom : 'yes',//Android only ,shows browser zoom controls 
+      zoom : 'yes', // Android only ,shows browser zoom controls
       hardwareback : 'yes',
       mediaPlaybackRequiresUserAction : 'no',
-      shouldPauseOnSuspend : 'no', //Android only 
-      closebuttoncaption : 'Close', //iOS only
-      disallowoverscroll : 'no', //iOS only 
-      toolbar : 'yes', //iOS only 
-      enableViewportScale : 'no', //iOS only 
-      allowInlineMediaPlayback : 'no',//iOS only 
-      presentationstyle : 'pagesheet',//iOS only 
-      fullscreen : 'yes',//Windows only    
+      shouldPauseOnSuspend : 'no', // Android only
+      closebuttoncaption : 'Close', // iOS only
+      disallowoverscroll : 'no', // iOS only
+      toolbar : 'yes', // iOS only
+      enableViewportScale : 'no', // iOS only
+      allowInlineMediaPlayback : 'no', // iOS only
+      presentationstyle : 'pagesheet', // iOS only
+      fullscreen : 'yes', // Windows only
   };
 
   constructor(
@@ -40,13 +40,13 @@ export class ModalBolsaComponent {
 
   }
 
-  ngOnInit(){
-    // Para leer las variables entrantes. En el constructor no se van a poder ver
+  ngOnInit( ) {
+    //  Para leer las variables entrantes. En el constructor no se van a poder ver
   }
 
-  // METODO PARA ABRIR ENLACE EN PAGINA APARTE
-  public openWithSystemBrowser(url : string){
-    let target = "_system";
+  //  METODO PARA ABRIR ENLACE EN PAGINA APARTE
+  public openWithSystemBrowser( url: string ) {
+    const target = '_system';
     this.theInAppBrowser.create(url, target, this.options);
   }
 }
