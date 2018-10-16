@@ -22,7 +22,8 @@ $app-direction: ltr;
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
-
+$segment-button-ios-background-color-activated: white;
+$segment-button-md-border-color-activated: white;
 
 
 // Named Color Variables
@@ -41,7 +42,7 @@ $colors: (
   dark:       #222,
   white:      #ffffff,
   celeste_claro: #D4EDF2,
-  aquamarine: #55BED5, 
+  aquamarine: #55BED5,
   light_aquamarine: #A1E6F6,
   dark_aquamarine:  #0B667B,
   fucsia: #FF3F63,

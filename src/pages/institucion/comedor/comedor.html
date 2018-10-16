@@ -1,11 +1,52 @@
 <!-- <div id="root"></div>
  -->
- <ion-header>
+<ion-header>
   <ion-navbar color=aquamarine>
     <ion-title> {{ opcion.nombre }}</ion-title>
+  </ion-navbar>
+  <ion-navbar color=aquamarine>
+    <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="tabs">
+        <ion-segment-button value="ticket">
+          <ion-icon name="pricetag"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="configuracion">
+          <ion-icon name="settings"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="historial">
+          <ion-icon name="time"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+  <div [ngSwitch]="tabs">
+    <ion-list class="container" *ngSwitchCase="'ticket'">
+      <ion-item class="dia" *ngFor="let dia of dias">
+        <ion-thumbnail item-start>
+          <img class="imagen-dia" src="{{ dia.imagen }}">
+        </ion-thumbnail>
+        <h2>{{ dia.nombre }}</h2>
+        <div class="fecha-check">
+          <p class="fecha">{{ dia.fecha }}</p>
+          <ion-item>
+            <ion-checkbox  color="secondary" checked="false"></ion-checkbox>
+          </ion-item>
+        </div>
+      </ion-item>
+    </ion-list>
 
+    <ion-list *ngSwitchCase="'configuracion'">
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'historial'">
+    </ion-list>
+
+  </div>
 </ion-content>
+
+<ion-footer>
+    <button ion-item (click)="comprar()" detail-none class="boton">COMPRAR</button>
+</ion-footer>

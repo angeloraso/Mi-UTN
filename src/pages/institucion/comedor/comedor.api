@@ -15,7 +15,15 @@ NOTA:
     - Al deshacer se debe prestar atencion que la lista de fechas coincida
       con las fechas que se han comprado
 
-/* Devuelve el token para logearse */
+/* Devuelve un obejto con la estructura:
+/   {
+/     token: "token_de_varios_digitos", EJ: "sf7af8s6sf7s56sf88f88f..."
+/     nombre: "nombre", EJ: "Juan"
+/     apellido: "apellido", EJ: "Sanchez"
+/     especialidad: "especialidad", EJ: "Sistemas"
+/     documento: "documento" EJ: "37123456"
+/   }
+*/
 /getToken/{usu}/{pass}/{device}/{fcmToken}
 
 /* Checkea la validez token existente */

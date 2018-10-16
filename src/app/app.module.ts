@@ -10,7 +10,6 @@ import { MyApp } from './app.component';
 // Plugins & 3tr Libraries
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-import { FlashCardComponent } from '../components/flash-card/flash-card';
 import { Data } from '../providers/data/data';
 
 import { ModalesPage } from '../components/modales/modales';
@@ -27,7 +26,6 @@ import { PerfilPageModule } from '../pages/perfil/perfil.module';
 @NgModule({
   declarations: [
     MyApp,
-    FlashCardComponent,
     ModalesPage,
     ModalLaboratorioComponent,
     ModalDeporteComponent,
