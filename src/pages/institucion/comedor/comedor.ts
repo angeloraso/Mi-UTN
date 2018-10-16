@@ -67,7 +67,7 @@ request.send();
   }
 
   md5cycle(x, k) {
-    var a = x[0], b = x[1], c = x[2], d = x[3];
+    let a = x[0], b = x[1], c = x[2], d = x[3];
 
     a = this.ff(a, b, c, d, k[0], 7, -680876936);
     d = this.ff(d, a, b, c, k[1], 12, -389564586);
@@ -166,21 +166,22 @@ request.send();
   }
 
   md51(s) {
-    var txt = '';
-    var n = s.length,
-    state = [1732584193, -271733879, -1732584194, 271733878], i;
+    const txt = '';
+    const n = s.length,
+    state = [1732584193, -271733879, -1732584194, 271733878];
+    let i;
     for (i = 64; i <= s.length; i += 64) {
       this.md5cycle(state, this.md5blk(s.substring(i - 64, i)));
     }
     s = s.substring(i - 64);
-    var tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    for (var i = 0; i < s.length; i++) {
+    const tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for (i = 0; i < s.length; i++) {
       tail[i >> 2] |= s.charCodeAt(i) << ((i % 4) << 3);
     }
     tail[i >> 2] |= 0x80 << ((i % 4) << 3);
     if (i > 55) {
       this.md5cycle(state, tail);
-      for (var i = 0; i < 16; i++) { tail[i] = 0; }
+      for (i = 0; i < 16; i++) { tail[i] = 0; }
     }
     tail[14] = n * 8;
     this.md5cycle(state, tail);
@@ -188,7 +189,8 @@ request.send();
   }
 
   md5blk(s) {
-    var md5blks = [], i;
+    const md5blks = [];
+    let i;
     for (i = 0; i < 64 ; i += 4) {
       md5blks[i >> 2] = s.charCodeAt(i)
       + (s.charCodeAt(i + 1) << 8)
@@ -199,7 +201,7 @@ request.send();
   }
 
   rhex(n) {
-    var s = '', j = 0;
+    let s = '', j = 0;
     for (; j < 4; j++) {
       s += this.hex_chr[(n >> (j * 8 + 4)) & 0x0f]
       + this.hex_chr[(n >> (j * 8)) & 0x0f];
@@ -208,7 +210,7 @@ request.send();
   }
 
   hex(x) {
-    for (var i = 0; i < x.length; i++) {
+    for (let i = 0; i < x.length; i++) {
       x[i] = this.rhex(x[i]);
     }
     return x.join('');
