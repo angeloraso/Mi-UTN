@@ -4,7 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { MateriaPage } from '../materia/materia';
 import { Data } from '../../../providers/data/data';
 
-import {Materia} from '../../../interfaces/materias.interface'
+import {Materia} from '../../../interfaces/materias.interface';
 
 @Component({
   selector: 'page-nivel',
@@ -24,7 +24,7 @@ export class NivelPage {
               public dataService: Data) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.titulo = this.navParams.get('titulo');
       this.ruta_database = this.navParams.get('ruta_database');
 
@@ -33,7 +33,7 @@ export class NivelPage {
       });
   }
 
-  irALaMateria(materia: Materia){
+  irALaMateria(materia: Materia) {
     this.navCtrl.push(MateriaPage,
 
       {materia: materia});

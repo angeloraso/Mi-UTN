@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 
-import { Opcion} from '../../../interfaces/institucion.interface'
+import { Opcion} from '../../../interfaces/institucion.interface';
 import { Data } from '../../../providers/data/data';
 import { ModalesPage } from '../../../components/modales/modales';
 
@@ -20,18 +20,18 @@ export class InstitucionOpcionPage {
               public modalCtrl: ModalController,
               public dataService: Data) {
   }
-  ngOnInit(){
+  ngOnInit() {
     // Para leer las variables entrantes. En el constructor no se van a poder ver
-    var that = this;
-    this.opcion = this.navParams.get('opcion'); //Opcion elegida
+    const that = this;
+    this.opcion = this.navParams.get('opcion'); // Opcion elegida
 
-    this.dataService.getDocumento(this.opcion.base_datos, this.opcion.id_documento).then((result: any) =>{
+    this.dataService.getDocumento(this.opcion.base_datos, this.opcion.id_documento).then((result: any) => {
         that.elementos = result.elementos;
     });
   }
 
-  abrirModalElegido(elemento){
-    let modal = this.modalCtrl.create(ModalesPage, elemento);
+  abrirModalElegido(elemento) {
+    const modal = this.modalCtrl.create(ModalesPage, elemento);
     modal.present();
   }
 
