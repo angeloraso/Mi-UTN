@@ -12,11 +12,11 @@ export class ComedorPage {
   public tabs = 'ticket';
 
   public dias = [
-    {nombre: 'Lunes', numero: '15', imagen: '../../../assets/icon/logo_utn.png'},
-    {nombre: 'Martes', numero: '16', imagen: '../../../assets/icon/logo_utn.png'},
-    {nombre: 'Miercoles', numero: '17', imagen: '../../../assets/icon/logo_utn.png'},
-    {nombre: 'Jueves', numero: '18', imagen: '../../../assets/icon/logo_utn.png'},
-    {nombre: 'Viernes', numero: '19', imagen: '../../../assets/icon/logo_utn.png'},
+    {nombre: 'Lunes', numero: '15'},
+    {nombre: 'Martes', numero: '16'},
+    {nombre: 'Miercoles', numero: '17'},
+    {nombre: 'Jueves', numero: '18'},
+    {nombre: 'Viernes', numero: '19'},
   ];
 
   public hex_chr = '0123456789abcdef'.split('');

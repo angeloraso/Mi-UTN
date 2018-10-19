@@ -1,11 +1,13 @@
 <ion-content>
-    <ion-list>
-        <ion-card *ngFor="let opcion of opciones" (click)="irAPaginaElegida(opcion)">
-            <ion-item color=aquamarine>
-                <ion-icon name={{opcion.icono}}></ion-icon>
-                &nbsp;
-                <label>{{opcion.nombre}}</label>
-            </ion-item>
-        </ion-card>
-    </ion-list>
+  <div class="lista">
+    <div class="card shadow" *ngFor="let opcion of opciones" (click)="irAPaginaElegida(opcion)">
+      <div class="card-modulo-1">
+        <div class="opcion-texto">
+            <ion-icon name={{opcion.icono}}></ion-icon>
+            &nbsp;&nbsp;
+            {{opcion.nombre}}
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>

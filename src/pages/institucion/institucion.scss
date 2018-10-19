@@ -1,17 +1,68 @@
 page-institucion {
 
-    .card {
-        border-radius: 22px;
-        h1 {
-            font-weight: 4;
-            font-size: 2rem;
-            color:white
-        }
-        p {
-            margin-left: 9%;
-            margin-top: 1%;
-            font-size: 1rem;
-            color:white;
-        }
-    }
+  .lista {
+    margin: 0 5% 0 5%;
+  }
+
+  .opcion-texto {
+    display: inline-block;
+    font-size: 1.3em;
+    color: white;
+    position: relative;
+    margin: 5% 0 0 10%;
+  }
+
+  .card {
+    border-top-left-radius: 15% 80%;
+    border-bottom-left-radius: 15% 80%;
+    margin-top: 15px;
+    height: 60px;
+  }
+
+  .card-modulo-1 {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 15% 80%;
+    border-bottom-left-radius: 15% 80%;
+  }
+
+  .card:nth-child(odd) .card-modulo-1 {
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  }
+
+  .card:nth-child(even) .card-modulo-1 {
+    background-image: linear-gradient(120deg, #fbc2eb 0%, #a6c1ee 100%);
+  }
+
+  .shadow {
+    position: relative;
+  }
+  .shadow:before, .shadow:after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 25px;
+    left: 10px;
+    width: 50%;
+    top: 65%;
+    max-width:300px;
+    background: #777;
+    -webkit-box-shadow: 0 35px 20px #777;
+    -moz-box-shadow: 0 35px 20px #777;
+    box-shadow: 0 35px 20px #777;
+    -webkit-transform: rotate(-8deg);
+    -moz-transform: rotate(-8deg);
+    -o-transform: rotate(-8deg);
+    -ms-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+  }
+  .shadow:after {
+    -webkit-transform: rotate(8deg);
+    -moz-transform: rotate(8deg);
+    -o-transform: rotate(8deg);
+    -ms-transform: rotate(8deg);
+    transform: rotate(8deg);
+    right: 10px;
+    left: auto;
+  }
 }
