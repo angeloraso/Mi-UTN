@@ -12,11 +12,11 @@ export class ComedorPage {
   public tabs = 'ticket';
 
   public dias = [
-    {nombre: 'Lunes', fecha: '2018-10-15', imagen: '../../../assets/icon/logo_utn.png'},
-    {nombre: 'Martes', fecha: '2018-10-16', imagen: '../../../assets/icon/logo_utn.png'},
-    {nombre: 'Miercoles', fecha: '2018-10-17', imagen: '../../../assets/icon/logo_utn.png'},
-    {nombre: 'Jueves', fecha: '2018-10-18', imagen: '../../../assets/icon/logo_utn.png'},
-    {nombre: 'Viernes', fecha: '2018-10-19', imagen: '../../../assets/icon/logo_utn.png'},
+    {nombre: 'Lunes', numero: '15', imagen: '../../../assets/icon/logo_utn.png'},
+    {nombre: 'Martes', numero: '16', imagen: '../../../assets/icon/logo_utn.png'},
+    {nombre: 'Miercoles', numero: '17', imagen: '../../../assets/icon/logo_utn.png'},
+    {nombre: 'Jueves', numero: '18', imagen: '../../../assets/icon/logo_utn.png'},
+    {nombre: 'Viernes', numero: '19', imagen: '../../../assets/icon/logo_utn.png'},
   ];
 
   public hex_chr = '0123456789abcdef'.split('');

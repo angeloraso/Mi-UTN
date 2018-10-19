@@ -1,5 +1,5 @@
-<!-- <div id="root"></div>
- -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
 <ion-header>
   <ion-navbar color=aquamarine>
     <ion-title> {{ opcion.nombre }}</ion-title>
@@ -23,20 +23,29 @@
 
 <ion-content>
   <div [ngSwitch]="tabs">
-    <ion-list class="container" *ngSwitchCase="'ticket'">
-      <ion-item class="dia" *ngFor="let dia of dias">
-        <ion-thumbnail item-start>
-          <img class="imagen-dia" src="{{ dia.imagen }}">
-        </ion-thumbnail>
-        <h2>{{ dia.nombre }}</h2>
-        <div class="fecha-check">
-          <p class="fecha">{{ dia.fecha }}</p>
-          <ion-item>
-            <ion-checkbox  color="secondary" checked="false"></ion-checkbox>
-          </ion-item>
+    <div class="lista" *ngSwitchCase="'ticket'">
+      <div class="card shadow" *ngFor="let dia of dias">
+        <div class="card-modulo-1">
+        <div class="dia-nombre-numero">
+          {{ dia.nombre }} - {{ dia.numero }}
         </div>
-      </ion-item>
-    </ion-list>
+        </div>
+        <div class="center">
+          <label class="label">
+            <input class="label__checkbox" type="checkbox" />
+            <span class="label__text">
+              <span class="label__check">
+                <i class="fa fa-check icon"></i>
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <ion-footer>
+          <button ion-item (click)="comprar()" detail-none class="boton-footer">COMPRAR</button>
+      </ion-footer>
+    </div>
 
     <ion-list *ngSwitchCase="'configuracion'">
     </ion-list>
@@ -46,7 +55,3 @@
 
   </div>
 </ion-content>
-
-<ion-footer>
-    <button ion-item (click)="comprar()" detail-none class="boton">COMPRAR</button>
-</ion-footer>
