@@ -1,18 +1,41 @@
 page-institucion-opcion {
-
-    .card {
-        border-radius: 22px;
-        h1 {
-            font-weight: 4;
-            font-size: 2rem;
-            color:white
-        }
-        p {
-            margin-left: 30px;
-            margin-top: 1%;
-            font-size: 1rem;
-            color:white;
-        }
+    .lista {
+      margin: 0 5% 0 5%;
     }
 
+    .opcion-texto {
+      display: inline-block;
+      font-size: 1.3em;
+      color: white;
+      position: relative;
+      margin: 5% 0 0 10%;
+    }
+
+    p {
+      font-size: 0.9em;
+      color: white;
+      margin-left: 20%
+    }
+
+    .card {
+      border-top-left-radius: 15% 80%;
+      border-bottom-left-radius: 15% 80%;
+      margin-top: 15px;
+      height: 100px;
+    }
+
+    .card-modulo-1 {
+      border-top-left-radius: 15% 80%;
+      border-bottom-left-radius: 15% 80%;
+      width: 100%;
+      height: 100%;
+    }
+
+    .card:nth-child(odd) .card-modulo-1 {
+      background-image: linear-gradient(120deg, rgb(128, 228, 250) 0%, #55BED5 40%, #0B667B 100%);
+    }
+
+    .card:nth-child(even) .card-modulo-1 {
+      background-image: linear-gradient(120deg, #0B667B 0%, #55BED5 40%, rgb(128, 228, 250) 100%);
+    }
 }

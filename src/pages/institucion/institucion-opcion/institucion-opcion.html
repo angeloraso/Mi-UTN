@@ -8,15 +8,17 @@
 
 <ion-content>
 
-    <ion-list>
-        <ion-card *ngFor="let elemento of elementos" (click)="abrirModalElegido(elemento)">
-            <ion-item color=aquamarine>
-                <ion-icon name={{opcion.icono}}></ion-icon>
-                &nbsp;
-                <label>{{elemento.nombre}}</label>
-                <p *ngIf="elemento.subtitulo">{{elemento.subtitulo}}</p>
-            </ion-item>
-        </ion-card>
-    </ion-list>
+    <div class="lista">
+      <div class="card" *ngFor="let elemento of elementos" (click)="abrirModalElegido(elemento)">
+        <div class="card-modulo-1">
+          <div class="opcion-texto">
+              <ion-icon name={{opcion.icono}}></ion-icon>
+              &nbsp;&nbsp;
+              {{elemento.nombre}}
+          </div>
+          <p *ngIf="elemento.subtitulo">{{elemento.subtitulo}}</p>
+        </div>
+      </div>
+    </div>
 
 </ion-content>

@@ -34,35 +34,4 @@ page-institucion {
     background-image: linear-gradient(120deg, #0B667B 0%, #55BED5 40%, rgb(128, 228, 250) 100%);
   }
 
-  .shadow {
-    position: relative;
-  }
-  .shadow:before, .shadow:after {
-    z-index: -1;
-    position: absolute;
-    content: "";
-    bottom: 25px;
-    left: 10px;
-    width: 50%;
-    top: 65%;
-    max-width:300px;
-    background: #777;
-    -webkit-box-shadow: 0 35px 20px #777;
-    -moz-box-shadow: 0 35px 20px #777;
-    box-shadow: 0 35px 20px #777;
-    -webkit-transform: rotate(-8deg);
-    -moz-transform: rotate(-8deg);
-    -o-transform: rotate(-8deg);
-    -ms-transform: rotate(-8deg);
-    transform: rotate(-8deg);
-  }
-  .shadow:after {
-    -webkit-transform: rotate(8deg);
-    -moz-transform: rotate(8deg);
-    -o-transform: rotate(8deg);
-    -ms-transform: rotate(8deg);
-    transform: rotate(8deg);
-    right: 10px;
-    left: auto;
-  }
 }
