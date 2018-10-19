@@ -12,10 +12,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { Data } from '../providers/data/data';
 
-import { ModalesPage } from '../components/modales/modales';
-import { ModalLaboratorioComponent } from '../components/modales/modal-laboratorio/modal-laboratorio';
-import { ModalDeporteComponent } from '../components/modales/modal-deporte/modal-deporte';
-import { ModalBolsaComponent } from '../components/modales/modal-bolsa/modal-bolsa';
 import { HomePageModule } from '../pages/home/home.module';
 import { InstitucionPageModule } from '../pages/institucion/institucion.module';
 import { MateriasPageModule } from '../pages/materias/materias.module';
@@ -25,11 +21,7 @@ import { PerfilPageModule } from '../pages/perfil/perfil.module';
 
 @NgModule({
   declarations: [
-    MyApp,
-    ModalesPage,
-    ModalLaboratorioComponent,
-    ModalDeporteComponent,
-    ModalBolsaComponent
+    MyApp
   ],
   imports: [
     IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
@@ -43,11 +35,7 @@ import { PerfilPageModule } from '../pages/perfil/perfil.module';
     ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    ModalesPage,
-    ModalLaboratorioComponent,
-    ModalDeporteComponent,
-    ModalBolsaComponent
+    MyApp
   ],
   providers: [
     StatusBar,

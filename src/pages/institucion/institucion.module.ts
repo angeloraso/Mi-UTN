@@ -4,7 +4,7 @@ import { InstitucionPage } from './institucion';
 import { InstitucionOpcionPage } from './institucion-opcion/institucion-opcion';
 import { CalendarioAcademicoPage } from './calendario-academico/calendario-academico';
 import { ComedorPage } from './comedor/comedor';
-import { FlashCardComponent } from '../../components/flash-card/flash-card';
+import { ModalesModule } from '../../components/modales/modales.module';
 
 @NgModule({
   declarations: [
@@ -12,9 +12,9 @@ import { FlashCardComponent } from '../../components/flash-card/flash-card';
     InstitucionOpcionPage,
     CalendarioAcademicoPage,
     ComedorPage,
-    FlashCardComponent
   ],
   imports: [
+    ModalesModule,
     IonicPageModule.forChild(InstitucionPage),
     IonicPageModule.forChild(InstitucionOpcionPage),
     IonicPageModule.forChild(CalendarioAcademicoPage),
