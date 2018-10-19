@@ -20,18 +20,18 @@ page-institucion {
   }
 
   .card-modulo-1 {
-    width: 100%;
-    height: 100%;
     border-top-left-radius: 15% 80%;
     border-bottom-left-radius: 15% 80%;
+    width: 100%;
+    height: 100%;
   }
 
   .card:nth-child(odd) .card-modulo-1 {
-    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    background-image: linear-gradient(120deg, rgb(128, 228, 250) 0%, #55BED5 40%, #0B667B 100%);
   }
 
   .card:nth-child(even) .card-modulo-1 {
-    background-image: linear-gradient(120deg, #fbc2eb 0%, #a6c1ee 100%);
+    background-image: linear-gradient(120deg, #0B667B 0%, #55BED5 40%, rgb(128, 228, 250) 100%);
   }
 
   .shadow {
