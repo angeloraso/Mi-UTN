@@ -22,7 +22,7 @@ export class InstitucionPage {
   };
   biblioteca: UrlOpcion =  {
     titulo: 'Ir a Biblioteca',
-    url: 'https:// biblioteca.frlp.utn.edu.ar/',
+    url: 'https://biblioteca.frlp.utn.edu.ar/',
     mensaje: 'Será redirigido a la página oficial de la Biblioteca'
   };
 
