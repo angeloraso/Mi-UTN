@@ -11,4 +11,11 @@ page-modales {
     .swiper-pagination-bullet {
         background-color: white;
     }
+
+    h4 {
+      text-overflow: ellipsis;
+      overflow:hidden;
+      white-space:nowrap;
+      width: 220px;
+    }
 }

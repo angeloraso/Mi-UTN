@@ -8,20 +8,28 @@ page-institucion-opcion {
       font-size: 1.3em;
       color: white;
       position: relative;
-      margin: 5% 0 0 10%;
+      margin: 3% 0 0 8%;
+      text-overflow: ellipsis;
+      overflow:hidden;
+      white-space:nowrap;
+      width: 250px;
     }
 
     p {
       font-size: 0.9em;
       color: white;
-      margin-left: 20%
+      margin-left: 20%;
+      text-overflow: ellipsis;
+      overflow:hidden;
+      white-space:nowrap;
+      width: 250px;
     }
 
     .card {
       border-top-left-radius: 15% 80%;
       border-bottom-left-radius: 15% 80%;
       margin-top: 15px;
-      height: 100px;
+      height: 80px;
     }
 
     .card-modulo-1 {
@@ -29,13 +37,6 @@ page-institucion-opcion {
       border-bottom-left-radius: 15% 80%;
       width: 100%;
       height: 100%;
-    }
-
-    .card:nth-child(odd) .card-modulo-1 {
-      background-image: linear-gradient(120deg, rgb(128, 228, 250) 0%, #55BED5 40%, #0B667B 100%);
-    }
-
-    .card:nth-child(even) .card-modulo-1 {
-      background-image: linear-gradient(120deg, #0B667B 0%, #55BED5 40%, rgb(128, 228, 250) 100%);
+      background-color: #55BED5;
     }
 }

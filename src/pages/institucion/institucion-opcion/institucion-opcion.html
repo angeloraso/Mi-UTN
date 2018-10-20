@@ -10,11 +10,11 @@
 
     <div class="lista">
       <div class="card" *ngFor="let elemento of elementos" (click)="abrirModalElegido(elemento)">
-        <div class="card-modulo-1">
+        <div class="card-modulo-1 col-sm-">
           <div class="opcion-texto">
-              <ion-icon name={{opcion.icono}}></ion-icon>
-              &nbsp;&nbsp;
-              {{elemento.nombre}}
+              <ion-icon name={{opcion.icono}}>
+                &nbsp;&nbsp; {{elemento.nombre}}
+              </ion-icon>
           </div>
           <p *ngIf="elemento.subtitulo">{{elemento.subtitulo}}</p>
         </div>
