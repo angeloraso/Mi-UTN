@@ -29,14 +29,7 @@ page-comedor {
     height: 100%;
     border-top-left-radius: 25% 100%;
     border-bottom-left-radius: 25% 100%;
-  }
-
-  .card:nth-child(odd) .card-modulo-1 {
-    background-image: linear-gradient(120deg, #55BED5 0%, rgb(128, 228, 250) 70%, #55BED5 100%);
-  }
-
-  .card:nth-child(even) .card-modulo-1 {
-    background-image: linear-gradient(120deg, #55BED5 0%, rgb(128, 228, 250) 70%, #55BED5 100%);
+    background-color: #55BED5;
   }
 
   .label__checkbox {
@@ -118,14 +111,14 @@ page-comedor {
     50% {
       width: 2em;
       height: 2em;
-      background-image: linear-gradient(120deg, rgb(165, 223, 236) 0%, #55BED5 100%);
+      background-color: #55BED5;
       border: 0;
       opacity: 0.6;
     }
     100% {
       width: 2em;
       height: 2em;
-      background-image: linear-gradient(120deg, rgb(165, 223, 236) 0%, #55BED5 100%);
+      background-color: #55BED5;
       border: 0;
       opacity: 1;
     }
@@ -143,5 +136,9 @@ page-comedor {
     background-color: #55BED5;
     font-size: 1.8rem;
     color: white;
+  }
+
+  .boton-footer:active {
+    background-color: rgb(165, 223, 236);
   }
 }

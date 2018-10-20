@@ -11,6 +11,8 @@ export class ComedorPage {
   public opcion: Opcion;
   public tabs = 'ticket';
 
+  public isActive = false;
+
   public ios: boolean;
 
   public dias = [
@@ -34,7 +36,12 @@ export class ComedorPage {
     this.opcion = this.navParams.get('opcion'); // Opcion elegida
   }
 
-  comprar() {}
+  comprar() {
+    this.isActive = !this.isActive;
+    setTimeout(() => {
+      this.isActive = !this.isActive;
+    }, 250);
+  }
 
   cargar() {
     const request = new XMLHttpRequest();

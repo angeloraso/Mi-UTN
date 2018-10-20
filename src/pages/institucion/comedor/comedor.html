@@ -62,5 +62,9 @@
 </ion-content>
 
 <ion-footer *ngIf="tabs === 'ticket'">
-  <button ion-item no-lines (click)="comprar()" detail-none class="boton-footer">COMPRAR</button>
+  <button ion-item no-lines
+          [class.active]="isActive"
+          (click)="comprar()"
+          detail-none
+          class="boton-footer">COMPRAR</button>
 </ion-footer>
