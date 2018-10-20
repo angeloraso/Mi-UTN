@@ -1,11 +1,17 @@
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+
 <ion-content>
   <div class="lista">
     <div class="card shadow" *ngFor="let opcion of opciones" (click)="irAPaginaElegida(opcion)">
       <div class="card-modulo-1">
         <div class="opcion-texto">
-            <ion-icon name={{opcion.icono}}></ion-icon>
-            &nbsp;&nbsp;
-            {{opcion.nombre}}
+            <ion-icon name={{opcion.icono}} style="display: inline;">
+                <div style="font-family: 'Lato', sans-serif; display: inline;">
+                  &nbsp;&nbsp;{{opcion.nombre}}
+                </div>
+            </ion-icon>
         </div>
       </div>
     </div>

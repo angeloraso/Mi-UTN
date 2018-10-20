@@ -1,3 +1,6 @@
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
 
 <ion-header>
   <ion-navbar color=aquamarine>
@@ -10,13 +13,15 @@
 
     <div class="lista">
       <div class="card" *ngFor="let elemento of elementos" (click)="abrirModalElegido(elemento)">
-        <div class="card-modulo-1 col-sm-">
+        <div class="card-modulo-1">
           <div class="opcion-texto">
-              <ion-icon name={{opcion.icono}}>
-                &nbsp;&nbsp; {{elemento.nombre}}
+              <ion-icon name={{opcion.icono}} style="display: inline;">
+                  <div style="font-family: 'Lato', sans-serif; display: inline;">
+                    &nbsp;&nbsp;{{elemento.nombre}}
+                  </div>
               </ion-icon>
           </div>
-          <p *ngIf="elemento.subtitulo">{{elemento.subtitulo}}</p>
+          <p *ngIf="elemento.subtitulo" style="font-family: 'Lato';">{{elemento.subtitulo}}</p>
         </div>
       </div>
     </div>
