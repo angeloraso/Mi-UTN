@@ -4,7 +4,7 @@ page-materias {
         opacity: 0.9;
         height: 150px;
         bottom: 0;
-    } 
+    }
 
     .nivel-imagen {
 			width:100%;
@@ -39,7 +39,7 @@ page-materias {
         padding: 0px;
         width: calc(100% - 10px);
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10);
-        border-radius: 4px;
+        border-radius: 10% 10% 10% 10% / 10% 10% 10% 10% ;
     }
 
     @media all and (min-width: 800px) {
@@ -53,7 +53,7 @@ page-materias {
 
     @media all and (min-width: 1200px) {
         .nivel-col {
-            margin: 2%; 
+            margin: 2%;
             margin-left: 5%;
             margin-top: 5%;
             flex: 0 0 25%;

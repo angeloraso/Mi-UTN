@@ -35,7 +35,7 @@ page-perfil{
     }
     #profile-image {
       display: block;
-      border-radius: 50%;
+      border-radius: 0% 100% 100% 100% / 100% 100% 0% 100% ;
       width: auto;
       height: 100px;
       margin: 0 auto 0;
