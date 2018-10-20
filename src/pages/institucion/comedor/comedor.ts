@@ -11,6 +11,8 @@ export class ComedorPage {
   public opcion: Opcion;
   public tabs = 'ticket';
 
+  public ios: boolean;
+
   public dias = [
     {nombre: 'Lunes', numero: '15'},
     {nombre: 'Martes', numero: '16'},
@@ -24,9 +26,10 @@ export class ComedorPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public platform: Platform) {
-              }
+    }
 
   ngOnInit() {
+    this.ios = this.platform.is('ios');
     this.cargar();
     this.opcion = this.navParams.get('opcion'); // Opcion elegida
   }

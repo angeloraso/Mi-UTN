@@ -6,15 +6,24 @@
   </ion-navbar>
   <ion-navbar color=aquamarine>
     <ion-toolbar no-border-top>
-      <ion-segment [(ngModel)]="tabs">
-        <ion-segment-button value="ticket">
-          <ion-icon name="pricetag"></ion-icon>
+      <ion-segment [(ngModel)]="tabs" color="white">
+        <ion-segment-button value="ticket"
+        [style.backgroundColor]="(tabs === 'ticket' && ios) ? 'white' : '#55BED5'">
+          <ion-icon name="pricetag"
+            [style.color]="(tabs === 'ticket' && ios) ? '#55BED5' : 'white'">
+          </ion-icon>
         </ion-segment-button>
-        <ion-segment-button value="configuracion">
-          <ion-icon name="settings"></ion-icon>
+        <ion-segment-button value="configuracion"
+          [style.backgroundColor]="(tabs === 'configuracion' && ios) ? 'white' : '#55BED5'">
+          <ion-icon name="settings"
+            [style.color]="(tabs === 'configuracion' && ios) ? '#55BED5' : 'white'">
+          </ion-icon>
         </ion-segment-button>
-        <ion-segment-button value="historial">
-          <ion-icon name="time"></ion-icon>
+        <ion-segment-button value="historial"
+        [style.backgroundColor]="(tabs === 'historial' && ios) ? 'white' : '#55BED5'">
+          <ion-icon name="time"
+            [style.color]="(tabs === 'historial' && ios) ? '#55BED5' : 'white'">
+          </ion-icon>
         </ion-segment-button>
       </ion-segment>
     </ion-toolbar>
@@ -41,10 +50,6 @@
           </label>
         </div>
       </div>
-
-      <ion-footer>
-          <button ion-item no-lines (click)="comprar()" detail-none class="boton-footer">COMPRAR</button>
-      </ion-footer>
     </div>
 
     <ion-list *ngSwitchCase="'configuracion'">
@@ -55,3 +60,7 @@
 
   </div>
 </ion-content>
+
+<ion-footer *ngIf="tabs === 'ticket'">
+  <button ion-item no-lines (click)="comprar()" detail-none class="boton-footer">COMPRAR</button>
+</ion-footer>

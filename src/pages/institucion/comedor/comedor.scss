@@ -32,11 +32,11 @@ page-comedor {
   }
 
   .card:nth-child(odd) .card-modulo-1 {
-    background-image: linear-gradient(120deg, rgb(128, 228, 250) 0%, #55BED5 40%, #0B667B 100%);
+    background-image: linear-gradient(120deg, #55BED5 0%, rgb(128, 228, 250) 70%, #55BED5 100%);
   }
 
   .card:nth-child(even) .card-modulo-1 {
-    background-image: linear-gradient(120deg, #0B667B 0%, #55BED5 40%, rgb(128, 228, 250) 100%);
+    background-image: linear-gradient(120deg, #55BED5 0%, rgb(128, 228, 250) 70%, #55BED5 100%);
   }
 
   .label__checkbox {
