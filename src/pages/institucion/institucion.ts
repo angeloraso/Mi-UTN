@@ -4,7 +4,7 @@ import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser'
 import { Data } from '../../providers/data/data';
 import { InstitucionOpcionPage } from './institucion-opcion/institucion-opcion';
 
-import {Opcion, UrlOpcion} from '../../interfaces/institucion.interface'
+import {Opcion, UrlOpcion} from '../../interfaces/institucion.interface';
 import { CalendarioAcademicoPage } from './calendario-academico/calendario-academico';
 import { ComedorPage } from './comedor/comedor';
 
@@ -55,7 +55,7 @@ export class InstitucionPage {
   }
   ngOnInit() {
     const that = this;
-    this.dataService.getDocumento('institucion', 'institucion').then((result: any) =>{
+    this.dataService.getDocumento('institucion', 'institucion').then((result: any) => {
         that.opciones = result.opciones;
     });
   }
