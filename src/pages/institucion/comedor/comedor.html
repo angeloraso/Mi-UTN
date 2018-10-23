@@ -51,8 +51,8 @@
         </div>
       </div>
     </div>
-
     <ion-list *ngSwitchCase="'configuracion'">
+      <ion-item *ngFor="let vendedor of vendedores">{{ vendedor.nombre }}</ion-item>
     </ion-list>
 
     <ion-list *ngSwitchCase="'historial'">
@@ -60,11 +60,11 @@
 
   </div>
 </ion-content>
-
 <ion-footer *ngIf="tabs === 'ticket'">
-  <button ion-item no-lines
-          [class.active]="isActive"
-          (click)="comprar()"
-          detail-none
-          class="boton-footer">COMPRAR</button>
+    <button ion-item no-lines
+            (click)="comprar()"
+            detail-none
+            class="boton-footer">
+            COMPRAR
+    </button>
 </ion-footer>

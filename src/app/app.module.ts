@@ -18,7 +18,6 @@ import { MateriasPageModule } from '../pages/materias/materias.module';
 import { NoticiasPageModule } from '../pages/noticias/noticias.module';
 import { PerfilPageModule } from '../pages/perfil/perfil.module';
 
-
 @NgModule({
   declarations: [
     MyApp

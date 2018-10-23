@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Opcion } from '../../../interfaces/institucion.interface';
 import { Platform } from 'ionic-angular';
+import { ComedorProvider } from '../../../providers/comedor/comedor';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-comedor',
@@ -9,7 +11,7 @@ import { Platform } from 'ionic-angular';
 })
 export class ComedorPage {
   public opcion: Opcion;
-  public tabs = 'ticket';
+  public tabs: string;
 
   public isActive = false;
 
@@ -23,17 +25,25 @@ export class ComedorPage {
     {nombre: 'Viernes', numero: '19'},
   ];
 
+  public vendedores: any;
+
   public hex_chr = '0123456789abcdef'.split('');
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public platform: Platform) {
+              public platform: Platform,
+              public comedorProvider: ComedorProvider) {
     }
 
   ngOnInit() {
     this.ios = this.platform.is('ios');
+    this.tabs = 'historial';
     this.cargar();
     this.opcion = this.navParams.get('opcion'); // Opcion elegida
+
+    this.comedorProvider.getVendedores().subscribe(vendedores => {
+      this.vendedores = vendedores;
+    });
   }
 
   comprar() {

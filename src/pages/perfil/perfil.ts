@@ -22,13 +22,13 @@ export class PerfilPage {
     promedio: 8.30
   };
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public alertCtrl: AlertController) {
   }
 
-  salir(){
-    let confirm = this.alertCtrl.create({
+  salir() {
+    const confirm = this.alertCtrl.create({
       title: 'Desea cerrar su sesión?',
       buttons: [
       {
