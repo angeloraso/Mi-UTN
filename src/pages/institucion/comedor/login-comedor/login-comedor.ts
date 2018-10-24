@@ -30,4 +30,6 @@ export class LoginComedorPage {
     alert('Hola');
   }
 
+  materialClick() {}
+
 }
