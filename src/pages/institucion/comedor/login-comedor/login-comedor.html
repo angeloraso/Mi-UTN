@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar color=aquamarine>
+    <ion-title> {{ opcion.nombre }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="profile">
+
+  <ion-card>
+
+    <ion-item>
+      <ion-avatar>
+        <img src={{profilePicture}}>
+      </ion-avatar>
+    </ion-item>
+
+    <ion-card-content>
+      <ion-list no-lines>
+
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input
+            [(ngModel)]="user.email"
+            name="email"
+            type="email"
+            autocapitalize="off"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Contraseña</ion-label>
+            <ion-input
+          [(ngModel)]="user.password"
+          name="password"
+          type="password"
+          autocapitalize="off"
+          required
+        >
+        </ion-input>
+      </ion-item>
+
+      </ion-list>
+    </ion-card-content>
+
+  </ion-card>
+
+  <button ion-button
+          icon-right
+          outline
+          color="white"
+          (click)="login()">
+          Login
+          <ion-icon name="arrow-forward"></ion-icon>
+  </button>
+</div>
+
+</ion-content>

@@ -7,6 +7,7 @@ import { InstitucionOpcionPage } from './institucion-opcion/institucion-opcion';
 import {Opcion, UrlOpcion} from '../../interfaces/institucion.interface';
 import { CalendarioAcademicoPage } from './calendario-academico/calendario-academico';
 import { ComedorPage } from './comedor/comedor';
+import { LoginComedorPage } from './comedor/login-comedor/login-comedor';
 
 @IonicPage()
 @Component({
@@ -79,7 +80,7 @@ export class InstitucionPage {
       this.navCtrl.push(CalendarioAcademicoPage,
         {opcion: opcion});
     } else if (opcion.id_documento === 'comedor') {
-      this.navCtrl.push(ComedorPage,
+      this.navCtrl.push(LoginComedorPage,
         {opcion: opcion});
     } else {
       this.navCtrl.push(InstitucionOpcionPage,
