@@ -3,7 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Opcion } from '../../../interfaces/institucion.interface';
 import { Platform } from 'ionic-angular';
 import { ComedorProvider } from '../../../providers/comedor/comedor';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-comedor',
@@ -37,7 +36,7 @@ export class ComedorPage {
 
   ngOnInit() {
     this.ios = this.platform.is('ios');
-    this.tabs = 'historial';
+    this.tabs = 'ticket';
     this.cargar();
     this.opcion = this.navParams.get('opcion'); // Opcion elegida
 

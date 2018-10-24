@@ -60,11 +60,13 @@
 
   </div>
 </ion-content>
-<ion-footer *ngIf="tabs === 'ticket'">
-    <button ion-item no-lines
-            (click)="comprar()"
-            detail-none
-            class="boton-footer">
-            COMPRAR
-    </button>
-</ion-footer>
+<div *ngIf="tabs === 'ticket'">
+  <ion-footer>
+      <button ion-item no-lines
+              (click)="comprar()"
+              detail-none
+              class="boton-footer">
+              COMPRAR
+      </button>
+  </ion-footer>
+</div>
