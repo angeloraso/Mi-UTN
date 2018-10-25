@@ -9,6 +9,7 @@ import { Opcion } from '../../../../interfaces/institucion.interface';
 export class LoginComedorPage {
 
   public opcion: Opcion;
+  public background_image = 'assets/icon/UTN-logo.png';
 
   user = { email : '', password : ''};
 
