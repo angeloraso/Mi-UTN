@@ -25,18 +25,12 @@ export class ComedorProvider {
     return this.http.get(this.url_base + '/getToken/' + usuario + '/' + pass + '/' + this.device + '/' + this.fcmToken);
   }
 
-  checkToken() {
-    this.storage.get('token').then((token) => {
-      this.token = token;
-      return this.http.get(this.url_base + '/checkToken/' + this.token + '/' + this.device + '/' + this.usuario);
-    });
+  checkToken(token: string) {
+      return this.http.get(this.url_base + '/checkToken/' + token + '/' + this.device + '/' + this.usuario);
   }
 
-  refreshToken() {
-    this.storage.get('token').then((token) => {
-      this.token = token;
-      this.http.get(this.url_base + '/refreshToken/' + this.token + '/' + this.device + '/' + this.usuario);
-    });
+  refreshToken(token: string) {
+      this.http.get(this.url_base + '/refreshToken/' + token + '/' + this.device + '/' + this.usuario);
   }
 
   getSaldo(token: string) {
@@ -47,7 +41,7 @@ export class ComedorProvider {
     return this.http.get(this.url_base + '/vendedor');
   }
 
-  comprar(arreglo_dias: string[]) {
+  comprar(arreglo_dias: string[], token: string) {
     let dias = '';
     if (typeof arreglo_dias !== 'undefined' && arreglo_dias !== []) {
       dias = arreglo_dias[0];
@@ -55,20 +49,14 @@ export class ComedorProvider {
     for (let i = 1; arreglo_dias.length < i; i ++) {
       dias += ',' + arreglo_dias[i];
     }
-    this.storage.get('token').then((token) => {
-      this.token = token;
-      return this.http.get(this.url_base + '/comprar/' + dias + '/' + this.token);
-    });
+    return this.http.get(this.url_base + '/comprar/' + dias + '/' + token);
   }
 
-  getDiasComprados() {
-    this.storage.get('token').then((token) => {
-      this.token = token;
-      return this.http.get(this.url_base + '/diasComprados/' + this.token);
-    });
+  getDiasComprados(token: string) {
+    return this.http.get(this.url_base + '/diasComprados/' + token);
   }
 
-  deshacerDiasComprados(arreglo_dias: string[]) {
+  deshacerDiasComprados(arreglo_dias: string[], token: string) {
     let dias = '';
     if (typeof arreglo_dias !== 'undefined' && arreglo_dias !== []) {
       dias = arreglo_dias[0];
@@ -76,31 +64,19 @@ export class ComedorProvider {
     for (let i = 1; arreglo_dias.length < i; i ++) {
       dias += ',' + arreglo_dias[i];
     }
-    this.storage.get('token').then((token) => {
-      this.token = token;
-      return this.http.get(this.url_base + '/deshacer/' + dias + '/' + this.token);
-    });
+    return this.http.get(this.url_base + '/deshacer/' + dias + '/' + token);
   }
 
-  getEsPeriodoCompra() {
-    this.storage.get('token').then((token) => {
-      this.token = token;
-      return this.http.get(this.url_base + '/periodoCompra/' + this.token);
-    });
+  getEsPeriodoCompra(token: string) {
+    return this.http.get(this.url_base + '/periodoCompra/' + token);
   }
 
-  getFeriadosPeriodo(fecha_inicio, fecha_fin) {
-    this.storage.get('token').then((token) => {
-      this.token = token;
-      return this.http.get(this.url_base + '/feriadosSemana/' + fecha_inicio + '/' + fecha_fin + '/' + this.token);
-    });
+  getFeriadosPeriodo(fecha_inicio: string, fecha_fin: string, token: string) {
+      return this.http.get(this.url_base + '/feriadosSemana/' + fecha_inicio + '/' + fecha_fin + '/' + token);
   }
 
-  getReceso() {
-    this.storage.get('token').then((token) => {
-      this.token = token;
-      return this.http.get(this.url_base + '/getReceso/' + this.token);
-    });
+  getReceso(token: string) {
+    return this.http.get(this.url_base + '/getReceso/' + token);
   }
 
 
