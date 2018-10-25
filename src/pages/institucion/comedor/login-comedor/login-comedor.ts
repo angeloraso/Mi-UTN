@@ -4,6 +4,7 @@ import { TokenComedor } from '../../../../interfaces/institucion.interface';
 import { ComedorProvider } from '../../../../providers/comedor/comedor';
 import * as _ from 'lodash';
 import { ComedorPage } from '../comedor';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-comedor-login',
@@ -22,16 +23,27 @@ export class LoginComedorPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
-    public comedorProvider: ComedorProvider
+    public comedorProvider: ComedorProvider,
+    private storage: Storage
   ) {
 
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.storage.get('usuario').then((usuario) => {
+      this.usuario = usuario;
+    });
+    this.storage.get('pass').then((pass) => {
+      this.pass = pass;
+    });
+  }
 
   ingresar() {
     if (!_.isEmpty(this.usuario) || !_.isEmpty(this.pass)) {
       this.comedorProvider.getToken(this.usuario, this.pass).subscribe((res: TokenComedor) => {
+        this.storage.set('token', res.token);
+        this.storage.set('usuario', this.usuario);
+        this.storage.set('pass', this.pass);
         this.navCtrl.push(ComedorPage,
           {token: res}
         );

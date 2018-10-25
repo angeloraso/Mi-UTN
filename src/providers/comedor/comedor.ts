@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class ComedorProvider {
@@ -16,7 +17,7 @@ export class ComedorProvider {
 
   private usuario: string;
 
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient, private storage: Storage) {}
 
 
   getToken(usuario: string, pass: string) {
@@ -25,18 +26,21 @@ export class ComedorProvider {
   }
 
   checkToken() {
-    return this.http.get(this.url_base + '/checkToken/' + this.token + '/' + this.device + '/' + this.usuario);
-  }
-
-  refreshToken() {
-    this.http.get(this.url_base + '/refreshToken/' + this.token + '/' + this.device + '/' + this.usuario)
-    .subscribe( (token: string) => {
+    this.storage.get('token').then((token) => {
       this.token = token;
+      return this.http.get(this.url_base + '/checkToken/' + this.token + '/' + this.device + '/' + this.usuario);
     });
   }
 
-  getSaldo() {
-    return this.http.get(this.url_base + '/saldo/' + this.token);
+  refreshToken() {
+    this.storage.get('token').then((token) => {
+      this.token = token;
+      this.http.get(this.url_base + '/refreshToken/' + this.token + '/' + this.device + '/' + this.usuario);
+    });
+  }
+
+  getSaldo(token: string) {
+      return this.http.get(this.url_base + '/saldo/' + token);
   }
 
   getVendedores() {
@@ -51,11 +55,17 @@ export class ComedorProvider {
     for (let i = 1; arreglo_dias.length < i; i ++) {
       dias += ',' + arreglo_dias[i];
     }
-    this.http.get(this.url_base + '/comprar/' + dias + '/' + this.token);
+    this.storage.get('token').then((token) => {
+      this.token = token;
+      return this.http.get(this.url_base + '/comprar/' + dias + '/' + this.token);
+    });
   }
 
   getDiasComprados() {
-    return this.http.get(this.url_base + '/diasComprados/' + this.token);
+    this.storage.get('token').then((token) => {
+      this.token = token;
+      return this.http.get(this.url_base + '/diasComprados/' + this.token);
+    });
   }
 
   deshacerDiasComprados(arreglo_dias: string[]) {
@@ -66,19 +76,31 @@ export class ComedorProvider {
     for (let i = 1; arreglo_dias.length < i; i ++) {
       dias += ',' + arreglo_dias[i];
     }
-    return this.http.get(this.url_base + '/deshacer/' + dias);
+    this.storage.get('token').then((token) => {
+      this.token = token;
+      return this.http.get(this.url_base + '/deshacer/' + dias + '/' + this.token);
+    });
   }
 
   getEsPeriodoCompra() {
-    return this.http.get(this.url_base + '/periodoCompra/' + this.token);
+    this.storage.get('token').then((token) => {
+      this.token = token;
+      return this.http.get(this.url_base + '/periodoCompra/' + this.token);
+    });
   }
 
   getFeriadosPeriodo(fecha_inicio, fecha_fin) {
-    return this.http.get(this.url_base + '/feriadosSemana/' + fecha_inicio + '/' + fecha_fin + '/' + this.token);
+    this.storage.get('token').then((token) => {
+      this.token = token;
+      return this.http.get(this.url_base + '/feriadosSemana/' + fecha_inicio + '/' + fecha_fin + '/' + this.token);
+    });
   }
 
   getReceso() {
-    return this.http.get(this.url_base + '/getReceso/' + this.token);
+    this.storage.get('token').then((token) => {
+      this.token = token;
+      return this.http.get(this.url_base + '/getReceso/' + this.token);
+    });
   }
 
 

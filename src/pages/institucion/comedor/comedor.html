@@ -2,7 +2,8 @@
 
 <ion-header>
   <ion-navbar color=aquamarine>
-    <ion-title> {{ token.nombre }}</ion-title>
+        <ion-title style="display: inline-block">{{ token.nombre }}</ion-title>
+        <ion-title style="display: inline-block; position: absolute; right: 0">$ {{ saldo }}</ion-title>
   </ion-navbar>
   <ion-navbar color=aquamarine>
     <ion-toolbar no-border-top>
@@ -41,7 +42,7 @@
         </div>
         <div class="center">
           <label class="label">
-            <input class="label__checkbox" type="checkbox" />
+            <input class="label__checkbox" type="checkbox" [(ngModel)]="dia.activo"/>
             <span class="label__text">
               <span class="label__check">
                 <i class="fa fa-check icon"></i>

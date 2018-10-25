@@ -110,35 +110,6 @@ page-comedor-login {
     width: 100%;
   }
 
-  .button:active {
-    box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  .button.animate {
-    opacity: 0;
-    transform: translateY(-150px) scale(20);
-    transition: width 250ms 200ms, transform 350ms 1350ms, opacity 350ms 1550ms;
-    width: 56px;
-  }
-
-  .circle {
-    background: rgba(0, 0, 0, 0.08);
-    border-radius: 40px;
-    height: 80px;
-    left: 0;
-    opacity: 1;
-    position: absolute;
-    pointer-events: none;
-    top: 0;
-    width: 80px;
-  }
-
-  .circle.animate {
-    transform: scale(3);
-    opacity: 0;
-    transition: transform 200ms linear, opacity 200ms linear;
-  }
-
   .sign-in {
     color: white;
     font-size: 1.5em;
