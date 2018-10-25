@@ -1,12 +1,12 @@
 
-export interface Opcion{
+export interface Opcion {
     nombre: string; // Nombre de la opcion
     icono: string; // Icono que acompaña a la opcion
     base_datos: string; // Base de datos donde se encuentra el documento con los detalles
-    id_documento: string // Id del documento con los detalles
+    id_documento: string; // Id del documento con los detalles
 }
 
-export interface Laboratorio{
+export interface Laboratorio {
     url_imagen_perfil: string; // Imagen de perfil para mostrar en el header del modal
     nombre: string; // Nombre del laboratorio Ej: CODAPLI
     subtitulo: string; // Descripcion del nombre si fuese necesario Ej: Codiseño Aplicado (CODAPLI)
@@ -15,7 +15,7 @@ export interface Laboratorio{
     horario: string; // Horario de atencion del laboratorio
     fotos: Array<string>; // Arreglo con urls de fotos
     emails: Array<string>; // Arreglo de emails de contacto
-    links: Array<{titulo:string, link:string, icono:string}>; // Arreglo con links oficiales del laboratorio
+    links: Array<{titulo: string, link: string, icono: string}>; // Arreglo con links oficiales del laboratorio
 }
 
 export interface Deporte {
@@ -29,7 +29,7 @@ export interface Deporte {
     links: Array<{ titulo: string, link: string, icono: string}>; // Enlaces de contacto
     informacion: [
         {
-            genero: string; // Subdivision dentro del deporte. Ej Femenino 
+            genero: string; // Subdivision dentro del deporte. Ej Femenino
             cronograma: [
                 {
                     ubicacion: string; // Donde se realiza la actividad
@@ -37,7 +37,7 @@ export interface Deporte {
                 }
             ]
         }
-    ]
+    ];
 }
 
 export interface Proyecto {
@@ -48,21 +48,29 @@ export interface Proyecto {
     tipo_modal: string; // String que define que modal utilizar
     descripcion: string; // Descripcion del proyecto
     prestaciones: string; // Objetivo del proyecto
-    emails: Array<{profesor: string, email: string}>; // Correos de contacto 
+    emails: Array<{profesor: string, email: string}>; // Correos de contacto
 }
 
 export interface UrlOpcion {
     titulo: string;
-    url: string; 
+    url: string;
     mensaje: string;
 }
 
 export interface CalendarioAnual {
-    anio: string; 
+    anio: string;
     cronograma: Array<{
         fecha: string,
         icono: string,
         color: string,
         descripcion: string,
     }>;
+}
+
+export interface TokenComedor {
+  nombre: string;
+  apellido: string;
+  token: string;
+  especialidad: string;
+  documento: string;
 }
