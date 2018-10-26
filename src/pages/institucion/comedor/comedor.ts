@@ -4,6 +4,8 @@ import { Opcion, TokenComedor } from '../../../interfaces/institucion.interface'
 import { Platform } from 'ionic-angular';
 import { ComedorProvider } from '../../../providers/comedor/comedor';
 import { Storage } from '@ionic/storage';
+import * as moment from 'moment';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'page-comedor',
@@ -18,13 +20,7 @@ export class ComedorPage {
 
   public ios: boolean;
 
-  public dias = [
-    {nombre: 'Lunes', numero: '', activo: false},
-    {nombre: 'Martes', numero: '', activo: false},
-    {nombre: 'Miercoles', numero: '', activo: false},
-    {nombre: 'Jueves', numero: '', activo: false},
-    {nombre: 'Viernes', numero: '', activo: false},
-  ];
+  public dias: any;
 
   public vendedores: any;
 
@@ -40,15 +36,32 @@ export class ComedorPage {
     this.tabs = 'ticket';
     this.token = this.navParams.get('token');
 
+    this.dias = [
+      {nombre: 'Lunes', numero: '', fecha: '', activo: false},
+      {nombre: 'Martes', numero: '', fecha: '', activo: false},
+      {nombre: 'Miercoles', numero: '', fecha: '', activo: false},
+      {nombre: 'Jueves', numero: '', fecha: '', activo: false},
+      {nombre: 'Viernes', numero: '', fecha: '', activo: false},
+    ];
+
+    for (let i = 0; i < 5; i ++) {
+      this.dias[i].numero = moment().day(i + 1 + 7).format('DD');
+      this.dias[i].fecha = moment().day(i + 1 + 7).format('YYYY-MM-DD');
+    }
+
     this.comedorProvider.getSaldo(this.token.token).subscribe( (res: any) => {
       this.saldo = res.saldo;
     });
 
-    this.comedorProvider.getVendedores().subscribe(vendedores => {
-      this.vendedores = vendedores;
+    this.comedorProvider.getDiasComprados(this.token.token).subscribe( (dias_comprados: [{dia_comprado: string}]) => {
+      _.forEach(this.dias, function(dia) {
+        const match = _.find(dias_comprados, { 'dia_comprado': dia.fecha});
+        if (typeof match !== 'undefined') {
+          dia.activo = true;
+        }
+      });
     });
   }
-
   comprar() {}
 
 }
