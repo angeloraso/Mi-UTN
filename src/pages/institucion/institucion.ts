@@ -80,7 +80,7 @@ export class InstitucionPage {
       this.navCtrl.push(CalendarioAcademicoPage,
         {opcion: opcion});
     } else if (opcion.id_documento === 'comedor') {
-      this.navCtrl.push(LoginComedorPage,
+      this.navCtrl.push(ComedorPage,
         {opcion: opcion});
     } else {
       this.navCtrl.push(InstitucionOpcionPage,

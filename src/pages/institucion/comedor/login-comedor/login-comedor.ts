@@ -5,6 +5,7 @@ import { ComedorProvider } from '../../../../providers/comedor/comedor';
 import * as _ from 'lodash';
 import { ComedorPage } from '../comedor';
 import { Storage } from '@ionic/storage';
+import { ViewController } from 'ionic-angular/navigation/view-controller';
 
 @Component({
   selector: 'page-comedor-login',
@@ -14,8 +15,8 @@ export class LoginComedorPage {
 
   public background_image = 'assets/icon/UTN-logo.png';
 
-  public usuario: string;
-  public pass: string;
+  public usuario: '';
+  public pass: '';
 
   profilePicture = 'assets/icon/logo_utn.png';
 
@@ -24,18 +25,24 @@ export class LoginComedorPage {
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public comedorProvider: ComedorProvider,
-    private storage: Storage
+    private storage: Storage,
+    public viewCtrl: ViewController
   ) {
 
   }
 
   ngOnInit() {
-    this.storage.get('usuario').then((usuario) => {
+    this.inicioSesion();
+  }
+
+  async inicioSesion() {
+    await this.storage.get('usuario').then((usuario) => {
       this.usuario = usuario;
     });
-    this.storage.get('pass').then((pass) => {
+    await this.storage.get('pass').then((pass) => {
       this.pass = pass;
     });
+    this.ingresar();
   }
 
   ingresar() {
@@ -44,9 +51,7 @@ export class LoginComedorPage {
         this.storage.set('token', res.token);
         this.storage.set('usuario', this.usuario);
         this.storage.set('pass', this.pass);
-        this.navCtrl.push(ComedorPage,
-          {token: res}
-        );
+        this.closeModal(res);
       });
     } else {
       this.showAlert();
@@ -60,5 +65,9 @@ export class LoginComedorPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  public closeModal(data) {
+    this.viewCtrl.dismiss(data);
   }
 }
