@@ -96,14 +96,20 @@ export class ComedorPage {
   }
 
   guardarSeleccionCheck(dia: Dia) {
+
+    const dia_elegido_ya_fue_comprado = _.findIndex(this.dias_ya_comprados, (d) => {return _.isMatch(d, dia.fecha) }) > -1;
     if (dia.activo) {
-      if (_.find(this.dias_ya_comprados, dia.fecha)) {
+
+      if (dia_elegido_ya_fue_comprado) {
         this.dias_deshacer_compra.push(dia.fecha);
+      } else {
+        _.pull(this.dias_comprar, dia.fecha);
       }
         this.saldo = (+this.saldo + 20).toString();
     } else {
-      if (!_.find(this.dias_ya_comprados, dia.fecha)) {
+      if (!dia_elegido_ya_fue_comprado) {
         this.dias_comprar.push(dia.fecha);
+      } else {
         _.pull(this.dias_deshacer_compra, dia.fecha);
       }
       this.saldo = (+this.saldo - 20).toString();
