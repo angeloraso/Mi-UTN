@@ -28,7 +28,8 @@ export class ComedorPage {
   public tabs: string;
   public saldo: string;
 
-  public dias_comprados: string[];
+  public dias_ya_comprados: string[];
+  public dias_comprar: string[];
   public dias_deshacer_compra: string[];
 
   public isActive = false;
@@ -52,7 +53,8 @@ export class ComedorPage {
     this.presentModal();
     this.ios = this.platform.is('ios');
     this.tabs = 'ticket';
-    this.dias_comprados = [];
+    this.dias_ya_comprados = [];
+    this.dias_comprar = [];
     this.dias_deshacer_compra = [];
     this.token = new TokenComedor;
 
@@ -64,13 +66,14 @@ export class ComedorPage {
       {nombre: 'Viernes', numero: '', fecha: '', activo: false, deshabilitado: false}
     ];
 
-    for (let i = 0; i < 5; i ++) {
+    for (let i = 0; i < this.dias.length; i ++) {
       this.dias[i].numero = moment().day(i + 1 + 7).format('DD');
       this.dias[i].fecha = moment().day(i + 1 + 7).format('YYYY-MM-DD');
     }
   }
 
   presentModal() {
+    const that = this;
     const modal = this.modalCtrl.create(LoginComedorPage);
     modal.onDidDismiss(data => {
       this.token = data;
@@ -84,6 +87,7 @@ export class ComedorPage {
           const match = _.find(dias_comprados, { 'dia_comprado': dia.fecha});
           if (typeof match !== 'undefined') {
             dia.activo = true;
+            that.dias_ya_comprados.push(dia.fecha);
           }
         });
       });
@@ -93,14 +97,21 @@ export class ComedorPage {
 
   guardarSeleccionCheck(dia: Dia) {
     if (dia.activo) {
-      this.dias_comprados.push(dia.fecha);
+      if (_.find(this.dias_ya_comprados, dia.fecha)) {
+        this.dias_deshacer_compra.push(dia.fecha);
+      }
+        this.saldo = (+this.saldo + 20).toString();
     } else {
-      this.dias_deshacer_compra.push(dia.fecha);
+      if (!_.find(this.dias_ya_comprados, dia.fecha)) {
+        this.dias_comprar.push(dia.fecha);
+        _.pull(this.dias_deshacer_compra, dia.fecha);
+      }
+      this.saldo = (+this.saldo - 20).toString();
     }
   }
 
   async confirmar() {
-    if ( ! _.isEmpty(this.dias_comprados) && !_.isEmpty(this.dias_deshacer_compra) ) {
+    if ( ! _.isEmpty(this.dias_comprar) && !_.isEmpty(this.dias_deshacer_compra) ) {
       await this.comprar();
       await this.deshacer();
       const alert = this.alertCtrl.create({
@@ -119,8 +130,8 @@ export class ComedorPage {
   }
 
   comprar() {
-    if (this.dias_comprados !== []) {
-      this.comedorProvider.comprar(this.dias_comprados, this.token.token);
+    if (this.dias_comprar !== []) {
+      this.comedorProvider.comprar(this.dias_comprar, this.token.token);
     }
   }
 
