@@ -35,14 +35,18 @@
   <div [ngSwitch]="tabs">
     <div class="lista" *ngSwitchCase="'ticket'">
       <div class="card shadow" *ngFor="let dia of dias">
-        <div class="card-modulo-1">
+        <div class="card-modulo-1" [style.backgroundColor]="(dia.deshabilitado == true) ? 'rgb(247, 138, 158)' : '#55BED5'">
         <div class="dia-nombre-numero">
           {{ dia.nombre }} - {{ dia.numero }}
         </div>
         </div>
         <div class="center">
           <label class="label">
-            <input class="label__checkbox" disabled="dia.deshabilitado" type="checkbox" [(ngModel)]="dia.activo" (click)="guardarSeleccionCheck(dia)"/>
+            <input class="label__checkbox"
+                   disabled={{dia.deshabilitado}}
+                   type="checkbox"
+                   [(ngModel)]="dia.activo"
+                   (click)="guardarSeleccionCheck(dia)"/>
             <span class="label__text">
               <span class="label__check">
                 <i class="fa fa-check icon"></i>
