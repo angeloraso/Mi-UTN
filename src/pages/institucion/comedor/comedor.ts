@@ -9,6 +9,15 @@ import * as _ from 'lodash';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { LoginComedorPage } from './login-comedor/login-comedor';
 import { TokenComedor } from '../../../models/TokenComedor';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+
+interface Dia {
+  nombre: string;
+  numero: string;
+  fecha: string;
+  activo: boolean;
+  deshabilitado: boolean;
+}
 
 @Component({
   selector: 'page-comedor',
@@ -19,11 +28,14 @@ export class ComedorPage {
   public tabs: string;
   public saldo: string;
 
+  public dias_comprados: string[];
+  public dias_deshacer_compra: string[];
+
   public isActive = false;
 
   public ios: boolean;
 
-  public dias: any;
+  public dias: Array<Dia>;
 
   public vendedores: any;
 
@@ -32,21 +44,24 @@ export class ComedorPage {
               public platform: Platform,
               public comedorProvider: ComedorProvider,
               private storage: Storage,
-              public modalCtrl: ModalController) {
+              public modalCtrl: ModalController,
+              public alertCtrl: AlertController) {
     }
 
   ngOnInit() {
     this.presentModal();
     this.ios = this.platform.is('ios');
     this.tabs = 'ticket';
+    this.dias_comprados = [];
+    this.dias_deshacer_compra = [];
     this.token = new TokenComedor;
 
     this.dias = [
-      {nombre: 'Lunes', numero: '', fecha: '', activo: false},
-      {nombre: 'Martes', numero: '', fecha: '', activo: false},
-      {nombre: 'Miercoles', numero: '', fecha: '', activo: false},
-      {nombre: 'Jueves', numero: '', fecha: '', activo: false},
-      {nombre: 'Viernes', numero: '', fecha: '', activo: false},
+      {nombre: 'Lunes', numero: '', fecha: '', activo: false, deshabilitado: false},
+      {nombre: 'Martes', numero: '', fecha: '', activo: false, deshabilitado: false},
+      {nombre: 'Miercoles', numero: '', fecha: '', activo: false, deshabilitado: false},
+      {nombre: 'Jueves', numero: '', fecha: '', activo: false, deshabilitado: false},
+      {nombre: 'Viernes', numero: '', fecha: '', activo: false, deshabilitado: false}
     ];
 
     for (let i = 0; i < 5; i ++) {
@@ -59,6 +74,7 @@ export class ComedorPage {
     const modal = this.modalCtrl.create(LoginComedorPage);
     modal.onDidDismiss(data => {
       this.token = data;
+
       this.comedorProvider.getSaldo(this.token.token).subscribe( (res: any) => {
         this.saldo = res.saldo;
       });
@@ -74,6 +90,44 @@ export class ComedorPage {
     });
     modal.present();
   }
-  comprar() {}
+
+  guardarSeleccionCheck(dia: Dia) {
+    if (dia.activo) {
+      this.dias_comprados.push(dia.fecha);
+    } else {
+      this.dias_deshacer_compra.push(dia.fecha);
+    }
+  }
+
+  async confirmar() {
+    if ( ! _.isEmpty(this.dias_comprados) && !_.isEmpty(this.dias_deshacer_compra) ) {
+      await this.comprar();
+      await this.deshacer();
+      const alert = this.alertCtrl.create({
+          title: 'Genial!',
+          subTitle: 'Se han guardado los cambios',
+          buttons: ['OK']
+        });
+        alert.present();
+    } else {
+      const alert = this.alertCtrl.create({
+        subTitle: 'Parece que no se han registrado cambios!',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+  }
+
+  comprar() {
+    if (this.dias_comprados !== []) {
+      this.comedorProvider.comprar(this.dias_comprados, this.token.token);
+    }
+  }
+
+  deshacer() {
+    if (this.dias_deshacer_compra !== []) {
+      this.comedorProvider.deshacerDiasComprados(this.dias_deshacer_compra, this.token.token);
+    }
+  }
 
 }

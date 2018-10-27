@@ -42,7 +42,7 @@
         </div>
         <div class="center">
           <label class="label">
-            <input class="label__checkbox" type="checkbox" [(ngModel)]="dia.activo"/>
+            <input class="label__checkbox" disabled="dia.deshabilitado" type="checkbox" [(ngModel)]="dia.activo" (click)="guardarSeleccionCheck(dia)"/>
             <span class="label__text">
               <span class="label__check">
                 <i class="fa fa-check icon"></i>
@@ -64,10 +64,10 @@
 <div *ngIf="tabs === 'ticket'">
   <ion-footer>
       <button ion-item no-lines
-              (click)="comprar()"
+              (click)="confirmar()"
               detail-none
               class="boton-footer">
-              COMPRAR
+              CONFIRMAR
       </button>
   </ion-footer>
 </div>
