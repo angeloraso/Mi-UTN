@@ -13,6 +13,8 @@ page-comedor-login {
     background-image: url('../../../../assets/imgs/4to_nivel.jpg');
     -webkit-background-size: cover;
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     filter: brightness(0.8);
     height: 100%;
     position: absolute;
@@ -37,7 +39,7 @@ page-comedor-login {
 
   .inputs {
     position: relative;
-    margin: 0 50px;
+    margin: -30% 50px;
   }
 
   .login {
@@ -73,10 +75,9 @@ page-comedor-login {
   }
 
   .logo {
-    height: 220px;
-    width: 210px;
-    left: 22%;
-    margin: 0 auto;
+    height: 170px;
+    width: 150px;
+    left: 27%;
     overflow: hidden;
     position: absolute;
     top: 10%;
@@ -105,7 +106,7 @@ page-comedor-login {
     outline: none !important;
     overflow: hidden;
     position: relative;
-    top: 560px;
+    top: 70%;
     transition: box-shadow 150ms;
     width: 100%;
   }
