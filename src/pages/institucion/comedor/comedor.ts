@@ -96,8 +96,7 @@ export class ComedorPage {
   }
 
   guardarSeleccionCheck(dia: Dia) {
-
-    const dia_elegido_ya_fue_comprado = _.findIndex(this.dias_ya_comprados, (d) => {return _.isMatch(d, dia.fecha) }) > -1;
+    const dia_elegido_ya_fue_comprado = _.includes(this.dias_ya_comprados, dia.fecha);
     if (dia.activo) {
 
       if (dia_elegido_ya_fue_comprado) {
