@@ -70,7 +70,8 @@
       <button ion-item no-lines
               (click)="confirmar()"
               detail-none
-              class="boton-footer">
+              class="boton-footer"
+              [disabled]="dias_deshacer_compra.length === 0 && dias_comprar.length === 0">
               CONFIRMAR
       </button>
   </ion-footer>

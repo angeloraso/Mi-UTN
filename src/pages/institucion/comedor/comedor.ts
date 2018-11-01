@@ -48,7 +48,7 @@ export class ComedorPage {
     }
 
   ngOnInit() {
-    this.presentModal();
+    this.presentModalLogin();
     this.ios = this.platform.is('ios');
     this.tabs = 'ticket';
     this.dias_ya_comprados = [];
@@ -70,7 +70,7 @@ export class ComedorPage {
     }
   }
 
-  presentModal() {
+  presentModalLogin() {
     const that = this;
     const modal = this.modalCtrl.create(LoginComedorPage);
     modal.onDidDismiss(data => {
