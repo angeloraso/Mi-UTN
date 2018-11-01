@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Opcion } from '../../../interfaces/institucion.interface';
 import { Platform } from 'ionic-angular';
 import { ComedorProvider } from '../../../providers/comedor/comedor';
 import { Storage } from '@ionic/storage';
@@ -44,7 +43,6 @@ export class ComedorPage {
               public navParams: NavParams,
               public platform: Platform,
               public comedorProvider: ComedorProvider,
-              private storage: Storage,
               public modalCtrl: ModalController,
               public alertCtrl: AlertController) {
     }
@@ -76,21 +74,25 @@ export class ComedorPage {
     const that = this;
     const modal = this.modalCtrl.create(LoginComedorPage);
     modal.onDidDismiss(data => {
-      this.token = data;
+      if (_.isEmpty(data)) {
+        this.navCtrl.pop();
+      } else {
+        this.token = data;
 
-      this.comedorProvider.getSaldo(this.token.token).subscribe( (res: any) => {
-        this.saldo = res.saldo;
-      });
-
-      this.comedorProvider.getDiasComprados(this.token.token).subscribe( (dias_comprados: [{dia_comprado: string}]) => {
-        _.forEach(this.dias, function(dia) {
-          const match = _.find(dias_comprados, { 'dia_comprado': dia.fecha});
-          if (typeof match !== 'undefined') {
-            dia.activo = true;
-            that.dias_ya_comprados.push(dia.fecha);
-          }
+        this.comedorProvider.getSaldo(this.token.token).subscribe( (res: any) => {
+          this.saldo = res.saldo;
         });
-      });
+
+        this.comedorProvider.getDiasComprados(this.token.token).subscribe( (dias_comprados: [{dia_comprado: string}]) => {
+          _.forEach(this.dias, function(dia) {
+            const match = _.find(dias_comprados, { 'dia_comprado': dia.fecha});
+            if (typeof match !== 'undefined') {
+              dia.activo = true;
+              that.dias_ya_comprados.push(dia.fecha);
+            }
+          });
+        });
+      }
     });
     modal.present();
   }

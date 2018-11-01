@@ -13,12 +13,10 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 })
 export class LoginComedorPage {
 
-  public background_image = 'assets/icon/UTN-logo.png';
+  public logo = 'assets/icon/UTN-logo.png';
 
   public usuario: '';
   public pass: '';
-
-  profilePicture = 'assets/icon/logo_utn.png';
 
   constructor(
     public navCtrl: NavController,
@@ -52,22 +50,27 @@ export class LoginComedorPage {
         this.storage.set('usuario', this.usuario);
         this.storage.set('pass', this.pass);
         this.closeModal(res);
+      },
+      err => {
+        this.error();
       });
-    } else {
-      this.showAlert();
     }
   }
 
-  showAlert() {
+  volver() {
+    this.closeModal();
+  }
+
+  error() {
     const alert = this.alertCtrl.create({
-      title: 'Faltan datos!',
-      subTitle: 'Asegúrese de completar todos los campos!',
+      title: 'Usuario no encontrado!',
+      subTitle: 'Asegúrese de que los datos ingresados son correctos e intente nuevamente!',
       buttons: ['OK']
     });
     alert.present();
   }
 
-  public closeModal(data) {
+  public closeModal(data?) {
     this.viewCtrl.dismiss(data);
   }
 }

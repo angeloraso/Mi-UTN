@@ -1,158 +1,74 @@
 page-comedor-login {
 
-  .main {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    height: 700px;
-    margin: 0 auto;
-    max-width: 400px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .bg {
+  .scroll-content {
+    background-color:transparent;
     background-image: url('../../../../assets/imgs/4to_nivel.jpg');
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
-    filter: brightness(0.8);
-    height: 100%;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
+    background-size: cover;
+}
+  .login-content {
 
-  .bg::after {
-    content: ' ';
-    background-color: #000000;
-    opacity: 0.4;
-    height: 100%;
-    position: absolute;
-    width: 100%;
-  }
-
-  .icon {
-    height: 400px;
-    margin: 0 auto;
-    width: 200px;
-  }
-
-  .inputs {
-    position: relative;
-    margin: -30% 50px;
-  }
-
-  .login {
-    left: 0;
-    opacity: .7;
-    position: absolute;
-    top: -10px;
-    width: 20px;
-  }
-
-  .lock {
-    left: 0;
-    opacity: .7;
-    position: absolute;
-    top: 52px;
-    width: 20px;
-  }
-
-  .input {
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid white;
-    box-sizing: border-box;
-    color: white;
-    display: block;
-    font-size: 16px;
-    margin-bottom: 30px;
-    outline: none !important;
-    opacity: .6;
-    padding-bottom: 15px;
-    padding-left: 50px;
-    width: 100%;
-  }
-
-  .logo {
-    height: 170px;
-    width: 150px;
-    left: 27%;
-    overflow: hidden;
-    position: absolute;
-    top: 10%;
-    opacity: 0.9;
-  }
-
-  .button-container {
-    height: 100%;
-    left: 0;
-    margin: 0 auto;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-
-  .button {
-    background-color: #55BED5;
-    border: 0;
-    border-radius: 28px;
-    display: block;
-    font-size: 16px;
-    height: 56px;
-    margin: 0 auto;
-    max-width: 300px;
-    outline: none !important;
-    overflow: hidden;
-    position: relative;
-    top: 70%;
-    transition: box-shadow 150ms;
-    width: 100%;
-  }
-
-  .sign-in {
-    color: white;
-    font-size: 1.5em;
-  }
-
-  .sign-in.animate {
-    opacity: 0;
-    transition: opacity 150ms 200ms;
-  }
-
-  .loader {
-    animation: spin 320ms linear infinite;
-    border: 3px solid transparent;
-    border-radius: 50%;
-    border-right: 3px solid white;
-    border-top: 3px solid white;
-    height: 28px;
-    left: calc(50% - 17px);
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    top: 10px;
-    width: 28px;
-  }
-
-  .loader.animate {
-    opacity: 0.6;
-    transition: opacity 150ms 350ms;
-  }
-
-  .loader.animateOut {
-    opacity: 0;
-    transition: opacity 350ms;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
+    .logo-row {
+      padding-top: 10px;
+      padding-bottom: 20px;
     }
-    100% {
-      transform: rotate(360deg);
+
+    .logo {
+      height: 170px;
+      width: 170px;
     }
+
+    .login-box {
+      background: #55BED5;
+      padding: 20px 20px 0px 20px;
+      margin-top: 30px;
+      border-radius: 0% 0% 20% 20%;
+      box-shadow: 0px 11px 20px -3px rgba(48, 46, 48, 0.75);
+    }
+
+    ion-row {
+       align-items: center;
+       text-align: center;
+     }
+
+     ion-item {
+         border-radius: 30px !important;
+         padding-left: 30px !important;
+         font-size: 0.9em;
+         margin-bottom: 10px;
+         border: 1px solid #ffffff;
+         border-bottom: 0px !important;
+         box-shadow: none !important;
+     }
+
+     .signup-col {
+       margin: 0px 16px 0px 16px;
+       padding-bottom: 20px;
+     }
+
+     .item-inner {
+       border-bottom-color: #ffffff !important;
+       box-shadow: none !important;
+     }
+
+     .ingresar-btn {
+       background: #4597E0;
+       border-radius: 30px !important;
+     }
+     .ingresar-btn:active {
+       background-color: rgb(138, 192, 240);
+     }
+     .ingresar-btn:hover {
+      background-color: rgb(138, 192, 240);
+    }
+
+     .volver-btn {
+       color: #ffffff;
+       font-size: 0.8em;
+
+     }
+
   }
 
 }
+
