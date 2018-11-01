@@ -27,6 +27,8 @@ export class ComedorPage {
   public tabs: string;
   public saldo: string;
 
+  public valor_vianda: number;
+
   public dias_ya_comprados: string[];
   public dias_comprar: string[];
   public dias_deshacer_compra: string[];
@@ -55,6 +57,7 @@ export class ComedorPage {
     this.dias_comprar = [];
     this.dias_deshacer_compra = [];
     this.token = new TokenComedor;
+    this.valor_vianda = 20;
 
     this.dias = [
       {nombre: 'Lunes', numero: '', fecha: '', activo: false, deshabilitado: false},
@@ -106,14 +109,21 @@ export class ComedorPage {
       } else {
         _.pull(this.dias_comprar, dia.fecha);
       }
-        this.saldo = (+this.saldo + 20).toString();
+        this.saldo = (+this.saldo + this.valor_vianda).toString();
     } else {
-      if (!dia_elegido_ya_fue_comprado) {
-        this.dias_comprar.push(dia.fecha);
+      if ( +this.saldo < this.valor_vianda) { // Destildo el check ya que no hay saldo
+        const dia_posicion = _.findIndex(this.dias, function(d) { return d.nombre === dia.nombre; });
+        this.dias[dia_posicion].activo = false;
+        document.getElementById(dia.nombre).checked = false;
+        this.saldoInsuficiente();
       } else {
-        _.pull(this.dias_deshacer_compra, dia.fecha);
+        if (!dia_elegido_ya_fue_comprado) {
+          this.dias_comprar.push(dia.fecha);
+        } else {
+          _.pull(this.dias_deshacer_compra, dia.fecha);
+        }
+        this.saldo = (+this.saldo - this.valor_vianda).toString();
       }
-      this.saldo = (+this.saldo - 20).toString();
     }
   }
 
@@ -146,6 +156,15 @@ export class ComedorPage {
     if (this.dias_deshacer_compra !== []) {
       this.comedorProvider.deshacerDiasComprados(this.dias_deshacer_compra, this.token.token);
     }
+  }
+
+  saldoInsuficiente() {
+    const alert = this.alertCtrl.create({
+      title: 'Saldo insuficiente!',
+      subTitle: 'Lo sentimos pero no dispone de saldo suficiente para realizar esta compra!',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

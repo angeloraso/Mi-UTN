@@ -45,6 +45,7 @@
             <input class="label__checkbox"
                    disabled={{dia.deshabilitado}}
                    type="checkbox"
+                   id={{dia.nombre}}
                    [(ngModel)]="dia.activo"
                    (click)="guardarSeleccionCheck(dia)"/>
             <span class="label__text">
