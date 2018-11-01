@@ -24,7 +24,8 @@ export class LoginComedorPage {
     public alertCtrl: AlertController,
     public comedorProvider: ComedorProvider,
     private storage: Storage,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    public loadingCtrl: LoadingController
   ) {
 
   }
@@ -45,13 +46,19 @@ export class LoginComedorPage {
 
   ingresar() {
     if (!_.isEmpty(this.usuario) || !_.isEmpty(this.pass)) {
+      const loader = this.loadingCtrl.create({
+        content: 'Cargando...',
+      });
+      loader.present();
       this.comedorProvider.getToken(this.usuario, this.pass).subscribe((res: TokenComedor) => {
         this.storage.set('token', res.token);
         this.storage.set('usuario', this.usuario);
         this.storage.set('pass', this.pass);
+        loader.dismiss();
         this.closeModal(res);
       },
       err => {
+        loader.dismiss();
         this.error();
       });
     }
