@@ -2,11 +2,14 @@ page-comedor-login {
 
   .scroll-content {
     background-color:transparent;
-    background-image: url('../../../../assets/imgs/4to_nivel.jpg');
-    background-repeat: no-repeat;
+    background: linear-gradient(to bottom, #55BED5 30%, #4597E0 100%);
+    transition: opacity 0.8s, transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
+    transform: scale(1);
+    padding: 10%;    background-repeat: no-repeat;
     background-size: cover;
 }
   .login-content {
+
 
     .logo-row {
       padding-top: 10px;
@@ -19,11 +22,9 @@ page-comedor-login {
     }
 
     .login-box {
-      background: #55BED5;
-      padding: 20px 20px 0px 20px;
-      margin-top: 30px;
-      border-radius: 0% 0% 20% 20%;
-      box-shadow: 0px 11px 20px -3px rgba(48, 46, 48, 0.75);
+      background: transparent;
+      margin-top: 50px;
+      border-radius: 10%;
     }
 
     ion-row {
@@ -36,7 +37,7 @@ page-comedor-login {
          padding-left: 30px !important;
          font-size: 0.9em;
          margin-bottom: 10px;
-         border: 1px solid #ffffff;
+         border: 1px solid #FFFFFF;
          border-bottom: 0px !important;
          box-shadow: none !important;
      }
@@ -47,12 +48,12 @@ page-comedor-login {
      }
 
      .item-inner {
-       border-bottom-color: #ffffff !important;
+       border-bottom-color: #FFFFFF !important;
        box-shadow: none !important;
      }
 
      .ingresar-btn {
-       background: #4597E0;
+       background: #55BED5;
        border-radius: 30px !important;
      }
      .ingresar-btn:active {
@@ -63,7 +64,7 @@ page-comedor-login {
     }
 
      .volver-btn {
-       color: #ffffff;
+       color: #FFFFFF;
        font-size: 0.8em;
 
      }
