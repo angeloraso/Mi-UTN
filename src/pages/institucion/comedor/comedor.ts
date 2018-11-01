@@ -26,6 +26,7 @@ export class ComedorPage {
   public token: TokenComedor;
   public tabs: string;
   public saldo: string;
+  public opacity: number;
 
   public valor_vianda: number;
 
@@ -58,6 +59,7 @@ export class ComedorPage {
     this.dias_deshacer_compra = [];
     this.token = new TokenComedor;
     this.valor_vianda = 20;
+    this.opacity = 0;
 
     this.dias = [
       {nombre: 'Lunes', numero: '', fecha: '', activo: false, deshabilitado: false},
@@ -80,6 +82,7 @@ export class ComedorPage {
       if (_.isEmpty(data)) {
         this.navCtrl.pop();
       } else {
+        this.opacity = 1;
         this.token = data;
 
         this.comedorProvider.getSaldo(this.token.token).subscribe( (res: any) => {

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-<ion-header>
+<ion-header [style.opacity]="opacity">
   <ion-navbar color=aquamarine>
         <ion-title style="display: inline-block">{{ token.nombre }} {{ token.apellido }}</ion-title>
         <ion-title style="display: inline-block; position: absolute; right: 0">$ {{ saldo }}</ion-title>
@@ -31,7 +31,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content [style.opacity]="opacity">
   <div [ngSwitch]="tabs">
     <div class="lista" *ngSwitchCase="'ticket'">
       <div class="card shadow" *ngFor="let dia of dias">

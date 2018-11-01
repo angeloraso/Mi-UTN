@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 import { ComedorPage } from '../comedor';
 import { Storage } from '@ionic/storage';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
+import { InstitucionPage } from '../../institucion';
 
 @Component({
   selector: 'page-comedor-login',
@@ -65,7 +66,7 @@ export class LoginComedorPage {
   }
 
   volver() {
-    this.closeModal();
+    this.navCtrl.setRoot(InstitucionPage);
   }
 
   error() {
@@ -77,7 +78,7 @@ export class LoginComedorPage {
     alert.present();
   }
 
-  public closeModal(data?) {
+  public closeModal(data) {
     this.viewCtrl.dismiss(data);
   }
 }
