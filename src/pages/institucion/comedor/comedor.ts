@@ -114,7 +114,8 @@ export class ComedorPage {
       if ( +this.saldo < this.valor_vianda) { // Destildo el check ya que no hay saldo
         const dia_posicion = _.findIndex(this.dias, function(d) { return d.nombre === dia.nombre; });
         this.dias[dia_posicion].activo = false;
-        document.getElementById(dia.nombre).checked = false;
+        const dia_html = document.getElementById(dia.nombre) as HTMLInputElement;
+        dia_html.checked = false;
         this.saldoInsuficiente();
       } else {
         if (!dia_elegido_ya_fue_comprado) {
