@@ -66,7 +66,7 @@ export class LoginComedorPage {
   }
 
   volver() {
-    this.navCtrl.setRoot(InstitucionPage);
+    this.closeModal();
   }
 
   error() {
@@ -78,7 +78,7 @@ export class LoginComedorPage {
     alert.present();
   }
 
-  public closeModal(data) {
+  public closeModal(data?) {
     this.viewCtrl.dismiss(data);
   }
 }

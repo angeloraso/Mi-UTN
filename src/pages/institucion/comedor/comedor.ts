@@ -18,6 +18,10 @@ interface Dia {
   deshabilitado: boolean;
 }
 
+interface RespuestaComedor {
+  resultado: string;
+}
+
 @Component({
   selector: 'page-comedor',
   templateUrl: 'comedor.html'
@@ -140,8 +144,8 @@ export class ComedorPage {
 
   comprar() {
     if (!_.isEmpty(this.dias_comprar)) {
-      this.comedorProvider.comprar(this.dias_comprar, this.token.token).subscribe( (res) => {
-        if (this.confirmado) {
+      this.comedorProvider.comprar(this.dias_comprar, this.token.token).subscribe( (res: RespuestaComedor) => {
+        if (this.confirmado && res.resultado === 'OK') {
           this.exito();
         } else {
           this.confirmado = true;
@@ -154,8 +158,8 @@ export class ComedorPage {
 
   deshacer() {
     if (!_.isEmpty(this.dias_deshacer_compra)) {
-      this.comedorProvider.deshacerDiasComprados(this.dias_deshacer_compra, this.token.token).subscribe( (res) => {
-        if (this.confirmado) {
+      this.comedorProvider.deshacerDiasComprados(this.dias_deshacer_compra, this.token.token).subscribe( (res: RespuestaComedor) => {
+        if (this.confirmado && res.resultado === 'OK') {
           this.exito();
         } else {
           this.confirmado = true;
