@@ -5,6 +5,7 @@ import { MateriaPage } from '../materia/materia';
 import { Data } from '../../../providers/data/data';
 
 import {Materia} from '../../../interfaces/materias.interface';
+import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 
 @Component({
   selector: 'page-nivel',
@@ -21,15 +22,20 @@ export class NivelPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public dataService: Data) {
+              public dataService: Data,
+              public loadingCtrl: LoadingController) {
   }
 
   ngOnInit() {
     this.titulo = this.navParams.get('titulo');
       this.ruta_database = this.navParams.get('ruta_database');
-
+      const loader = this.loadingCtrl.create({
+        content: 'Cargando...',
+      });
+      loader.present();
       this.dataService.getTodosLosDocumentos(this.ruta_database).then((result) => {
         this.materias = result;
+        loader.dismiss();
       });
   }
 

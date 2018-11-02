@@ -8,6 +8,7 @@ import {Opcion, UrlOpcion} from '../../interfaces/institucion.interface';
 import { CalendarioAcademicoPage } from './calendario-academico/calendario-academico';
 import { ComedorPage } from './comedor/comedor';
 import { LoginComedorPage } from './comedor/login-comedor/login-comedor';
+import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 
 @IonicPage()
 @Component({
@@ -52,12 +53,19 @@ export class InstitucionPage {
               public navParams: NavParams,
               public dataService: Data,
               public theInAppBrowser: InAppBrowser,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              public loadingCtrl: LoadingController
+              ) {
   }
   ngOnInit() {
     const that = this;
+    const loader = this.loadingCtrl.create({
+      content: 'Cargando...',
+    });
+    loader.present();
     this.dataService.getDocumento('institucion', 'institucion').then((result: any) => {
         that.opciones = result.opciones;
+        loader.dismiss();
     });
   }
 
