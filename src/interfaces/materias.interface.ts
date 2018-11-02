@@ -7,8 +7,8 @@ export interface Materia {
     cursadas_para_cursar: Array<string>;
     finales_para_cursar: Array<string>;
     finales_para_rendir: Array<string>;
-    dias_horarios: Array<string>;
+    cronogramas: Array<{ comision: string, dias_horarios: Array<string> }>;
     profesores: Array<string>;
-    clases_consulta: Array<{dia_horario:string, profesor:string, aula:string}>;
-    links: Array<{link:string, titulo:string}>;
-  }
+    clases_consulta: Array<{dia_horario: string, profesor: string, aula: string}>;
+    links: Array<{link: string, titulo: string}>;
+}

@@ -11,10 +11,10 @@
         <expandable-list-item>
           <span style="font-family: 'Roboto', sans-serif;" title>Necesito para Cursar</span>
               <a style="background-color: rgb(241, 241, 241);" item >La Cursada de:</a>
-                  <a item *ngFor="let cursada of materia.cursadas_para_cursar">-- {{ cursada }}</a>
+                  <a style="background-color: white; color: inherit; text-decoration: none;" item *ngFor="let cursada of materia.cursadas_para_cursar">-- {{ cursada }}</a>
 
-              <a style="background-color: rgb(241, 241, 241);" item >El Final de:</a> 
-                  <a item *ngFor="let final of materia.finales_para_cursar">-- {{ final }}</a>
+              <a style="background-color: rgb(241, 241, 241);" item >El Final de:</a>
+                  <a style="background-color: white; color: inherit; text-decoration: none;" item *ngFor="let final of materia.finales_para_cursar">-- {{ final }}</a>
 
 
         </expandable-list-item>
@@ -26,8 +26,8 @@
             <expandable-list-item>
               <span title>Necesito para Rendir</span>
                   <a style="background-color: rgb(241, 241, 241);" item>El Final de:</a>
-                      <a item *ngFor="let final of materia.finales_para_rendir">-- {{ final }}</a>
-            </expandable-list-item>   
+                      <a style="background-color: white; color: inherit; text-decoration: none;" item *ngFor="let final of materia.finales_para_rendir">-- {{ final }}</a>
+            </expandable-list-item>
           </expandable-list>
         </ion-card>
 
@@ -35,7 +35,7 @@
             <expandable-list>
                 <expandable-list-item>
                   <span title>Profesores</span>
-                      <a item *ngFor="let profesor of materia.profesores">-- {{ profesor }}</a>
+                      <a style="background-color: white; color: inherit; text-decoration: none;" item *ngFor="let profesor of materia.profesores">-- {{ profesor }}</a>
 
                 </expandable-list-item>
               </expandable-list>
@@ -45,13 +45,13 @@
                 <expandable-list>
                     <expandable-list-item>
                       <span title>Días y Horarios</span>
-                          <a item *ngFor="let cronograma of materia.cronogramas">
+                          <a style="background-color: white; color: inherit; text-decoration: none;" item *ngFor="let cronograma of materia.cronogramas">
                               <b>{{ cronograma.comision }}</b>
                               <br>
-                              <a item *ngFor="let dia_horario of cronograma.dias_horarios">-- {{ dia_horario }}<br> </a>
+                              <a style="background-color: white; color: inherit; text-decoration: none;" item *ngFor="let dia_horario of cronograma.dias_horarios">-- {{ dia_horario }}<br> </a>
                           </a>
 
-                    </expandable-list-item>  
+                    </expandable-list-item>
                   </expandable-list>
                 </ion-card>
 
@@ -59,21 +59,21 @@
                     <expandable-list>
                         <expandable-list-item>
                           <span title>Clases de Consulta</span>
-                              <a item *ngFor="let claseConsulta of materia.clases_consulta">
-                                <b>Aula:</b> {{claseConsulta.aula}} <br>                              
+                              <a style="background-color: white; color: inherit; text-decoration: none;" item *ngFor="let claseConsulta of materia.clases_consulta">
+                                <b>Aula:</b> {{claseConsulta.aula}} <br>
                                 <b>Día:</b> {{claseConsulta.dia_horario}} <br>
                                 <b>Profesor/a:</b> {{claseConsulta.profesor}} <br><br>
                               </a>
-                        </expandable-list-item>  
+                        </expandable-list-item>
                       </expandable-list>
      </ion-card>
      <ion-card>
         <expandable-list>
             <expandable-list-item>
               <span title>Links de la Materia</span>
-                  <a item *ngFor="let link of materia.links" href=link.link>{{link.titulo}}</a>
+                  <a style="background-color: white; color: inherit; text-decoration: none;" item *ngFor="let link of materia.links" href=link.link>{{link.titulo}}</a>
 
-            </expandable-list-item>  
+            </expandable-list-item>
           </expandable-list>
         </ion-card>
 </ion-content>
