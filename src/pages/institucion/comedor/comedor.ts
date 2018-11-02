@@ -27,6 +27,7 @@ export class ComedorPage {
   public tabs: string;
   public saldo: string;
   public opacity: number;
+  public confirmado: boolean;
 
   public valor_vianda: number;
 
@@ -60,6 +61,7 @@ export class ComedorPage {
     this.token = new TokenComedor;
     this.valor_vianda = 20;
     this.opacity = 0;
+    this.confirmado = false;
 
     this.dias = [
       {nombre: 'Lunes', numero: '', fecha: '', activo: false, deshabilitado: false},
@@ -132,34 +134,45 @@ export class ComedorPage {
   }
 
   async confirmar() {
-    if ( ! _.isEmpty(this.dias_comprar) && !_.isEmpty(this.dias_deshacer_compra) ) {
       await this.comprar();
       await this.deshacer();
-      const alert = this.alertCtrl.create({
-          title: 'Genial!',
-          subTitle: 'Se han guardado los cambios',
-          buttons: ['OK']
-        });
-        alert.present();
-    } else {
-      const alert = this.alertCtrl.create({
-        subTitle: 'Parece que no se han registrado cambios!',
-        buttons: ['OK']
-      });
-      alert.present();
-    }
   }
 
   comprar() {
-    if (this.dias_comprar !== []) {
-      this.comedorProvider.comprar(this.dias_comprar, this.token.token);
+    if (!_.isEmpty(this.dias_comprar)) {
+      this.comedorProvider.comprar(this.dias_comprar, this.token.token).subscribe( (res) => {
+        if (this.confirmado) {
+          this.exito();
+        } else {
+          this.confirmado = true;
+        }
+      });
+    } else {
+      this.confirmado = true;
     }
   }
 
   deshacer() {
-    if (this.dias_deshacer_compra !== []) {
-      this.comedorProvider.deshacerDiasComprados(this.dias_deshacer_compra, this.token.token);
+    if (!_.isEmpty(this.dias_deshacer_compra)) {
+      this.comedorProvider.deshacerDiasComprados(this.dias_deshacer_compra, this.token.token).subscribe( (res) => {
+        if (this.confirmado) {
+          this.exito();
+        } else {
+          this.confirmado = true;
+        }
+      });
+    } else {
+      this.confirmado = true;
     }
+  }
+
+  exito() {
+    const alert = this.alertCtrl.create({
+      title: 'Genial!',
+      subTitle: 'Se han guardado los cambios',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   saldoInsuficiente() {

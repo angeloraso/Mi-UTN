@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import * as _ from 'lodash';
 
 @Injectable()
 export class ComedorProvider {
@@ -42,14 +43,14 @@ export class ComedorProvider {
   }
 
   comprar(arreglo_dias: string[], token: string) {
-    let dias = '';
-    if (typeof arreglo_dias !== 'undefined' && arreglo_dias !== []) {
+    if (!_.isEmpty(arreglo_dias)) {
+      let dias = '';
       dias = arreglo_dias[0];
+      for (let i = 1; i < arreglo_dias.length; i ++) {
+        dias += ',' + arreglo_dias[i];
+      }
+      return this.http.get(this.url_base + '/comprar/' + dias + '/' + token);
     }
-    for (let i = 1; arreglo_dias.length < i; i ++) {
-      dias += ',' + arreglo_dias[i];
-    }
-    return this.http.get(this.url_base + '/comprar/' + dias + '/' + token);
   }
 
   getDiasComprados(token: string) {
@@ -57,14 +58,14 @@ export class ComedorProvider {
   }
 
   deshacerDiasComprados(arreglo_dias: string[], token: string) {
-    let dias = '';
-    if (typeof arreglo_dias !== 'undefined' && arreglo_dias !== []) {
+    if (!_.isEmpty(arreglo_dias)) {
+      let dias = '';
       dias = arreglo_dias[0];
+      for (let i = 1; i < arreglo_dias.length; i ++) {
+        dias += ',' + arreglo_dias[i];
+      }
+      return this.http.get(this.url_base + '/deshacer/' + dias + '/' + token);
     }
-    for (let i = 1; arreglo_dias.length < i; i ++) {
-      dias += ',' + arreglo_dias[i];
-    }
-    return this.http.get(this.url_base + '/deshacer/' + dias + '/' + token);
   }
 
   getEsPeriodoCompra(token: string) {
