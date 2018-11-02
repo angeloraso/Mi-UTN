@@ -1,17 +1,43 @@
 page-nivel {
 
-    .card {
-        border-radius: 22px;
-        h1 {
-            font-weight: 4;
-            font-size: 2rem;
-            color:white
-        }
-        p {
-            margin-left: 23px;
-            margin-top: 1%;
-            font-size: 1rem;
-            color:white;
-        }
-    }
+  .lista {
+    margin: 0 5% 0 5%;
+  }
+
+  .opcion-texto {
+    display: inline-block;
+    font-size: 1.2em;
+    color: white;
+    position: relative;
+    margin: 3% 0 0 8%;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+    width: 250px;
+  }
+
+  p {
+    font-size: 0.9em;
+    color: white;
+    margin-left: 17%;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+    width: 220px;
+  }
+
+  .card {
+    border-top-left-radius: 15% 80%;
+    border-bottom-left-radius: 15% 80%;
+    margin-top: 15px;
+    height: 75px;
+  }
+
+  .card-modulo-1 {
+    border-top-left-radius: 15% 80%;
+    border-bottom-left-radius: 15% 80%;
+    width: 100%;
+    height: 100%;
+    background-color: #55BED5;
+  }
 }
