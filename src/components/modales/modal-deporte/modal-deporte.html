@@ -1,18 +1,18 @@
 <ion-content>
     <ion-item text-wrap>
         <div>
-        <h1 style="color: #FF3F63;">
+        <h1 style="color: #0B667B; font-family: 'Lato', sans-serif">
             Sumate!
         </h1>
         </div>
         <br/>
-        <ion-slides 
-            #slider 
+        <ion-slides
+            #slider
             *ngIf="elemento.fotos && elemento.fotos.length"
-            pager=true 
-            autoplay=1500 
-            effect="slide" 
-            loop=true 
+            pager=true
+            autoplay=1500
+            effect="slide"
+            loop=true
             (ionSlideWillChange)="onSlideChanged()">
 
             <ion-slide *ngFor="let foto of elemento.fotos"
@@ -22,51 +22,52 @@
 
         </ion-slides>
         <br/>
-        <div>
+        <div style="font-family: 'Lato', sans-serif">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            {{elemento.descripcion}} 
+            {{elemento.descripcion}}
         </div>
     </ion-item>
 
     <ion-item text-wrap *ngFor="let subdivision of elemento.informacion">
         <div>
-            <h1 style="color: #FF3F63;">
+            <h1 style="color: #0B667B; font-family: 'Lato', sans-serif">
                 {{subdivision.genero}}
             </h1>
         </div>
-        <ion-item no-lines *ngFor="let grupo of subdivision.cronograma">
+        <ion-item no-lines *ngFor="let grupo of subdivision.cronograma" style="font-family: 'Lato', sans-serif">
             <h2>{{grupo.ubicacion}}</h2>
-            <ion-item no-lines *ngFor="let dia_horario of grupo.dias_horarios">
+            <ion-item no-lines *ngFor="let dia_horario of grupo.dias_horarios" style="font-family: 'Lato', sans-serif">
                 <ion-icon color=aquamarine name="time"></ion-icon>
-                &nbsp;&nbsp;{{dia_horario}} 
+                &nbsp;&nbsp;{{dia_horario}}
             </ion-item>
         </ion-item>
     </ion-item>
     <ion-item text-wrap>
         <div>
-            <h1 style="color: #FF3F63;">
+            <h1 style="color: #0B667B; font-family: 'Lato', sans-serif">
                 Emails de Contacto:
             </h1>
         </div>
         <ion-item no-lines *ngFor="let email of elemento.emails">
-            <ion-icon 
-                name="mail" 
+            <ion-icon
+                name="mail"
                 color=aquamarine>
                 &nbsp;&nbsp;
-                <a href="mailto:{{mail}} + '?Subject=Consulta">{{email}}</a>
-            </ion-icon>  
+                <a style="font-family: 'Lato', sans-serif" href="mailto:{{email}} + '?Subject=Consulta">{{email}}</a>
+            </ion-icon>
         </ion-item>
     </ion-item>
 
     <ion-item>
-        <h1 style="color: #FF3F63;">
+        <h1 style="color: #0B667B; font-family: 'Lato', sans-serif">
             Links:
         </h1>
         <ion-list>
-            <a *ngFor="let link of elemento.links" 
-                href="#" 
+            <a *ngFor="let link of elemento.links"
+                href="#"
                 ion-item
-                (click)="openWithSystemBrowser(link.link)">
+                (click)="openWithSystemBrowser(link.link)"
+                style="font-family: 'Lato', sans-serif">
                 <ion-icon color=aquamarine name={{link.icono}}></ion-icon>
                 &nbsp;&nbsp;{{link.titulo}}
             </a>

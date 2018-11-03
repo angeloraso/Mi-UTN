@@ -1,55 +1,57 @@
 <ion-content>
     <ion-item text-wrap>
         <div>
-            <h2><b>
+            <h2 style="font-family: 'Lato', sans-serif"><b>
                 {{elemento.nombre_completo}}
             </b></h2>
         </div>
     </ion-item>
     <ion-item text-wrap>
         <div>
-            <h1 style="color: #FF3F63;">
+            <h1 style="color: #0B667B; font-family: 'Lato', sans-serif">
                 De qué se trata?
             </h1>
         </div>
         <br/>
-        <div>
+        <div style="font-family: 'Lato', sans-serif">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{elemento.descripcion}}
         </div>
     </ion-item>
     <ion-item text-wrap>
         <div>
-            <h1 style="color: #FF3F63;">
+            <h1 style="color: #0B667B; font-family: 'Lato', sans-serif">
                 Qué objetivos busca?
             </h1>
         </div>
         <br/>
-        <div>
+        <div style="font-family: 'Lato', sans-serif">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{elemento.prestaciones}}
         </div>
     </ion-item>
 
     <ion-item text-wrap>
         <div>
-            <h1 style="color: #FF3F63;">
+            <h1 style="color: #0B667B; font-family: 'Lato', sans-serif">
                 Querés unirte?
             </h1>
-            <p>
+        </div>
+        <br/>
+        <div style="font-family: 'Lato', sans-serif">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Aunque es aconsejable esperar hasta estar más avanzado en la carrera, 
+                Aunque es aconsejable esperar hasta estar más avanzado en la carrera,
                 no es necesario que tengas muchos conocimientos.
                 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Si tenés ganas de aprender y colaborar, Contactate con nosotros!
-            </p>
         </div>
-        <ion-item text-wrap no-lines *ngFor="let email of elemento.emails">
+        <br/>
+        <ion-item text-wrap no-lines *ngFor="let email of elemento.emails" style="font-family: 'Lato', sans-serif">
             <ion-icon name="person" color=aquamarine>
                 &nbsp;&nbsp;
                 {{email.profesor}}
             </ion-icon>
             <ion-icon name="mail" color=aquamarine>
                 &nbsp;&nbsp;
-                <a href="mailto:{{mail}} + '?Subject=Consulta">{{email.email}}</a>
+                <a style="font-family: 'Lato', sans-serif" href="mailto:{{email}} + '?Subject=Consulta">{{email.email}}</a>
             </ion-icon>
         </ion-item>
     </ion-item>

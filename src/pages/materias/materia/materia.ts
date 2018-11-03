@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { Data } from '../../../providers/data/data';
 
-import {Materia} from '../../../interfaces/materias.interface'
+import {Materia} from '../../../interfaces/materias.interface';
 
 @Component({
   selector: 'page-materia',
@@ -20,7 +20,7 @@ export class MateriaPage {
               public dataService: Data,
             ) {
   }
-  ngOnInit(){
+  ngOnInit() {
     this.materia = this.navParams.get('materia');
     this.titulo = this.materia.nombre;
   }
