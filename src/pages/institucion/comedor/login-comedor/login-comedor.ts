@@ -63,6 +63,11 @@ export class LoginComedorPage {
         this.error();
       });
     }
+    /* this.closeModal({nombre: 'JUAN',
+      apellido: 'SANCHEZ',
+      token: 'dfjaife8uf8df8ad6s6sg9s7f9sF78SF979F7f',
+      especialidad: 'Sistemas',
+      documento: '35351973'}); */
   }
 
   volver() {
@@ -73,6 +78,7 @@ export class LoginComedorPage {
     const alert = this.alertCtrl.create({
       title: 'Usuario no encontrado!',
       subTitle: 'Asegúrese de que los datos ingresados son correctos e intente nuevamente!',
+      message: 'Si el problema persiste puede que existan inconvenientes con el servidor',
       buttons: ['OK']
     });
     alert.present();

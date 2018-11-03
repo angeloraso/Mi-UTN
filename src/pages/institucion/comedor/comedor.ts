@@ -84,7 +84,7 @@ export class ComedorPage {
   presentModalLogin() {
     const that = this;
     const modal = this.modalCtrl.create(LoginComedorPage);
-    modal.onDidDismiss(data => {
+    modal.onDidDismiss((data: TokenComedor) => {
       if (_.isEmpty(data)) {
         this.navCtrl.pop();
       } else {
