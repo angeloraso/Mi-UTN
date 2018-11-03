@@ -10,7 +10,7 @@ export class Data {
   private password = '0d421587d0341b142725eac446152622d0502f0a8c923eda973c109b14d90dcd'; // Pass de IBM Cloudant
   private URL_DATABASE =  'https://' + this.username + ':' + this.password + '@8484901b-4df0-4fac-a2ca-d28631a54baf-bluemix.cloudant.com/';
 
-  data: any;
+  private data: any;
 
 
   constructor(public zone: NgZone) {
@@ -44,22 +44,19 @@ export class Data {
             remoteDB.get(id_documento).then((result) => {
                 documento = result;
                 resolve(documento); // Devuelvo el documento buscado de la base de datos remota
-            }).catch(function (err) {
-              console.log(err);
-            });
+            }).catch(function (err) {});
         } else {
           // La base de datos SI existe en memoria
             localDB.get(id_documento).then((result) => {
                 documento = result;
                 resolve(documento); // Devuelvo el documento buscado de la base de datos local
-            }).catch(function (err) {
-              console.log(err);
+            }).catch(function (err) {});
+            localDB.changes({live: true, since: 'now', include_docs: true, attachments: true}).on('change', (change) => {
+              that.handleChange(change, documento);
             });
         }
         })
-        .catch(function (err) {
-            console.log('error: ' + err);
-        });
+        .catch(function (err) {});
     });
 
   }
@@ -91,29 +88,59 @@ export class Data {
             remoteDB.allDocs({include_docs: true, attachments: true}).then((result) => {
               result.rows.map((row) => {
                 documentos.push(row.doc); // Guardo todos los documentos en el arreglo que devuelvo
-                console.log('DESDE REMOTO ALL ' + documentos[0]);
                 resolve(documentos); // Devuelvo todos los documentos de la base de datos remota
               });
-            }).catch(function (err) {
-              console.log(err);
-            });
+
+            }).catch(function (err) {});
         } else {
           // La base de datos SI existe en memoria
             localDB.allDocs({include_docs: true, attachments: true}).then((result) => {
               result.rows.map((row) => {
                 documentos.push(row.doc);
-                console.log('DESDE LOCAL ALL ' + documentos[0]);
                 resolve(documentos); // Devuelvo todos los documentos de la base de datos local
               });
-            }).catch(function (err) {
-              console.log(err);
-            });
+              localDB.changes({live: true, since: 'now', include_docs: true, attachments: true}).on('change', (change) => {
+                that.handleChange(change, documentos);
+              });
+            }).catch(function (err) {});
         }
         })
-        .catch(function (err) {
-            console.log('error: ' + err);
-        });
+        .catch(function (err) {});
     });
+  }
+
+  handleChange(change, data) {
+    this.data = data;
+
+    this.zone.run(() => {
+
+      let changedDoc = null;
+      let changedIndex = null;
+
+      this.data.forEach((doc, index) => {
+
+        if (doc._id === change.id) {
+          changedDoc = doc;
+          changedIndex = index;
+        }
+
+      });
+      // A document was deleted
+      if (change.deleted) {
+        this.data.splice(changedIndex, 1);
+      } else {
+        // A document was updated
+        if (changedDoc) {
+          this.data[changedIndex] = change.doc;
+        } else {
+           // A document was added
+          this.data.push(change.doc);
+        }
+
+      }
+
+    });
+
   }
 
   // Agrega un documento en la tabla 'ruta_tabla'
@@ -124,73 +151,5 @@ export class Data {
 
     remoteDB.put(documento);
   }
-
-  /* getDocuments(){
-
-    return new Promise(resolve => {
-
-      this.db.allDocs({
-
-        include_docs: true
-
-      }).then((result) => {
-
-        this.data = [];
-
-        let docs = result.rows.map((row) => {
-          this.data.push(row.doc);
-          resolve(this.data);
-        });
-
-        this.db.changes({live: true, since: 'now', include_docs: true}).on('change', (change) => {
-          this.handleChange(change);
-        });
-
-      }).catch((error) => {
-
-        console.log(error);
-
-      });
-
-    });
-
-  }
-
-  handleChange(change){
-
-    this.zone.run(() => {
-
-      let changedDoc = null;
-      let changedIndex = null;
-
-      this.data.forEach((doc, index) => {
-
-        if(doc._id === change.id){
-          changedDoc = doc;
-          changedIndex = index;
-        }
-
-      });
-
-      //A document was deleted
-      if(change.deleted){
-        this.data.splice(changedIndex, 1);
-      }
-      else {
-
-        //A document was updated
-        if(changedDoc){
-          this.data[changedIndex] = change.doc;
-        }
-        //A document was added
-        else {
-          this.data.push(change.doc);
-        }
-
-      }
-
-    });
-
-  } */
 
 }
