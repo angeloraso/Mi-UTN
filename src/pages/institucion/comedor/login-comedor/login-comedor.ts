@@ -6,6 +6,9 @@ import * as _ from 'lodash';
 import { ComedorPage } from '../comedor';
 import { Storage } from '@ionic/storage';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
+import { App } from 'ionic-angular/components/app/app';
+import { InstitucionPage } from '../../institucion';
+import { HomePage } from '../../../home/home';
 
 @Component({
   selector: 'page-comedor-login',
@@ -18,6 +21,8 @@ export class LoginComedorPage {
   public usuario: '';
   public pass: '';
 
+  public salir: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -25,7 +30,8 @@ export class LoginComedorPage {
     public comedorProvider: ComedorProvider,
     private storage: Storage,
     public viewCtrl: ViewController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public appCtrl: App
   ) {
 
   }
@@ -65,7 +71,8 @@ export class LoginComedorPage {
   }
 
   volver() {
-    this.closeModal();
+    this.viewCtrl.dismiss();
+    this.appCtrl.getRootNav().setRoot(HomePage, {'tab': 'institucion'});
   }
 
   error() {
@@ -78,7 +85,7 @@ export class LoginComedorPage {
     alert.present();
   }
 
-  public closeModal(data?) {
+  public closeModal(data) {
     this.viewCtrl.dismiss(data);
   }
 }

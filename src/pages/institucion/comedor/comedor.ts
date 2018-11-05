@@ -9,6 +9,7 @@ import { ModalController } from 'ionic-angular/components/modal/modal-controller
 import { LoginComedorPage } from './login-comedor/login-comedor';
 import { TokenComedor } from '../../../models/TokenComedor';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 
 interface Dia {
   nombre: string;
@@ -35,7 +36,6 @@ export class ComedorPage {
   public token: TokenComedor;
   public tabs: string;
   public saldo: string;
-  public opacity: number;
   public confirmado: boolean;
 
   public valor_vianda: number;
@@ -57,7 +57,9 @@ export class ComedorPage {
               public platform: Platform,
               public comedorProvider: ComedorProvider,
               public modalCtrl: ModalController,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              private storage: Storage,
+              public loadingCtrl: LoadingController) {
     }
 
   ngOnInit() {
@@ -69,7 +71,6 @@ export class ComedorPage {
     this.dias_deshacer_compra = [];
     this.token = new TokenComedor;
     this.valor_vianda = 20;
-    this.opacity = 0;
     this.confirmado = false;
 
     this.dias = [
@@ -89,11 +90,9 @@ export class ComedorPage {
   presentModalLogin() {
     const that = this;
     const modal = this.modalCtrl.create(LoginComedorPage);
+    modal.present();
     modal.onDidDismiss((data: TokenComedor) => {
-      if (_.isEmpty(data)) {
-        this.navCtrl.pop();
-      } else {
-        this.opacity = 1;
+      if (!_.isEmpty(data)) {
         this.token = data;
 
         this.comedorProvider.getSaldo(this.token.token).subscribe( (res: any) => {
@@ -130,10 +129,9 @@ export class ComedorPage {
                   dia.deshabilitado = true;
                 }
               });
-            });
+        });
       }
     });
-    modal.present();
   }
 
   guardarSeleccionCheck(dia: Dia) {
@@ -215,4 +213,42 @@ export class ComedorPage {
     alert.present();
   }
 
+  salir() {
+    const prompt = this.alertCtrl.create({
+      title: 'Login',
+      message: 'Desea cerrar sesión?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: data => {}},
+        {
+          text: 'Salir',
+          handler: data => {
+            let se_borraron_los_datos = false;
+            const loader = this.loadingCtrl.create({
+              content: 'Cargando...',
+            });
+            loader.present();
+            this.storage.remove('usuario').then((res) => {
+              if (se_borraron_los_datos) {
+                loader.dismiss();
+                this.presentModalLogin();
+              } else {
+                se_borraron_los_datos = true;
+              }
+            });
+            this.storage.remove('pass').then((res) => {
+              if (se_borraron_los_datos) {
+                loader.dismiss();
+                this.presentModalLogin();
+              } else {
+                se_borraron_los_datos = true;
+              }
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
 }

@@ -8,9 +8,24 @@ page-comedor {
     margin: 0 5% 40% 5%;
   }
 
+  .salir {
+    display: inline-block;
+    position: absolute;
+    right: 60px;
+    font-size: 25px;
+    margin-top: 3px;
+  }
+
+  .saldo {
+    display: inline-block;
+    position: absolute;
+    right: 0
+  }
+
   .dia-nombre-numero {
     display: inline-block;
     font-size: 1.4em;
+    font-family: 'Lato', sans-serif;
     color: white;
     position: absolute;
     top: 50%; left: 35%;

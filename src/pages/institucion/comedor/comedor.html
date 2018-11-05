@@ -1,9 +1,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-<ion-header [style.opacity]="opacity">
+<ion-header>
   <ion-navbar color=aquamarine>
         <ion-title style="display: inline-block">{{ token.nombre }} {{ token.apellido }}</ion-title>
-        <ion-title style="display: inline-block; position: absolute; right: 0">$ {{ saldo }}</ion-title>
+        <ion-icon name="power" class="salir" (click)="salir()"></ion-icon>
+        <ion-title class="saldo">$ {{ saldo }}</ion-title>
   </ion-navbar>
   <ion-navbar color=aquamarine>
     <ion-toolbar no-border-top>
@@ -31,7 +32,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content [style.opacity]="opacity">
+<ion-content>
   <div [ngSwitch]="tabs">
     <div class="lista" *ngSwitchCase="'ticket'">
       <div class="card shadow" *ngFor="let dia of dias">
@@ -58,7 +59,6 @@
       </div>
     </div>
     <ion-list *ngSwitchCase="'configuracion'">
-      <ion-item *ngFor="let vendedor of vendedores">{{ vendedor.nombre }}</ion-item>
     </ion-list>
 
     <ion-list *ngSwitchCase="'historial'">
