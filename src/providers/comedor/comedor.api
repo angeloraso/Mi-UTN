@@ -78,10 +78,12 @@ NOTA:
 /periodoCompra/{token}
 
 /* Devuelve el arreglo 'feriados' de objetos con la estructura:
+/ [
 /  {
 /     fecha: "YYYY-MM-DD",
 /     observacion: "una_observacion"
 /   }
+/ ]
 */
 /feriadosSemana/{diaDesde}/{diaHasta}/{token}
 

@@ -22,6 +22,11 @@ interface RespuestaComedor {
   resultado: string;
 }
 
+interface Feriado {
+  fecha: string;
+  observacion: string;
+}
+
 @Component({
   selector: 'page-comedor',
   templateUrl: 'comedor.html'
@@ -105,13 +110,27 @@ export class ComedorPage {
           });
         });
 
-        this.comedorProvider.getEsPeriodoCompra(this.token.token).subscribe( (es_periodo_de_compra: boolean) => {
-          if (!es_periodo_de_compra) {
-            _.forEach(this.dias, function(dia) {
-              dia.deshabilitado = true;
-            });
-          }
+        this.comedorProvider.getEsPeriodoCompra(this.token.token)
+            .subscribe( (es_periodo_de_compra: boolean) => {
+                if (!es_periodo_de_compra) {
+                  _.forEach(this.dias, function(dia) {
+                    dia.deshabilitado = true;
+                  });
+                }
         });
+
+        this.comedorProvider.getFeriadosPeriodo(
+            moment().day(8).format('YYYY-MM-DD'),
+            moment().day(12).format('YYYY-MM-DD'),
+            this.token.token)
+            .subscribe( (feriados: Array<Feriado>) => {
+              _.forEach(this.dias, function(dia) {
+                const match = _.find(feriados, { 'fecha': dia.fecha});
+                if (typeof match !== 'undefined') {
+                  dia.deshabilitado = true;
+                }
+              });
+            });
       }
     });
     modal.present();
