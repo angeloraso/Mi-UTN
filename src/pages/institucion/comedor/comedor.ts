@@ -104,6 +104,14 @@ export class ComedorPage {
             }
           });
         });
+
+        this.comedorProvider.getEsPeriodoCompra(this.token.token).subscribe( (es_periodo_de_compra: boolean) => {
+          if (!es_periodo_de_compra) {
+            _.forEach(this.dias, function(dia) {
+              dia.deshabilitado = true;
+            });
+          }
+        });
       }
     });
     modal.present();

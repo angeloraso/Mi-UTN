@@ -1,6 +1,9 @@
 
 .scroll-content {
-    background-color:#D4EDF2;
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-color:transparent;
+  background: linear-gradient(to bottom, #0B667B 10%, #55BED5 30%, #D4EDF2 80%, rgb(255, 255, 255) 100%);
+  transition: opacity 0.8s, transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
+  transform: scale(1);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
