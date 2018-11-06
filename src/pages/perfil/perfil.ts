@@ -27,6 +27,22 @@ export class PerfilPage {
               public alertCtrl: AlertController) {
   }
 
+  ionViewWillEnter() {
+    this.proximamente();
+  }
+
+  proximamente() {
+    const alert = this.alertCtrl.create({
+      title: 'Próximamente!',
+      subTitle: 'En este momento el perfil solo es un ejemplo. Próximamente se podrá disfrutar de esta funcionalidad!',
+      message: 'Si tenés ganas de participar en su desarrollo o se te ocurren ideas que podría ' +
+      'tener el perfil de un alumno, no olvides sugerirlas en la seccion Sugerencias dentro de ' +
+      'la opción Institucion',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   salir() {
     const confirm = this.alertCtrl.create({
       title: 'Desea cerrar su sesión?',
