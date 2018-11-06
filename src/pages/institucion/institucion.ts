@@ -9,6 +9,7 @@ import { CalendarioAcademicoPage } from './calendario-academico/calendario-acade
 import { ComedorPage } from './comedor/comedor';
 import { LoginComedorPage } from './comedor/login-comedor/login-comedor';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
+import { SugerenciasPage } from './sugerencias/sugerencias';
 
 @IonicPage()
 @Component({
@@ -70,15 +71,9 @@ export class InstitucionPage {
   }
 
   irAPaginaElegida(opcion: Opcion) {
-    /* if(opcion.id_documento === 'comedor'){
-      this.mostrarAdvertencia(this.comedor);
-    }
-    else  */
     if (opcion.id_documento === 'biblioteca') {
       this.mostrarAdvertencia(this.biblioteca);
     } else if (opcion.id_documento === 'becas' ||
-             // opcion.id_documento === 'bolsa-de-proyectos' ||
-             // opcion.id_documento === 'deportes' ||
              opcion.id_documento === 'colaboradores' ||
              opcion.id_documento === 'secretarias' ||
              opcion.id_documento === 'entidades-academicas' ||
@@ -89,6 +84,9 @@ export class InstitucionPage {
         {opcion: opcion});
     } else if (opcion.id_documento === 'comedor') {
       this.navCtrl.push(ComedorPage,
+        {opcion: opcion});
+    } else if (opcion.id_documento === 'sugerencias') {
+      this.navCtrl.push(SugerenciasPage,
         {opcion: opcion});
     } else {
       this.navCtrl.push(InstitucionOpcionPage,

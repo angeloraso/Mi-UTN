@@ -1,0 +1,66 @@
+
+<ion-header>
+    <ion-navbar color=aquamarine>
+      <ion-title> {{ opcion.nombre }}</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+  <ion-content>
+    <ion-card class="card-titulo">
+      <div class="linea-left"></div>
+      <ion-item text-wrap no-lines class="item-titulo">
+          <h2>
+              Se te ocurre algún cambio a la aplicación o tenes alguna idea copada para agregarle?
+          </h2>
+          <h1>
+              CONTACTANOS!
+          </h1>
+      </ion-item>
+      <div class="linea-right"></div>
+    </ion-card>
+
+    <ion-card class="card-canales">
+        <ion-item text-wrap no-lines class="item-titulo">
+            <h1>
+                Canales
+            </h1>
+        </ion-item>
+        <div class="linea-left"></div>
+        <div *ngFor="let canal of canales">
+            <a *ngIf="canal.nombre !== 'Email'"
+                href="#"
+                ion-item
+                (click)="openWithSystemBrowser(canal.link)">
+                <ion-icon color=aquamarine name={{canal.icono}}></ion-icon>
+                &nbsp;&nbsp;{{canal.nombre}}
+            </a>
+            <a *ngIf="canal.nombre === 'Email'"
+                href="mailto:{{canal.link}} + '?Subject=Sugerencia, Opinión o Idea"
+                ion-item
+                (click)="enviarMail(canal.link)">
+                <ion-icon color=aquamarine name={{canal.icono}}></ion-icon>
+                &nbsp;&nbsp;{{canal.nombre}}
+            </a>
+          </div>
+    </ion-card>
+
+    <ion-card class="card-titulo">
+        <ion-item text-wrap no-lines class="item-titulo">
+            <h1>
+                Próximas Ideas!
+            </h1>
+        </ion-item>
+        <div class="linea-right"></div>
+        <ion-list>
+            <button text-wrap ion-item *ngFor="let feature of features">
+                <ion-icon color=aquamarine name="bulb" item-start></ion-icon>
+                {{feature.titulo}}
+                <p>{{feature.descripcion}}</p>
+            </button>
+        </ion-list>
+      </ion-card>
+
+
+
+  </ion-content>

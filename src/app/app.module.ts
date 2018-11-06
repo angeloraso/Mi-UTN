@@ -10,6 +10,7 @@ import { MyApp } from './app.component';
 
 // Plugins & 3tr Libraries
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 import { Data } from '../providers/data/data';
 
@@ -42,6 +43,7 @@ import { PerfilPageModule } from '../pages/perfil/perfil.module';
     StatusBar,
     SplashScreen,
     InAppBrowser,
+    EmailComposer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Data,
   ]

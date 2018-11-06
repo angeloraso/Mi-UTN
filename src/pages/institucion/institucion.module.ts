@@ -6,13 +6,14 @@ import { InstitucionOpcionPage } from './institucion-opcion/institucion-opcion';
 import { CalendarioAcademicoPage } from './calendario-academico/calendario-academico';
 import { ModalesModule } from '../../components/modales/modales.module';
 import { ComedorPageModule } from './comedor/comedor.module';
-
+import { SugerenciasPage } from './sugerencias/sugerencias';
 
 @NgModule({
   declarations: [
     InstitucionPage,
     InstitucionOpcionPage,
     CalendarioAcademicoPage,
+    SugerenciasPage
   ],
   imports: [
     ModalesModule,
@@ -20,6 +21,7 @@ import { ComedorPageModule } from './comedor/comedor.module';
     IonicPageModule.forChild(InstitucionPage),
     IonicPageModule.forChild(InstitucionOpcionPage),
     IonicPageModule.forChild(CalendarioAcademicoPage),
+    IonicPageModule.forChild(SugerenciasPage),
     HttpClientModule
   ],
   providers: []

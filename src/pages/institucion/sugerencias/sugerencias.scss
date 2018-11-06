@@ -1,0 +1,60 @@
+page-sugerencias {
+
+  .card-titulo {
+    padding: 3%;
+    border-radius: 8px;
+    margin-top: 5%;
+  }
+
+  .linea-left {
+    height: 3px;
+    background-image: linear-gradient(to right, #0B667B 20%, #55BED5 100%);
+    width: 100%;
+  }
+
+  .linea-right{
+    height: 3px;
+    background-image: linear-gradient(to right, #55BED5 20%, #0B667B 100%);
+    width: 100%;
+  }
+
+  .item-titulo {
+    background: transparent;
+
+    h1 {
+      font-weight: bold;
+      text-align: center;
+      color: #0B667B;
+      font-family: 'Lato', sans-serif;
+    }
+
+    h2 {
+      font-weight: bold;
+      text-align: center;
+      color: gray;
+      font-family: 'Lato', sans-serif;
+      margin-bottom: 5%;
+    }
+  }
+
+  .card-canales {
+    padding: 3%;
+    border-radius: 8px;
+    margin-top: 5%;
+
+    h1 {
+      font-weight: bold;
+      text-align: center;
+      color: #0B667B;
+      font-family: 'Lato', sans-serif;
+    }
+
+    a {
+      font-weight: bold;
+      font-family: 'Lato', sans-serif;
+      font-size: 1.4em;
+      text-decoration:none;
+      color: gray;
+    }
+  }
+}
