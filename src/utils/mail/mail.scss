@@ -1,0 +1,22 @@
+page-mail {
+
+  .card {
+    border-radius: 8px;
+    padding: 5%;
+  }
+  .mensaje {
+    height: auto;
+  }
+  .boton-footer {
+    text-align: center;
+    font-weight: bold;
+    padding: 0.5rem;
+    background-color: #55BED5;
+    font-size: 1.8rem;
+    color: white;
+  }
+
+  .boton-footer:active {
+    background-color: rgb(165, 223, 236);
+  }
+}

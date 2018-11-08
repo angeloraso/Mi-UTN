@@ -36,9 +36,9 @@
                 &nbsp;&nbsp;{{canal.nombre}}
             </a>
             <a *ngIf="canal.nombre === 'Email'"
-                href="mailto:{{canal.link}} + '?Subject=Sugerencia, Opinión o Idea"
+                href="#"
                 ion-item
-                (click)="enviarMail(canal.link)">
+                (click)="enviarMail(canal)">
                 <ion-icon color=aquamarine name={{canal.icono}}></ion-icon>
                 &nbsp;&nbsp;{{canal.nombre}}
             </a>

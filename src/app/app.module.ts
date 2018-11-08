@@ -20,9 +20,12 @@ import { MateriasPageModule } from '../pages/materias/materias.module';
 import { NoticiasPageModule } from '../pages/noticias/noticias.module';
 import { PerfilPageModule } from '../pages/perfil/perfil.module';
 
+import { MailPage } from '../utils/mail/mail';
+
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    MailPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
@@ -37,7 +40,8 @@ import { PerfilPageModule } from '../pages/perfil/perfil.module';
     ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    MailPage
   ],
   providers: [
     StatusBar,

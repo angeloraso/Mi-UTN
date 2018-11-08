@@ -4,6 +4,7 @@ import { Opcion } from '../../../interfaces/institucion.interface';
 import { Data } from '../../../providers/data/data';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { MailPage } from '../../../utils/mail/mail';
 
 @Component({
   selector: 'page-sugerencias',
@@ -29,17 +30,6 @@ export class SugerenciasPage {
     fullscreen : 'yes', // Windows only
 };
 
-email = {
-  to: '',
-  cc: '',
-  bcc: [''],
-  attachments: [
-  ],
-  subject: 'Sugerencia, Opinión o Idea',
-  body: '',
-  isHtml: true
-};
-
   opcion: Opcion;
 
   canales: any;
@@ -63,13 +53,9 @@ email = {
     });
   }
 
-  enviarMail(correo: string) {
-    this.emailComposer.isAvailable().then((available: boolean) => {
-      if ( available ) {
-        this.email.to = correo;
-        this.emailComposer.open(this.email);
-      }
-    });
+  enviarMail(canal: any) {
+    this.navCtrl.push(MailPage,
+      {canal: canal});
   }
 
   // METODO PARA ABRIR ENLACE EN PAGINA APARTE

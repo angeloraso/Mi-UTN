@@ -44,8 +44,6 @@ export class ModalLaboratorioComponent {
   }
 
   ngOnInit() {
-    // Para leer las variables entrantes. En el constructor no se van a poder ver
-    console.log(this.elemento);
   }
 
   // METODO PARA ABRIR ENLACE EN PAGINA APARTE
