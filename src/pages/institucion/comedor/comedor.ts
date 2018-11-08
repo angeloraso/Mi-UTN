@@ -165,6 +165,7 @@ export class ComedorPage {
   async confirmar() {
       await this.comprar();
       await this.deshacer();
+      this.navCtrl.pop();
   }
 
   comprar() {

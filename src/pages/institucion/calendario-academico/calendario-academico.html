@@ -3,21 +3,25 @@
     <ion-navbar color=aquamarine>
       <ion-title> {{ opcion.nombre }}</ion-title>
     </ion-navbar>
+    <ion-navbar color=aquamarine>
+      <ion-toolbar>
+          <ion-item class="select-anio" id="select" no-lines>
+              <ion-label>Elegir Año</ion-label>
+              <ion-select cancelText="Cancelar"
+                          okText="Aceptar"
+                          [(ngModel)]="anioElegido">
+                <ion-option *ngFor="let calendarioAnual of calendariosAnuales"
+                            [value]="calendarioAnual">
+                  {{calendarioAnual.anio}}
+                </ion-option>
+              </ion-select>
+            </ion-item>
+      </ion-toolbar>
+    </ion-navbar>
   </ion-header>
-  
-  
+
+
   <ion-content>
-      <ion-item id="select" no-lines>
-          <ion-label>Elegir Año</ion-label>
-          <ion-select cancelText="Cancelar" 
-                      okText="Aceptar"
-                      [(ngModel)]="anioElegido">
-            <ion-option *ngFor="let calendarioAnual of calendariosAnuales" 
-                        [value]="calendarioAnual">
-              {{calendarioAnual.anio}}
-            </ion-option>
-          </ion-select>
-        </ion-item>
       <ion-list>
           <ion-item no-lines>
               <h1>{{anioElegido.anio}}</h1>

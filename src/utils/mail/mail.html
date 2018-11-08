@@ -1,5 +1,6 @@
 <ion-header>
   <ion-navbar color=aquamarine>
+      <ion-title> {{ titulo }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -9,27 +10,19 @@
             <ion-label stacked>Para:</ion-label>
             <ion-input type="text" name="usuario_cuenta_correo" [(ngModel)]="miutn_cuenta_correo" readonly></ion-input>
         </ion-item>
+
         <ion-item>
             <ion-label stacked>Asunto:</ion-label>
             <ion-input type="text" name="subject" [(ngModel)]="subject" readonly></ion-input>
         </ion-item>
     </ion-card>
-    <form #registerForm="ngForm">
-        <ion-row>
-          <ion-col>
-            <ion-list inset>
 
-              <ion-card class="card">
-                <ion-item text-wrap>
-                  <ion-label stacked>Mensaje:</ion-label>
-                  <ion-textarea type="text" (input)="adjustTextarea($event);" required></ion-textarea>
-                </ion-item>
-              </ion-card>
-
-            </ion-list>
-          </ion-col>
-        </ion-row>
-    </form>
+    <ion-card class="card">
+      <ion-item text-wrap>
+        <ion-label stacked>Mensaje:</ion-label>
+        <ion-textarea type="text" (input)="adjustTextarea($event);"></ion-textarea>
+      </ion-item>
+    </ion-card>
 
 
 </ion-content>
@@ -37,8 +30,7 @@
     <button ion-item no-lines
             (click)="enviarMail()"
             detail-none
-            class="boton-footer"
-            [disabled]="!registerForm.form.valid">
+            class="boton-footer">
             ENVIAR
     </button>
 </ion-footer>
