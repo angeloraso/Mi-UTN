@@ -45,13 +45,13 @@
                 Emails de Contacto:
             </h1>
         </div>
-        <ion-item no-lines *ngFor="let email of elemento.emails">
+        <ion-item no-lines *ngFor="let email of elemento.emails" (click)="enviarMail(email)">
             <ion-icon
                 name="mail"
                 color=aquamarine>
                 &nbsp;&nbsp;
-                <a style="font-family: 'Lato', sans-serif" href="mailto:{{email}} + '?Subject=Consulta">{{email}}</a>
             </ion-icon>
+            {{email.nombre}}
         </ion-item>
     </ion-item>
 

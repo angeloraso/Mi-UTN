@@ -44,14 +44,10 @@
                 Si tenés ganas de aprender y colaborar, Contactate con nosotros!
         </div>
         <br/>
-        <ion-item text-wrap no-lines *ngFor="let email of elemento.emails" style="font-family: 'Lato', sans-serif">
-            <ion-icon name="person" color=aquamarine>
-                &nbsp;&nbsp;
-                {{email.profesor}}
-            </ion-icon>
+        <ion-item text-wrap  no-lines *ngFor="let email of elemento.emails" (click)="enviarMail(email)">
             <ion-icon name="mail" color=aquamarine>
                 &nbsp;&nbsp;
-                <a style="font-family: 'Lato', sans-serif" href="mailto:{{email}} + '?Subject=Consulta">{{email.email}}</a>
+                {{email.nombre}}
             </ion-icon>
         </ion-item>
     </ion-item>

@@ -4,7 +4,7 @@ import { Opcion } from '../../../interfaces/institucion.interface';
 import { Data } from '../../../providers/data/data';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { EmailComposer } from '@ionic-native/email-composer';
-import { MailPage } from '../../../utils/mail/mail';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
 @Component({
   selector: 'page-sugerencias',
@@ -39,7 +39,8 @@ export class SugerenciasPage {
               public navParams: NavParams,
               private theInAppBrowser: InAppBrowser,
               private emailComposer: EmailComposer,
-              public dataService: Data) {
+              private alertCtrl: AlertController,
+              private dataService: Data) {
   }
 
   ngOnInit( ) {
@@ -54,8 +55,16 @@ export class SugerenciasPage {
   }
 
   enviarMail(canal: any) {
-    this.navCtrl.push(MailPage,
-      {canal: canal});
+    const email = {
+      to: canal.link,
+      cc: '',
+      attachments: [
+      ],
+      subject: canal.subject,
+      body: '',
+      isHtml: true
+    };
+    this.emailComposer.open(email);
   }
 
   // METODO PARA ABRIR ENLACE EN PAGINA APARTE

@@ -14,7 +14,7 @@ export interface Laboratorio {
     descripcion: string; // Descripcion de las actividades del laboratorio
     horario: string; // Horario de atencion del laboratorio
     fotos: Array<string>; // Arreglo con urls de fotos
-    emails: Array<string>; // Arreglo de emails de contacto
+    emails: Array<Email>; // Arreglo de emails de contacto
     links: Array<{titulo: string, link: string, icono: string}>; // Arreglo con links oficiales del laboratorio
 }
 
@@ -25,7 +25,7 @@ export interface Deporte {
     tipo_modal: string; // String que define el tipo de modal a utilizar
     descripcion: string; // Mensaje sobre la actividad
     fotos: Array<string>; // Fotos sobre la actividad
-    emails: Array<string>; // Emails de contacto
+    emails: Array<Email>; // Emails de contacto
     links: Array<{ titulo: string, link: string, icono: string}>; // Enlaces de contacto
     informacion: [
         {
@@ -48,7 +48,7 @@ export interface Proyecto {
     tipo_modal: string; // String que define que modal utilizar
     descripcion: string; // Descripcion del proyecto
     prestaciones: string; // Objetivo del proyecto
-    emails: Array<{profesor: string, email: string}>; // Correos de contacto
+    emails: Array<Email>; // Correos de contacto
 }
 
 export interface UrlOpcion {
@@ -73,4 +73,10 @@ export interface TokenComedor {
   token: string;
   especialidad: string;
   documento: string;
+}
+
+export interface Email {
+  nombre: string; // Nombre del representante de la cuenta de correo
+  email: string; // Cuenta de correo
+  asunto: string; // Asunto del mail
 }

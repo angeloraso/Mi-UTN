@@ -1,7 +1,8 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { Slides, Platform, NavParams, ViewController } from 'ionic-angular';
-import { Proyecto } from '../../../interfaces/institucion.interface';
+import { Proyecto, Email } from '../../../interfaces/institucion.interface';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 
 @Component({
@@ -35,7 +36,8 @@ export class ModalBolsaComponent {
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController,
-    private theInAppBrowser: InAppBrowser
+    private theInAppBrowser: InAppBrowser,
+    private emailComposer: EmailComposer,
   ) {
 
   }
@@ -48,5 +50,18 @@ export class ModalBolsaComponent {
   public openWithSystemBrowser( url: string ) {
     const target = '_system';
     this.theInAppBrowser.create(url, target, this.options);
+  }
+
+  enviarMail(correo: Email) {
+    const email = {
+      to: correo.email,
+      cc: '',
+      attachments: [
+      ],
+      subject: correo.asunto,
+      body: '',
+      isHtml: true
+    };
+    this.emailComposer.open(email);
   }
 }

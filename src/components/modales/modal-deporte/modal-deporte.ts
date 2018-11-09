@@ -1,7 +1,8 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { Slides, Platform, NavParams, ViewController } from 'ionic-angular';
-import { Deporte } from '../../../interfaces/institucion.interface';
+import { Deporte, Email } from '../../../interfaces/institucion.interface';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 
 @Component({
@@ -39,7 +40,8 @@ export class ModalDeporteComponent {
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController,
-    private theInAppBrowser: InAppBrowser
+    private theInAppBrowser: InAppBrowser,
+    private emailComposer: EmailComposer,
   ) {
 
   }
@@ -65,5 +67,18 @@ export class ModalDeporteComponent {
   onSlideChanged() {
     this.currentIndex = this.slider.getActiveIndex();
     // console.log('Slide changed! Current index is', this.currentIndex);
+  }
+
+  enviarMail(correo: Email) {
+    const email = {
+      to: correo.email,
+      cc: '',
+      attachments: [
+      ],
+      subject: correo.asunto,
+      body: '',
+      isHtml: true
+    };
+    this.emailComposer.open(email);
   }
 }
