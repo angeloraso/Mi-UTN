@@ -7,26 +7,10 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { LoginComedorPage } from './login-comedor/login-comedor';
-import { TokenComedor } from '../../../models/TokenComedor';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
+import { Dia, TokenComedor, Feriado, RespuestaComedor, Receso, Saldo, DiaComprado } from '../../../interfaces/comedor.interface';
 
-interface Dia {
-  nombre: string;
-  numero: string;
-  fecha: string;
-  activo: boolean;
-  deshabilitado: boolean;
-}
-
-interface RespuestaComedor {
-  resultado: string;
-}
-
-interface Feriado {
-  fecha: string;
-  observacion: string;
-}
 
 @Component({
   selector: 'page-comedor',
@@ -49,8 +33,6 @@ export class ComedorPage {
   public ios: boolean;
 
   public dias: Array<Dia>;
-
-  public vendedores: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -95,11 +77,11 @@ export class ComedorPage {
       if (!_.isEmpty(data)) {
         this.token = data;
 
-        this.comedorProvider.getSaldo(this.token.token).subscribe( (res: any) => {
-          this.saldo = res.saldo;
+        this.comedorProvider.getSaldo(this.token.token).subscribe( (saldo: Saldo) => {
+          this.saldo = saldo.saldo;
         });
 
-        this.comedorProvider.getDiasComprados(this.token.token).subscribe( (dias_comprados: [{dia_comprado: string}]) => {
+        this.comedorProvider.getDiasComprados(this.token.token).subscribe( (dias_comprados: Array<DiaComprado>) => {
           _.forEach(this.dias, function(dia) {
             const match = _.find(dias_comprados, { 'dia_comprado': dia.fecha});
             if (typeof match !== 'undefined') {
@@ -130,6 +112,16 @@ export class ComedorPage {
                 }
               });
         });
+
+        this.comedorProvider.getReceso(this.token.token)
+          .subscribe( (receso: Receso) => {
+            for (let i = 8; i < 13; i++) {
+              if ( moment(moment().day(i).format('YYYY-MM-DD')).isBetween(receso.inicio, receso.fin) ) {
+                this.dias[i - 8].deshabilitado = true;
+              }
+            }
+        });
+
       }
     });
   }

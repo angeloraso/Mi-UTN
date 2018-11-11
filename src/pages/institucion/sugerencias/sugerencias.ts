@@ -34,6 +34,7 @@ export class SugerenciasPage {
 
   canales: any;
   features: any;
+  mensaje_contacto: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -45,6 +46,8 @@ export class SugerenciasPage {
 
   ngOnInit( ) {
     // Para leer las variables entrantes. En el constructor no se van a poder ver
+    this.mensaje_contacto = '¿Se te ocurre algún cambio a la aplicación o tenes alguna idea copada para agregarle?';
+
     const that = this;
     this.opcion = this.navParams.get('opcion'); // Opcion elegida
 

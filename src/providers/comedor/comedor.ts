@@ -80,6 +80,22 @@ export class ComedorProvider {
     return this.http.get(this.url_base + '/getReceso/' + token);
   }
 
+  getHistorial(token: string) {
+    return this.http.get(this.url_base + '/historialCompras/' + token);
+  }
+
+  elegirMenu(token: string, menu: string) {
+    return this.http.post(this.url_base + '/config/menu/' + menu + '/' + token, null);
+  }
+  elegirTurno(token: string, turno: string) {
+    return this.http.post(this.url_base + '/config/turno/' + turno + '/' + token, null);
+  }
+
+  getConfig(token: string) {
+    return this.http.get(this.url_base + '/config/' + token);
+  }
+
+
 
   md5cycle(x, k) {
     let a = x[0],

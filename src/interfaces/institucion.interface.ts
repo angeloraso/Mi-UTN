@@ -67,14 +67,6 @@ export interface CalendarioAnual {
     }>;
 }
 
-export interface TokenComedor {
-  nombre: string;
-  apellido: string;
-  token: string;
-  especialidad: string;
-  documento: string;
-}
-
 export interface Email {
   nombre: string; // Nombre del representante de la cuenta de correo
   email: string; // Cuenta de correo
