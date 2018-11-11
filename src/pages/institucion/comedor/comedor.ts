@@ -9,7 +9,7 @@ import { ModalController } from 'ionic-angular/components/modal/modal-controller
 import { LoginComedorPage } from './login-comedor/login-comedor';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
-import { Dia, TokenComedor, Feriado, RespuestaComedor, Receso, Saldo, DiaComprado } from '../../../interfaces/comedor.interface';
+import { Dia, TokenComedor, Feriado, RespuestaComedor, Receso, Saldo, DiaComprado, Compra, CompraRecargada } from '../../../interfaces/comedor.interface';
 
 
 @Component({
@@ -33,6 +33,9 @@ export class ComedorPage {
   public ios: boolean;
 
   public dias: Array<Dia>;
+  public historial_compras: Array<CompraRecargada>;
+
+  public historial_fake: Array<Compra>;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -54,6 +57,21 @@ export class ComedorPage {
     this.token = new TokenComedor;
     this.valor_vianda = 20;
     this.confirmado = false;
+    this.historial_compras = new Array();
+
+    this.historial_fake = [
+                            {dia_comprado: '2018-7-01', precio: '20'},
+                            {dia_comprado: '2018-7-01', precio: '20'},
+                            {dia_comprado: '2018-7-01', precio: '20'},
+                            {dia_comprado: '2018-7-01', precio: '20'},
+                            {dia_comprado: '2018-7-01', precio: '20'},
+                            {dia_comprado: '2018-7-01', precio: '20'},
+                            {dia_comprado: '2018-7-01', precio: '20'},
+                            {dia_comprado: '2018-7-01', precio: '20'},
+                            {dia_comprado: '2018-7-01', precio: '20'},
+                            {dia_comprado: '2018-7-01', precio: '20'},
+                            {dia_comprado: '2018-7-01', precio: '20'},
+                          ];
 
     this.dias = [
       {nombre: 'Lunes', numero: '', fecha: '', activo: false, deshabilitado: false},
@@ -120,6 +138,19 @@ export class ComedorPage {
                 this.dias[i - 8].deshabilitado = true;
               }
             }
+        });
+
+        this.comedorProvider.getHistorial(this.token.token)
+          .subscribe( (historial: Array<Compra>) => {
+            _.forEach(historial, function(compra) {
+              const compra_recargada = { precio: '', dia_comprado: '', nombre: '', numero: '', mes: '' };
+              compra_recargada.precio = compra.precio;
+              compra_recargada.dia_comprado = compra.dia_comprado;
+              compra_recargada.nombre = _.startCase(moment(compra.dia_comprado).locale('es').format('dddd'));
+              compra_recargada.numero = moment(compra.dia_comprado).locale('es').format('D');
+              compra_recargada.mes = _.startCase(moment(compra.dia_comprado).locale('es').format('MMMM'));
+              that.historial_compras.push(compra_recargada);
+            });
         });
 
       }
@@ -244,4 +275,5 @@ export class ComedorPage {
     });
     prompt.present();
   }
+
 }

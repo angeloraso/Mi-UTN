@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
-import { TokenComedor } from '../../../../interfaces/institucion.interface';
 import { ComedorProvider } from '../../../../providers/comedor/comedor';
 import * as _ from 'lodash';
 import { ComedorPage } from '../comedor';
@@ -9,6 +8,7 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { App } from 'ionic-angular/components/app/app';
 import { InstitucionPage } from '../../institucion';
 import { HomePage } from '../../../home/home';
+import { TokenComedor } from '../../../../interfaces/comedor.interface';
 
 @Component({
   selector: 'page-comedor-login',
@@ -57,7 +57,6 @@ export class LoginComedorPage {
       });
       loader.present();
       this.comedorProvider.getToken(this.usuario, this.pass).subscribe((res: TokenComedor) => {
-        this.storage.set('token', res.token);
         this.storage.set('usuario', this.usuario);
         this.storage.set('pass', this.pass);
         loader.dismiss();
@@ -68,6 +67,7 @@ export class LoginComedorPage {
         this.error();
       });
     }
+    // this.closeModal({nombre: 'Angelo', apellido: 'Raso', token: 'sfaasfaf', especialidad: 'Sistemas', documento: '37123456'});
   }
 
   volver() {

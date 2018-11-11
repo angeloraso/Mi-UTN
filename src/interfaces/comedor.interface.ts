@@ -53,7 +53,15 @@ export interface Receso {
   fin: string; // EJ: "2018-07-25"
 }
 
-export interface Historial {
+export interface Compra {
   dia_comprado: string; // EJ: "2018-07-13"
-  precio: string; // EJ: "20
+  precio: string; // EJ: "20"
+}
+
+export interface CompraRecargada {
+  dia_comprado: string; // EJ: "2018-07-13"
+  precio: string; // EJ: "20"
+  nombre: string; // EJ: "Lunes"
+  numero: string; // EJ: "13"
+  mes: string; // EJ: "Julio"
 }

@@ -8,6 +8,10 @@ page-comedor {
     margin: 0 5% 40% 5%;
   }
 
+  .titulo {
+    display: inline-block;
+  }
+
   .salir {
     display: inline-block;
     position: absolute;
@@ -150,5 +154,43 @@ page-comedor {
 
   .boton-footer:active {
     background-color: rgb(165, 223, 236);
+  }
+
+  .compra-card {
+    border-radius: 12px;
+    font-size: 1.3em;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .compra-icono {
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    margin-left: 20px;
+    position: absolute;
+    top: 7px;
+  }
+
+  .compra-dia {
+    display: inline-block;
+    color: black;
+    position: absolute;
+    left: 100px;
+    top: 10px;
+  }
+
+  .compra-precio {
+    display: inline-block;
+    position: absolute;
+    color: white;
+    background-color: #55BED5;
+    border-radius: 12px;
+    padding: 2px 9px 2px 9px;;
+    right: 15px;
+    top: 19px;
+  }
+
+  .compra-fecha {
+    margin-top: 7px;
   }
 }
