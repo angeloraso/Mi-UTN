@@ -9,15 +9,17 @@ import { ModalController } from 'ionic-angular/components/modal/modal-controller
 import { LoginComedorPage } from './login-comedor/login-comedor';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
-import { Dia, TokenComedor, Feriado, RespuestaComedor, Receso, Saldo, DiaComprado, Compra, CompraRecargada } from '../../../interfaces/comedor.interface';
-
-
+import * as Comedor from '../../../interfaces/comedor.interface';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Menu, Turno } from '../../../interfaces/comedor.interface';
+// TODO Fijarse despues que datos conviene tener en la nube de IBM.
+//      Un ejemplo claro es el valor de las viandas o los valores de los turnos y menues.
 @Component({
   selector: 'page-comedor',
   templateUrl: 'comedor.html'
 })
 export class ComedorPage {
-  public token: TokenComedor;
+  public token: Comedor.TokenComedor;
   public tabs: string;
   public saldo: string;
   public confirmado: boolean;
@@ -32,10 +34,11 @@ export class ComedorPage {
 
   public ios: boolean;
 
-  public dias: Array<Dia>;
-  public historial_compras: Array<CompraRecargada>;
-
-  public historial_fake: Array<Compra>;
+  public dias: Array<Comedor.Dia>;
+  public historial_compras: Array<Comedor.CompraRecargada>;
+  public config: Comedor.Config;
+  public menues: Array<Comedor.Menu>;
+  public turnos: Array<Comedor.Turno>;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -45,7 +48,7 @@ export class ComedorPage {
               public alertCtrl: AlertController,
               private storage: Storage,
               public loadingCtrl: LoadingController) {
-    }
+  }
 
   ngOnInit() {
     this.presentModalLogin();
@@ -54,24 +57,18 @@ export class ComedorPage {
     this.dias_ya_comprados = [];
     this.dias_comprar = [];
     this.dias_deshacer_compra = [];
-    this.token = new TokenComedor;
+    this.token = new Comedor.TokenComedor;
     this.valor_vianda = 20;
     this.confirmado = false;
     this.historial_compras = new Array();
-
-    this.historial_fake = [
-                            {dia_comprado: '2018-7-01', precio: '20'},
-                            {dia_comprado: '2018-7-01', precio: '20'},
-                            {dia_comprado: '2018-7-01', precio: '20'},
-                            {dia_comprado: '2018-7-01', precio: '20'},
-                            {dia_comprado: '2018-7-01', precio: '20'},
-                            {dia_comprado: '2018-7-01', precio: '20'},
-                            {dia_comprado: '2018-7-01', precio: '20'},
-                            {dia_comprado: '2018-7-01', precio: '20'},
-                            {dia_comprado: '2018-7-01', precio: '20'},
-                            {dia_comprado: '2018-7-01', precio: '20'},
-                            {dia_comprado: '2018-7-01', precio: '20'},
-                          ];
+    this.turnos = [
+        {id: '10', nombre: 'Temprano', horario: '12:00 hs', value: '0', activo: false},
+        {id: '11', nombre: 'Tarde', horario: '13:00 hs', value: '1', activo: false}
+    ];
+    this.menues = [
+      {id: '40', nombre: 'Normal', value: '0', activo: false},
+      {id: '41', nombre: 'Saludable', value: '1', activo: false}
+    ];
 
     this.dias = [
       {nombre: 'Lunes', numero: '', fecha: '', activo: false, deshabilitado: false},
@@ -91,15 +88,17 @@ export class ComedorPage {
     const that = this;
     const modal = this.modalCtrl.create(LoginComedorPage);
     modal.present();
-    modal.onDidDismiss((data: TokenComedor) => {
+    modal.onDidDismiss((data: Comedor.TokenComedor) => {
       if (!_.isEmpty(data)) {
         this.token = data;
 
-        this.comedorProvider.getSaldo(this.token.token).subscribe( (saldo: Saldo) => {
+        this.comedorProvider.getSaldo(this.token.token)
+        .subscribe( (saldo: Comedor.Saldo) => {
           this.saldo = saldo.saldo;
         });
 
-        this.comedorProvider.getDiasComprados(this.token.token).subscribe( (dias_comprados: Array<DiaComprado>) => {
+        this.comedorProvider.getDiasComprados(this.token.token)
+        .subscribe( (dias_comprados: Array<Comedor.DiaComprado>) => {
           _.forEach(this.dias, function(dia) {
             const match = _.find(dias_comprados, { 'dia_comprado': dia.fecha});
             if (typeof match !== 'undefined') {
@@ -122,7 +121,7 @@ export class ComedorPage {
             moment().day(8).format('YYYY-MM-DD'),
             moment().day(12).format('YYYY-MM-DD'),
             this.token.token)
-            .subscribe( (feriados: Array<Feriado>) => {
+            .subscribe( (feriados: Array<Comedor.Feriado>) => {
               _.forEach(this.dias, function(dia) {
                 const match = _.find(feriados, { 'fecha': dia.fecha});
                 if (typeof match !== 'undefined') {
@@ -132,7 +131,7 @@ export class ComedorPage {
         });
 
         this.comedorProvider.getReceso(this.token.token)
-          .subscribe( (receso: Receso) => {
+          .subscribe( (receso: Comedor.Receso) => {
             for (let i = 8; i < 13; i++) {
               if ( moment(moment().day(i).format('YYYY-MM-DD')).isBetween(receso.inicio, receso.fin) ) {
                 this.dias[i - 8].deshabilitado = true;
@@ -141,7 +140,7 @@ export class ComedorPage {
         });
 
         this.comedorProvider.getHistorial(this.token.token)
-          .subscribe( (historial: Array<Compra>) => {
+          .subscribe( (historial: Array<Comedor.Compra>) => {
             _.forEach(historial, function(compra) {
               const compra_recargada = { precio: '', dia_comprado: '', nombre: '', numero: '', mes: '' };
               compra_recargada.precio = compra.precio;
@@ -153,11 +152,19 @@ export class ComedorPage {
             });
         });
 
+        this.comedorProvider.getConfig(this.token.token)
+          .subscribe( (config: Comedor.Config) => {
+            const menu_posicion = +config.menu.selected - 1;
+            this.menues[menu_posicion].activo = true;
+
+            const turno_posicion = +config.turno.selected - 1;
+            this.turnos[turno_posicion].activo = true;
+        });
       }
     });
   }
 
-  guardarSeleccionCheck(dia: Dia) {
+  guardarSeleccionCheck(dia: Comedor.Dia) {
     const dia_elegido_ya_fue_comprado = _.includes(this.dias_ya_comprados, dia.fecha);
     if (dia.activo) {
 
@@ -193,7 +200,8 @@ export class ComedorPage {
 
   comprar() {
     if (!_.isEmpty(this.dias_comprar)) {
-      this.comedorProvider.comprar(this.dias_comprar, this.token.token).subscribe( (res: RespuestaComedor) => {
+      this.comedorProvider.comprar(this.dias_comprar, this.token.token)
+      .subscribe( (res: Comedor.RespuestaComedor) => {
         if (this.confirmado && res.resultado === 'OK') {
           this.exito();
         } else {
@@ -207,7 +215,8 @@ export class ComedorPage {
 
   deshacer() {
     if (!_.isEmpty(this.dias_deshacer_compra)) {
-      this.comedorProvider.deshacerDiasComprados(this.dias_deshacer_compra, this.token.token).subscribe( (res: RespuestaComedor) => {
+      this.comedorProvider.deshacerDiasComprados(this.dias_deshacer_compra, this.token.token)
+      .subscribe( (res: Comedor.RespuestaComedor) => {
         if (this.confirmado && res.resultado === 'OK') {
           this.exito();
         } else {
@@ -274,6 +283,24 @@ export class ComedorPage {
       ]
     });
     prompt.present();
+  }
+
+  guardarMenu(menu: Menu) {
+      _.forEach(this.menues, function(m) {
+          m.activo = false;
+      });
+      this.menues[+menu.value].activo = true;
+      this.comedorProvider.elegirMenu(this.token.token, (+menu.value + 1).toString())
+        .subscribe( (res: any) => { });
+  }
+
+  guardarTurno(turno: Turno) {
+    _.forEach(this.turnos, function(t) {
+        t.activo = false;
+    });
+    this.turnos[+turno.value].activo = true;
+    this.comedorProvider.elegirTurno(this.token.token, (+turno.value + 1).toString())
+        .subscribe( (res: any) => { });
   }
 
 }

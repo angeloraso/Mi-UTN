@@ -57,6 +57,40 @@
       </div>
     </div>
     <ion-list *ngSwitchCase="'configuracion'">
+      <ion-card class="turno-menu-card">
+          <label class="turno-menu-titulo"> Turno </label>
+          <div class="linea"></div>
+              <ion-list radio-group>
+                  <ion-item *ngFor="let turno of turnos">
+                      <ion-label>{{turno.nombre}} - {{turno.horario}}</ion-label>
+                      <ion-label>
+                          <input type="radio"
+                                 class="option-input radio"
+                                 name="turno"
+                                 id={{turno.id}}
+                                 [checked]="turno.activo"
+                                 (click)="guardarTurno(turno)"/>
+                      </ion-label>
+                  </ion-item>
+              </ion-list>
+      </ion-card>
+      <ion-card class="turno-menu-card">
+          <label class="turno-menu-titulo"> Menú </label>
+          <div class="linea"></div>
+              <ion-list>
+                  <ion-item *ngFor="let menu of menues">
+                      <ion-label>{{menu.nombre}}</ion-label>
+                      <ion-label>
+                          <input type="radio"
+                                 class="option-input radio"
+                                 name="menu"
+                                 [checked]="menu.activo"
+                                 id={{menu.id}}
+                                 (click)="guardarMenu(menu)"/>
+                      </ion-label>
+                  </ion-item>
+              </ion-list>
+      </ion-card>
     </ion-list>
 
     <ion-list *ngSwitchCase="'historial'">

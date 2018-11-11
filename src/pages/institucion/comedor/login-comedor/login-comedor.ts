@@ -67,7 +67,6 @@ export class LoginComedorPage {
         this.error();
       });
     }
-    // this.closeModal({nombre: 'Angelo', apellido: 'Raso', token: 'sfaasfaf', especialidad: 'Sistemas', documento: '37123456'});
   }
 
   volver() {

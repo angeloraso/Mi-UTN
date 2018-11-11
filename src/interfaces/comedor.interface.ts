@@ -65,3 +65,52 @@ export interface CompraRecargada {
   numero: string; // EJ: "13"
   mes: string; // EJ: "Julio"
 }
+
+export interface Turno {
+  id: string; // EJ: "10" - Los ids de turnos y menues deben estar distantes entre si para no solaparse
+  nombre: string; // EJ: "Temprano"
+  horario: string; // EJ: 12:00:00
+  activo: boolean; // EJ: true
+  value: string; // EJ: "1"
+}
+export interface Menu {
+  id: string; // EJ: "30" - Los ids de turnos y menues deben estar distantes entre si para no solaparse
+  nombre: string; // EJ: "Temprano"
+  activo: boolean; // EJ: true
+  value: string; // EJ: "1"
+}
+
+export interface Config {
+    menu: {
+        disponible: [ // Arreglo de objetos con los menues disponibles
+                      {
+                        id_tipo_menu: string; // EJ: "1"
+                        nombre: string; // EJ: "1"
+                        seleccionado: boolean; // EJ: true
+                      },
+                      {
+                        id_tipo_menu: string; // EJ: "2"
+                        nombre: string; // EJ: "2"
+                        seleccionado: boolean; // EJ: true
+                      }
+                    ],
+        selected: string; // EJ: "1"
+    };
+    turno: {
+      disponible: [ // Arreglo de objetos con los turnos disponibles
+                    {
+                      horario: string; // EJ: "12:00:00"
+                      id_comida: string; // EJ: "1"
+                      id_turno: string; // EJ: "1"
+                      seleccionado: boolean; // EJ: true
+                    },
+                    {
+                      horario: string; // EJ: "13:00:00"
+                      id_comida: string; // EJ: "1"
+                      id_turno: string; // EJ: "2"
+                      seleccionado: boolean; // EJ: false
+                    }
+                  ],
+      selected: string; // EJ: "1"
+    };
+}

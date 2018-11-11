@@ -99,19 +99,15 @@ NOTA:
 */
 /historialCompras/{token}
 
-/* POST Devuelve el arreglo 'receso' de objetos con la estructura:
-/  {
-/     inicio: string, EJ: "2018-07-13"
-/     fin: string EJ: "2018-07-13"
-/  }
+/* POST Setea la opcion elegida para el turno:
+/       opcion_0: 12:00:00
+/       opcion_1: 13:00:00
 */
 /config/turno/{0|1}/{token}
 
-/* POST Devuelve el arreglo 'receso' de objetos con la estructura:
-/  {
-/     inicio: string, EJ: "2018-07-13"
-/     fin: string EJ: "2018-07-13"
-/  }
+/* POST Setea la opcion elegida para el menu:
+/       opcion_0: 12:00:00
+/       opcion_1: 13:00:00
 */
 /config/menu/{0|1}/{token}
 
