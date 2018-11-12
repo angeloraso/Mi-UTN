@@ -12,6 +12,7 @@ import { LoadingController } from 'ionic-angular/components/loading/loading-cont
 import * as Comedor from '../../../interfaces/comedor.interface';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Menu, Turno } from '../../../interfaces/comedor.interface';
+import { finalize } from 'rxjs/operators';
 // TODO Fijarse despues que datos conviene tener en la nube de IBM.
 //      Un ejemplo claro es el valor de las viandas o los valores de los turnos y menues.
 @Component({
@@ -121,9 +122,9 @@ export class ComedorPage {
             moment().day(8).format('YYYY-MM-DD'),
             moment().day(12).format('YYYY-MM-DD'),
             this.token.token)
-            .subscribe( (feriados: Array<Comedor.Feriado>) => {
+            .subscribe( (feriados: any) => {
               _.forEach(this.dias, function(dia) {
-                const match = _.find(feriados, { 'fecha': dia.fecha});
+                const match = _.find(feriados.feriados, { 'fecha': dia.fecha});
                 if (typeof match !== 'undefined') {
                   dia.deshabilitado = true;
                 }
@@ -139,7 +140,7 @@ export class ComedorPage {
             }
         });
 
-        this.comedorProvider.getHistorial(this.token.token)
+        this.comedorProvider.getHistorial(this.token.token).pipe(finalize(() => that.historial_compras = _.reverse(that.historial_compras)))
           .subscribe( (historial: Array<Comedor.Compra>) => {
             _.forEach(historial, function(compra) {
               const compra_recargada = { precio: '', dia_comprado: '', nombre: '', numero: '', mes: '' };
@@ -150,7 +151,7 @@ export class ComedorPage {
               compra_recargada.mes = _.startCase(moment(compra.dia_comprado).locale('es').format('MMMM'));
               that.historial_compras.push(compra_recargada);
             });
-        });
+          });
 
         this.comedorProvider.getConfig(this.token.token)
           .subscribe( (config: Comedor.Config) => {
