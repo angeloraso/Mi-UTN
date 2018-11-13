@@ -60,7 +60,7 @@ export class LoginComedorPage {
         this.storage.set('usuario', this.usuario);
         this.storage.set('pass', this.pass);
         loader.dismiss();
-        this.closeModal(res);
+        this.ingresarComedor(res);
       },
       err => {
         loader.dismiss();
@@ -70,8 +70,7 @@ export class LoginComedorPage {
   }
 
   volver() {
-    this.viewCtrl.dismiss();
-    this.appCtrl.getRootNav().setRoot(HomePage, {'tab': 'institucion'});
+    this.navCtrl.pop();
   }
 
   error() {
@@ -84,7 +83,8 @@ export class LoginComedorPage {
     alert.present();
   }
 
-  public closeModal(data) {
-    this.viewCtrl.dismiss(data);
+  public ingresarComedor(token) {
+    this.navCtrl.push(ComedorPage,
+      {token: token});
   }
 }

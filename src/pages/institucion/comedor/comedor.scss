@@ -4,6 +4,11 @@ page-comedor {
     color: white;
   }
 
+  .icono-volver {
+    font-size: 1.7em;
+    margin-left: 10px;
+  }
+
   .lista {
     margin: 0 5% 40% 5%;
   }
@@ -280,5 +285,13 @@ page-comedor {
 
   .compra-fecha {
     margin-top: 7px;
+  }
+
+  .mostrar-mas {
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-color: #55BED5;
+    color: #55BED5;
   }
 }

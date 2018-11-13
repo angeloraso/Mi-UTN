@@ -6,7 +6,6 @@ import { InstitucionOpcionPage } from './institucion-opcion/institucion-opcion';
 
 import {Opcion, UrlOpcion} from '../../interfaces/institucion.interface';
 import { CalendarioAcademicoPage } from './calendario-academico/calendario-academico';
-import { ComedorPage } from './comedor/comedor';
 import { LoginComedorPage } from './comedor/login-comedor/login-comedor';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 import { SugerenciasPage } from './sugerencias/sugerencias';
@@ -18,11 +17,6 @@ import { SugerenciasPage } from './sugerencias/sugerencias';
 })
 export class InstitucionPage {
 
-  comedor: UrlOpcion = {
-      titulo: 'Ir a Comedor',
-      url: 'https:// ticket.frlp.utn.edu.ar/u/#/ticket',
-      mensaje: 'Será redirigido a la página oficial del Comedor para la compra de Tickets'
-  };
   biblioteca: UrlOpcion =  {
     titulo: 'Ir a Biblioteca',
     url: 'https://biblioteca.frlp.utn.edu.ar/',
@@ -83,7 +77,7 @@ export class InstitucionPage {
       this.navCtrl.push(CalendarioAcademicoPage,
         {opcion: opcion});
     } else if (opcion.id_documento === 'comedor') {
-      this.navCtrl.push(ComedorPage,
+      this.navCtrl.push(LoginComedorPage,
         {opcion: opcion});
     } else if (opcion.id_documento === 'sugerencias') {
       this.navCtrl.push(SugerenciasPage,

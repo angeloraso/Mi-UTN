@@ -1,5 +1,10 @@
 <ion-header>
-  <ion-navbar color=aquamarine>
+  <ion-navbar #navbar hideBackButton color=aquamarine>
+        <ion-buttons left>
+            <button ion-button (click)="volverInstitucion()">
+                <ion-icon class="icono-volver" name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
         <ion-title class="titulo">{{ token.nombre }} {{ token.apellido }}</ion-title>
         <ion-icon name="power" class="salir" (click)="salir()"></ion-icon>
         <ion-title class="saldo">$ {{ saldo }}</ion-title>
@@ -94,13 +99,14 @@
     </ion-list>
 
     <ion-list *ngSwitchCase="'historial'">
-        <ion-card class="compra-card" *ngFor="let compra of historial_compras">
+        <ion-card class="compra-card" *ngFor="let compra of historial_compras_reducido">
             <div>
-                <img class="compra-icono" src="../../../assets/icon/compra.svg"/>
+                <img class="compra-icono" [src]="icono_compra_historial"/>
                 <label class="compra-dia">{{compra.nombre}} {{compra.numero}} de {{compra.mes}} <br/><p class="compra-fecha">{{compra.dia_comprado}}</p></label>
                 <p class="compra-precio">$ {{compra.precio}}</p>
             </div>
         </ion-card>
+        <button class="mostrar-mas" ion-button round outline (click)="mostrarMas()">Mostrar más</button>
     </ion-list>
 
   </div>
