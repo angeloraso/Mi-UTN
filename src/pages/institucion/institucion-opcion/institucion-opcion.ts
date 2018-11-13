@@ -4,6 +4,7 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { Opcion} from '../../../interfaces/institucion.interface';
 import { Data } from '../../../providers/data/data';
 import { ModalesPage } from '../../../components/modales/modales';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'page-institucion-opcion',
@@ -25,8 +26,8 @@ export class InstitucionOpcionPage {
     const that = this;
     this.opcion = this.navParams.get('opcion'); // Opcion elegida
 
-    this.dataService.getDocumento(this.opcion.base_datos, this.opcion.id_documento).then((result: any) => {
-        that.elementos = result.elementos;
+    this.dataService.getTodosLosDocumentos(this.opcion.base_datos).then((result: any) => {
+        that.elementos = _.find(result, function(res) { return res._id === that.opcion.id_documento; }).elementos;
     });
   }
 

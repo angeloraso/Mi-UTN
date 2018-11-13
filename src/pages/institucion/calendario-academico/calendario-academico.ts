@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Opcion, CalendarioAnual } from '../../../interfaces/institucion.interface';
 import { Data } from '../../../providers/data/data';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'page-calendario-academico',
@@ -26,9 +27,9 @@ export class CalendarioAcademicoPage {
     const that = this;
     this.opcion = this.navParams.get('opcion'); // Opcion elegida
 
-    this.dataService.getDocumento(this.opcion.base_datos, this.opcion.id_documento).then((result: any) => {
-        that.calendariosAnuales = result.calendario;
-        that.anioElegido = result.calendario[1]; // Por defecto, el calendario mostrará el segundo año cargado
+    this.dataService.getTodosLosDocumentos(this.opcion.base_datos).then((result: any) => {
+        that.calendariosAnuales = _.find(result, function(res) { return res._id === that.opcion.id_documento; }).calendario;
+        that.anioElegido = that.calendariosAnuales[1]; // Por defecto, el calendario mostrará el segundo año cargado
     });
   }
 

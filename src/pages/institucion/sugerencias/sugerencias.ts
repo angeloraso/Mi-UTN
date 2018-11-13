@@ -5,6 +5,7 @@ import { Data } from '../../../providers/data/data';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'page-sugerencias',
@@ -51,9 +52,9 @@ export class SugerenciasPage {
     const that = this;
     this.opcion = this.navParams.get('opcion'); // Opcion elegida
 
-    this.dataService.getDocumento(this.opcion.base_datos, this.opcion.id_documento).then((result: any) => {
-      this.canales = result.canales;
-      this.features = result.features;
+    this.dataService.getTodosLosDocumentos(this.opcion.base_datos).then((result: any) => {
+      that.canales = _.find(result, function(res) { return res._id === that.opcion.id_documento; }).canales;
+      that.features = _.find(result, function(res) { return res._id === that.opcion.id_documento; }).features;
     });
   }
 

@@ -9,6 +9,7 @@ import { CalendarioAcademicoPage } from './calendario-academico/calendario-acade
 import { LoginComedorPage } from './comedor/login-comedor/login-comedor';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 import { SugerenciasPage } from './sugerencias/sugerencias';
+import * as _ from 'lodash';
 
 @IonicPage()
 @Component({
@@ -58,8 +59,8 @@ export class InstitucionPage {
       content: 'Cargando...',
     });
     loader.present();
-    this.dataService.getDocumento('institucion', 'institucion').then((result: any) => {
-        that.opciones = result.opciones;
+    this.dataService.getTodosLosDocumentos('institucion').then((result: any) => {
+        that.opciones = _.find(result, function(res) { return res._id === 'institucion'; }).opciones;
         loader.dismiss();
     });
   }
