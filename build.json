@@ -1,0 +1,18 @@
+{
+     "android": {
+         "debug": {
+             "keystore": "miutn.keystore",
+             "storePassword": "miutn12460",
+             "alias": "miutn",
+             "password" : "miutn12460",
+             "keystoreType": ""
+         },
+         "release": {
+             "keystore": "miutn.keystore",
+             "storePassword": "miutn12460",
+             "alias": "miutn",
+             "password" : "miutn12460",
+             "keystoreType": ""
+         }
+     }
+ }
