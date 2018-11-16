@@ -5,19 +5,16 @@ import { ComedorProvider } from '../../../providers/comedor/comedor';
 import { Storage } from '@ionic/storage';
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import { ModalController } from 'ionic-angular/components/modal/modal-controller';
-import { LoginComedorPage } from './login-comedor/login-comedor';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 import * as Comedor from '../../../interfaces/comedor.interface';
-import { FormGroup, FormControl } from '@angular/forms';
 import { Menu, Turno } from '../../../interfaces/comedor.interface';
 import { finalize } from 'rxjs/operators';
-import { Navbar } from 'ionic-angular/navigation/nav-interfaces';
-import { ViewChild } from '@angular/core';
-import { HomePage } from '../../home/home';
-import { App } from 'ionic-angular/components/app/app';
-// TODO Fijarse despues que datos conviene tener en la nube de IBM.
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
+import 'rxjs/add/operator/map';
+
+//      TODO Fijarse despues que datos conviene tener en la nube de IBM.
 //      Un ejemplo claro es el valor de las viandas o los valores de los turnos y menues.
 @Component({
   selector: 'page-comedor',
@@ -49,11 +46,12 @@ export class ComedorPage {
   public menues: Array<Comedor.Menu>;
   public turnos: Array<Comedor.Turno>;
 
+  public loading: any;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public platform: Platform,
               public comedorProvider: ComedorProvider,
-              public modalCtrl: ModalController,
               public alertCtrl: AlertController,
               private storage: Storage,
               public loadingCtrl: LoadingController) {
@@ -65,8 +63,11 @@ export class ComedorPage {
   }
 
   ngOnInit() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Cargando...',
+    });
     this.maxima_cantidad_compras_historial = 15;
-    this.icono_compra_historial = '../../../assets/icon/compra.svg';
+    this.icono_compra_historial = 'assets/icon/compra.svg';
     this.ios = this.platform.is('ios');
     this.tabs = 'ticket';
     this.dias_ya_comprados = [];
@@ -100,54 +101,10 @@ export class ComedorPage {
 
     const that = this;
     this.token = this.navParams.get('token');
+
     if (!_.isEmpty(this.token)) {
 
-      this.comedorProvider.getSaldo(this.token.token)
-      .subscribe( (saldo: Comedor.Saldo) => {
-          this.saldo = saldo.saldo;
-      });
-
-      this.comedorProvider.getDiasComprados(this.token.token)
-      .subscribe( (dias_comprados: Array<Comedor.DiaComprado>) => {
-        _.forEach(this.dias, function(dia) {
-          const match = _.find(dias_comprados, { 'dia_comprado': dia.fecha});
-          if (typeof match !== 'undefined') {
-            dia.activo = true;
-            that.dias_ya_comprados.push(dia.fecha);
-          }
-        });
-      });
-
-      this.comedorProvider.getEsPeriodoCompra(this.token.token)
-      .subscribe( (es_periodo_de_compra: boolean) => {
-          if (!es_periodo_de_compra) {
-            _.forEach(this.dias, function(dia) {
-              dia.deshabilitado = true;
-            });
-          }
-      });
-
-      this.comedorProvider.getFeriadosPeriodo(
-          moment().day(8).format('YYYY-MM-DD'),
-          moment().day(12).format('YYYY-MM-DD'),
-          this.token.token)
-          .subscribe( (feriados: any) => {
-            _.forEach(this.dias, function(dia) {
-              const match = _.find(feriados.feriados, { 'fecha': dia.fecha});
-              if (typeof match !== 'undefined') {
-                dia.deshabilitado = true;
-              }
-            });
-      });
-
-      this.comedorProvider.getReceso(this.token.token)
-        .subscribe( (receso: Comedor.Receso) => {
-          for (let i = 8; i < 13; i++) {
-            if ( moment(moment().day(i).format('YYYY-MM-DD')).isBetween(receso.inicio, receso.fin) ) {
-              this.dias[i - 8].deshabilitado = true;
-            }
-          }
-      });
+      this.cargarInfoIncial();
 
       this.comedorProvider.getHistorial(this.token.token)
         .pipe(finalize(() => {
@@ -165,17 +122,80 @@ export class ComedorPage {
             that.historial_compras.push(compra_recargada);
           });
         });
-
-      this.comedorProvider.getConfig(this.token.token)
-        .subscribe( (config: Comedor.Config) => {
-          const menu_posicion = +config.menu.selected - 1;
-          this.menues[menu_posicion].activo = true;
-
-          const turno_posicion = +config.turno.selected - 1;
-          this.turnos[turno_posicion].activo = true;
-      });
     }
 
+  }
+
+  cargarInfoIncial() {
+    this.loading.present();
+    return Observable.forkJoin(
+      this.comedorProvider.getSaldo(this.token.token),
+      this.comedorProvider.getDiasComprados(this.token.token),
+      this.comedorProvider.getEsPeriodoCompra(this.token.token),
+      this.comedorProvider.getFeriadosPeriodo(
+        moment().day(8).format('YYYY-MM-DD'),
+        moment().day(12).format('YYYY-MM-DD'),
+        this.token.token),
+      this.comedorProvider.getReceso(this.token.token),
+      this.comedorProvider.getConfig(this.token.token)
+    ).map(res => this.join( res[0], res[1], res[2], res[3], res[4], res[5] ));
+  }
+
+  join(saldo, dias_comprados, es_periodo_de_compra, feriados, receso, config) {
+    this.getSaldo(saldo);
+    this.getDiasComprados(dias_comprados);
+    this.siEsPeriodoDeCompra(es_periodo_de_compra);
+    this.getFeriados(feriados);
+    this.getReceso(receso);
+    this.getConfig(config);
+    this.loading.dismiss();
+  }
+
+  getSaldo (saldo: Comedor.Saldo) {
+    this.saldo = saldo.saldo;
+  }
+
+  getDiasComprados(dias_comprados: Array<Comedor.DiaComprado>) {
+      _.forEach(this.dias, function(dia) {
+        const match = _.find(dias_comprados, { 'dia_comprado': dia.fecha});
+        if (typeof match !== 'undefined') {
+          dia.activo = true;
+          this.dias_ya_comprados.push(dia.fecha);
+        }
+      });
+  }
+
+  siEsPeriodoDeCompra(es_periodo_de_compra: boolean) {
+      if (!es_periodo_de_compra) {
+        _.forEach(this.dias, function(dia) {
+          dia.deshabilitado = true;
+        });
+      }
+  }
+
+  getFeriados(feriados: any) {
+    _.forEach(this.dias, function(dia) {
+      const match = _.find(feriados.feriados, { 'fecha': dia.fecha});
+      if (typeof match !== 'undefined') {
+        dia.deshabilitado = true;
+      }
+    });
+  }
+
+  getReceso(receso: Comedor.Receso) {
+    for (let i = 8; i < 13; i++) {
+      if ( moment(moment().day(i).format('YYYY-MM-DD')).isBetween(receso.inicio, receso.fin) ) {
+        this.dias[i - 8].deshabilitado = true;
+      }
+    }
+  }
+
+  getConfig(config: Comedor.Config) {
+    const menu_posicion = +config.menu.selected - 1;
+    this.menues[menu_posicion].activo = true;
+
+    const turno_posicion = +config.turno.selected - 1;
+    this.turnos[turno_posicion].activo = true;
   }
 
   guardarSeleccionCheck(dia: Comedor.Dia) {
@@ -207,9 +227,9 @@ export class ComedorPage {
   }
 
   async confirmar() {
-      await this.comprar();
-      await this.deshacer();
-      this.volver();
+      this.loading.present();
+      this.comprar();
+      this.deshacer();
   }
 
   comprar() {
@@ -218,9 +238,14 @@ export class ComedorPage {
       .subscribe( (res: Comedor.RespuestaComedor) => {
         if (this.confirmado && res.resultado === 'OK') {
           this.exito();
+          this.volver();
         } else {
           this.confirmado = true;
         }
+      },
+      err => {
+        this.loading.dismiss();
+        this.error();
       });
     } else {
       this.confirmado = true;
@@ -233,9 +258,14 @@ export class ComedorPage {
       .subscribe( (res: Comedor.RespuestaComedor) => {
         if (this.confirmado && res.resultado === 'OK') {
           this.exito();
+          this.volver();
         } else {
           this.confirmado = true;
         }
+      },
+      err => {
+        this.loading.dismiss();
+        this.error();
       });
     } else {
       this.confirmado = true;
@@ -246,6 +276,15 @@ export class ComedorPage {
     const alert = this.alertCtrl.create({
       title: 'Genial!',
       subTitle: 'Se han guardado los cambios',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  error() {
+    const alert = this.alertCtrl.create({
+      title: 'Oh No!',
+      subTitle: 'Han ocurrido problemas. No se ha podido confirmar la acción',
       buttons: ['OK']
     });
     alert.present();
@@ -272,13 +311,10 @@ export class ComedorPage {
           text: 'Salir',
           handler: data => {
             let se_borraron_los_datos = false;
-            const loader = this.loadingCtrl.create({
-              content: 'Cargando...',
-            });
-            loader.present();
+            this.loading.present();
             this.storage.remove('usuario').then((res) => {
               if (se_borraron_los_datos) {
-                loader.dismiss();
+                this.loading.dismiss();
                 this.volver();
               } else {
                 se_borraron_los_datos = true;
@@ -286,7 +322,7 @@ export class ComedorPage {
             });
             this.storage.remove('pass').then((res) => {
               if (se_borraron_los_datos) {
-                loader.dismiss();
+                this.loading.dismiss();
                 this.volver();
               } else {
                 se_borraron_los_datos = true;

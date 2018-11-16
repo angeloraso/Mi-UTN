@@ -1,3 +1,5 @@
+![logo-utn](http://enaltecs.frlp.utn.edu.ar/images/contacto/logoUtnPlata2.jpg)
+
 # mi UTN
 
 ## Repositorio de la aplicación mi UTN de la UTN FRLP
@@ -14,7 +16,7 @@ Con miUTN el alumno de la UTN FRLP podrá:
 Sientase libre cualquier persona de tomar el codigo, editarlo, criticarlo, sugerir ideas, dar opiniones, 
 aportar en el desarrollo y cualquiera otra cosa que se le ocurra.
 
-# CONTACTO:
+# Contacto:
   - https://www.instagram.com/miutnfrlp/
   - https://www.facebook.com/mi.utn.35
   - miutnfrlp@gmail.com

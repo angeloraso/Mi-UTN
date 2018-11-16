@@ -5,9 +5,6 @@ import * as _ from 'lodash';
 import { ComedorPage } from '../comedor';
 import { Storage } from '@ionic/storage';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
-import { App } from 'ionic-angular/components/app/app';
-import { InstitucionPage } from '../../institucion';
-import { HomePage } from '../../../home/home';
 import { TokenComedor } from '../../../../interfaces/comedor.interface';
 
 @Component({
@@ -31,7 +28,6 @@ export class LoginComedorPage {
     private storage: Storage,
     public viewCtrl: ViewController,
     public loadingCtrl: LoadingController,
-    public appCtrl: App
   ) {
 
   }
