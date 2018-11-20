@@ -7,7 +7,7 @@ import { IonicPage, NavController } from 'ionic-angular';
   templateUrl: 'noticias.html',
 })
 
-export class NoticiasPage {  
-  constructor(public navCtrl: NavController) {   
+export class NoticiasPage {
+  constructor(public navCtrl: NavController) {
   }
 }

@@ -4,7 +4,6 @@ import { Opcion } from '../../../interfaces/institucion.interface';
 import { Data } from '../../../providers/data/data';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { EmailComposer } from '@ionic-native/email-composer';
-import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import * as _ from 'lodash';
 
 @Component({
@@ -41,7 +40,6 @@ export class SugerenciasPage {
               public navParams: NavParams,
               private theInAppBrowser: InAppBrowser,
               private emailComposer: EmailComposer,
-              private alertCtrl: AlertController,
               private dataService: Data) {
   }
 

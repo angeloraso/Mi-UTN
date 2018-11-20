@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { SugerenciasPage } from '../institucion/sugerencias/sugerencias';
+import { Opcion } from '../../interfaces/institucion.interface';
 
 @IonicPage()
 @Component({
@@ -8,6 +10,8 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 })
 
 export class PerfilPage {
+
+  sugerencias: Opcion;
 
   following = false;
   user = {
@@ -27,8 +31,9 @@ export class PerfilPage {
               public alertCtrl: AlertController) {
   }
 
-  ionViewWillEnter() {
+  ionViewDidLoad() {
     this.proximamente();
+    this.sugerencias = {nombre: 'Sugerencias', icono: 'thumbs-up', base_datos: 'institucion', id_documento: 'sugerencias'};
   }
 
   proximamente() {
@@ -38,7 +43,23 @@ export class PerfilPage {
       message: 'Si tenés ganas de participar en su desarrollo o se te ocurren ideas que podría ' +
       'tener el perfil de un alumno, no olvides sugerirlas en la seccion Sugerencias dentro de ' +
       'la opción Institucion',
-      buttons: ['OK']
+      buttons: [
+        {
+            text: 'Ir a Sugerencias',
+            handler: data => {
+                const navTransition = alert.dismiss();
+                navTransition.then(() => {
+                  this.navCtrl.push(SugerenciasPage,
+                    {opcion: this.sugerencias});
+                });
+            return false;
+            }
+        },
+        {
+          text: 'OK',
+          handler: data => {}
+        }
+      ]
     });
     alert.present();
   }

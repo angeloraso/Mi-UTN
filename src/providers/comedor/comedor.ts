@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -14,11 +13,9 @@ export class ComedorProvider {
 
   private fcmToken = 1;
 
-  private token: string;
-
   private usuario: string;
 
-  constructor(public http: HttpClient, private storage: Storage) {}
+  constructor(public http: HttpClient) {}
 
 
   getToken(usuario: string, pass: string) {
@@ -199,7 +196,6 @@ export class ComedorProvider {
   }
 
   md51(s) {
-    const txt = '';
     const n = s.length,
       state = [1732584193, -271733879, -1732584194, 271733878];
     let i;
