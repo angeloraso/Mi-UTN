@@ -11,6 +11,7 @@ import * as Comedor from '../../../interfaces/comedor.interface';
 import { Menu, Turno } from '../../../interfaces/comedor.interface';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
+import { forkJoin } from 'rxjs/Observable/forkJoin';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/map';
 
@@ -104,7 +105,15 @@ export class ComedorPage {
 
     if (!_.isEmpty(this.token)) {
 
-      this.cargarInfoIncial();
+      this.cargarDataIncial().subscribe(arreglo_con_la_data => {
+        // Orden de resultados = [saldo, dias_comprados, es_periodo_de_compra, feriados, receso, config]
+        this.setSaldo(arreglo_con_la_data[0]);
+        this.setDiasComprados(arreglo_con_la_data[1]);
+        this.bloquearSiNoEsPeriodoDeCompra(arreglo_con_la_data[2]);
+        this.setFeriados(arreglo_con_la_data[3]);
+        this.setReceso(arreglo_con_la_data[4]);
+        this.setConfig(arreglo_con_la_data[5]);
+      });
 
       this.comedorProvider.getHistorial(this.token.token)
         .pipe(finalize(() => {
@@ -126,46 +135,35 @@ export class ComedorPage {
 
   }
 
-  cargarInfoIncial() {
-    this.loading.present();
-    return Observable.forkJoin(
-      this.comedorProvider.getSaldo(this.token.token),
-      this.comedorProvider.getDiasComprados(this.token.token),
-      this.comedorProvider.getEsPeriodoCompra(this.token.token),
-      this.comedorProvider.getFeriadosPeriodo(
-        moment().day(8).format('YYYY-MM-DD'),
-        moment().day(12).format('YYYY-MM-DD'),
-        this.token.token),
-      this.comedorProvider.getReceso(this.token.token),
-      this.comedorProvider.getConfig(this.token.token)
-    ).map(res => this.join( res[0], res[1], res[2], res[3], res[4], res[5] ));
+  cargarDataIncial(): Observable<any[]> {
+    const saldo = this.comedorProvider.getSaldo(this.token.token);
+    const dias_comprados = this.comedorProvider.getDiasComprados(this.token.token);
+    const es_periodo_de_compra = this.comedorProvider.getEsPeriodoCompra(this.token.token);
+    const feriados = this.comedorProvider.getFeriadosPeriodo(
+      moment().day(8).format('YYYY-MM-DD'),
+      moment().day(12).format('YYYY-MM-DD'),
+      this.token.token);
+    const receso = this.comedorProvider.getReceso(this.token.token);
+    const config = this.comedorProvider.getConfig(this.token.token);
+    return forkJoin([saldo, dias_comprados, es_periodo_de_compra, feriados, receso, config]);
   }
 
-  join(saldo, dias_comprados, es_periodo_de_compra, feriados, receso, config) {
-    this.getSaldo(saldo);
-    this.getDiasComprados(dias_comprados);
-    this.siEsPeriodoDeCompra(es_periodo_de_compra);
-    this.getFeriados(feriados);
-    this.getReceso(receso);
-    this.getConfig(config);
-    this.loading.dismiss();
-  }
-
-  getSaldo (saldo: Comedor.Saldo) {
+  setSaldo (saldo: Comedor.Saldo) {
     this.saldo = saldo.saldo;
   }
 
-  getDiasComprados(dias_comprados: Array<Comedor.DiaComprado>) {
-      _.forEach(this.dias, function(dia) {
+  setDiasComprados(dias_comprados: Array<Comedor.DiaComprado>) {
+      const that = this;
+      _.forEach(that.dias, function(dia) {
         const match = _.find(dias_comprados, { 'dia_comprado': dia.fecha});
         if (typeof match !== 'undefined') {
           dia.activo = true;
-          this.dias_ya_comprados.push(dia.fecha);
+          that.dias_ya_comprados.push(dia.fecha);
         }
       });
   }
 
-  siEsPeriodoDeCompra(es_periodo_de_compra: boolean) {
+  bloquearSiNoEsPeriodoDeCompra(es_periodo_de_compra: boolean) {
       if (!es_periodo_de_compra) {
         _.forEach(this.dias, function(dia) {
           dia.deshabilitado = true;
@@ -173,7 +171,7 @@ export class ComedorPage {
       }
   }
 
-  getFeriados(feriados: any) {
+  setFeriados(feriados: any) {
     _.forEach(this.dias, function(dia) {
       const match = _.find(feriados.feriados, { 'fecha': dia.fecha});
       if (typeof match !== 'undefined') {
@@ -182,7 +180,7 @@ export class ComedorPage {
     });
   }
 
-  getReceso(receso: Comedor.Receso) {
+  setReceso(receso: Comedor.Receso) {
     for (let i = 8; i < 13; i++) {
       if ( moment(moment().day(i).format('YYYY-MM-DD')).isBetween(receso.inicio, receso.fin) ) {
         this.dias[i - 8].deshabilitado = true;
@@ -190,7 +188,7 @@ export class ComedorPage {
     }
   }
 
-  getConfig(config: Comedor.Config) {
+  setConfig(config: Comedor.Config) {
     const menu_posicion = +config.menu.selected - 1;
     this.menues[menu_posicion].activo = true;
 
