@@ -53,6 +53,7 @@ export class LoginComedorPage {
       });
       loader.present();
       this.usuario = _.replace(this.usuario, '.', '');
+      this.usuario = _.replace(this.usuario, 'e', '');
       this.comedorProvider.getToken(this.usuario, this.pass).subscribe((res: TokenComedor) => {
         this.storage.set('usuario', this.usuario);
         this.storage.set('pass', this.pass);
