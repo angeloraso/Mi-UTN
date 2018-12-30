@@ -12,8 +12,7 @@ import { Menu, Turno } from '../../../interfaces/comedor.interface';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { forkJoin } from 'rxjs/Observable/forkJoin';
-import 'rxjs/add/observable/forkJoin';
-import 'rxjs/add/operator/map';
+
 
 //      TODO Fijarse despues que datos conviene tener en la nube de IBM.
 //      Un ejemplo claro es el valor de las viandas o los valores de los turnos y menues.
@@ -64,9 +63,6 @@ export class ComedorPage {
   }
 
   ngOnInit() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Cargando...',
-    });
     this.maxima_cantidad_compras_historial = 15;
     this.icono_compra_historial = 'assets/icon/compra.svg';
     this.ios = this.platform.is('ios');
@@ -105,6 +101,10 @@ export class ComedorPage {
 
     if (!_.isEmpty(this.token)) {
 
+      this.loading = this.loadingCtrl.create({
+        content: 'Cargando...',
+      });
+      this.loading.present();
       this.cargarDataIncial().subscribe(arreglo_con_la_data => {
         // Orden de resultados = [saldo, dias_comprados, es_periodo_de_compra, feriados, receso, config]
         this.setSaldo(arreglo_con_la_data[0]);
@@ -113,6 +113,11 @@ export class ComedorPage {
         this.setFeriados(arreglo_con_la_data[3]);
         this.setReceso(arreglo_con_la_data[4]);
         this.setConfig(arreglo_con_la_data[5]);
+        this.loading.dismiss();
+      },
+      err => {
+        this.loading.dismiss();
+        this.error();
       });
 
       this.comedorProvider.getHistorial(this.token.token)
@@ -225,9 +230,12 @@ export class ComedorPage {
   }
 
   async confirmar() {
-      this.loading.present();
-      this.comprar();
-      this.deshacer();
+    this.loading = this.loadingCtrl.create({
+      content: 'Cargando...',
+    });
+    this.loading.present();
+    this.comprar();
+    this.deshacer();
   }
 
   comprar() {
@@ -236,6 +244,7 @@ export class ComedorPage {
       .subscribe( (res: Comedor.RespuestaComedor) => {
         if (this.confirmado && res.resultado === 'OK') {
           this.exito();
+          this.loading.dismiss();
           this.volver();
         } else {
           this.confirmado = true;
@@ -256,6 +265,7 @@ export class ComedorPage {
       .subscribe( (res: Comedor.RespuestaComedor) => {
         if (this.confirmado && res.resultado === 'OK') {
           this.exito();
+          this.loading.dismiss();
           this.volver();
         } else {
           this.confirmado = true;
@@ -282,7 +292,7 @@ export class ComedorPage {
   error() {
     const alert = this.alertCtrl.create({
       title: 'Oh No!',
-      subTitle: 'Han ocurrido problemas. No se ha podido confirmar la acción',
+      subTitle: 'Han ocurrido problemas. Parece que hay problemas con la conexión',
       buttons: ['OK']
     });
     alert.present();
@@ -309,19 +319,24 @@ export class ComedorPage {
           text: 'Salir',
           handler: data => {
             let se_borraron_los_datos = false;
+            this.loading = this.loadingCtrl.create({
+              content: 'Cargando...',
+            });
             this.loading.present();
             this.storage.remove('usuario').then((res) => {
               if (se_borraron_los_datos) {
-                this.loading.dismiss();
-                this.volver();
+                this.loading.dismiss().then(() => {
+                  this.volver();
+                });
               } else {
                 se_borraron_los_datos = true;
               }
             });
             this.storage.remove('pass').then((res) => {
               if (se_borraron_los_datos) {
-                this.loading.dismiss();
-                this.volver();
+                this.loading.dismiss().then(() => {
+                  this.volver();
+                });
               } else {
                 se_borraron_los_datos = true;
               }
@@ -359,5 +374,7 @@ export class ComedorPage {
   volver() {
     this.navCtrl.pop();
   }
+
+
 
 }

@@ -6,7 +6,6 @@
             </button>
         </ion-buttons>
         <ion-title class="titulo">{{ token.nombre }} {{ token.apellido }}</ion-title>
-        <ion-icon name="power" class="salir" (click)="salir()"></ion-icon>
         <ion-title class="saldo">$ {{ saldo }}</ion-title>
   </ion-navbar>
   <ion-navbar color=aquamarine>
@@ -95,6 +94,14 @@
                       </ion-label>
                   </ion-item>
               </ion-list>
+      </ion-card>
+
+      <ion-card class="turno-menu-card" (click)="salir()">
+        <div class="card-salir">
+          <ion-icon name="power"></ion-icon>
+          <label> Cerrar sesión</label>
+        </div>
+          <div class="linea"></div>
       </ion-card>
     </ion-list>
 

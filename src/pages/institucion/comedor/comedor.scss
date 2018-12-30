@@ -17,12 +17,9 @@ page-comedor {
     display: inline-block;
   }
 
-  .salir {
+  .icono-salir {
     display: inline-block;
-    position: absolute;
-    right: 70px;
     font-size: 25px;
-    margin-top: 3px;
   }
 
   .saldo {
@@ -293,5 +290,19 @@ page-comedor {
     margin-right: 30%;
     border-color: #55BED5;
     color: #55BED5;
+  }
+
+  .card-salir {
+    display: flex;
+    justify-content: center;
+    padding: 2%;
+  }
+  .card-salir > ion-icon{
+    color:#55BED5;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .card-salir > label {
+    display: inline-block;
   }
 }

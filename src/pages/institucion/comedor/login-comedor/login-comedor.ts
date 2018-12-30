@@ -15,8 +15,8 @@ export class LoginComedorPage {
 
   public logo = 'assets/icon/UTN-logo.png';
 
-  public usuario: '';
-  public pass: '';
+  public usuario = '';
+  public pass = '';
 
   public salir: any;
 
@@ -52,6 +52,7 @@ export class LoginComedorPage {
         content: 'Cargando...',
       });
       loader.present();
+      this.usuario = _.replace(this.usuario, '.', '');
       this.comedorProvider.getToken(this.usuario, this.pass).subscribe((res: TokenComedor) => {
         this.storage.set('usuario', this.usuario);
         this.storage.set('pass', this.pass);
