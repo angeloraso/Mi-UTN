@@ -1,9 +1,9 @@
 import { Component, ViewChild, Input } from '@angular/core';
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
 import { Slides, Platform, NavParams, ViewController } from 'ionic-angular';
 import { Laboratorio } from '../../../interfaces/institucion.interface';
 import { Email } from '../../../interfaces/institucion.interface';
-import { EmailComposer } from '@ionic-native/email-composer';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 
 @Component({

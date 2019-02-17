@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Opcion } from '../../../interfaces/institucion.interface';
 import { Data } from '../../../providers/data/data';
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
-import { EmailComposer } from '@ionic-native/email-composer';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import * as _ from 'lodash';
 
 @Component({

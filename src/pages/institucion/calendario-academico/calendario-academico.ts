@@ -14,7 +14,7 @@ export class CalendarioAcademicoPage {
 
   calendariosAnuales: Array<CalendarioAnual>; // El cronograma de cada año
 
-  // Por defecto, el calendario mostrará el segundo año cargado
+  // Por defecto, el calendario mostrará el primer año cargado
   anioElegido: CalendarioAnual = {anio: '', cronograma: [] };
 
   constructor(public navCtrl: NavController,
@@ -29,7 +29,7 @@ export class CalendarioAcademicoPage {
 
     this.dataService.getTodosLosDocumentos(this.opcion.base_datos).then((result: any) => {
         that.calendariosAnuales = _.find(result, function(res) { return res._id === that.opcion.id_documento; }).calendario;
-        that.anioElegido = that.calendariosAnuales[1]; // Por defecto, el calendario mostrará el segundo año cargado
+        that.anioElegido = that.calendariosAnuales[0]; // Por defecto, el calendario mostrará el primer año cargado
     });
   }
 

@@ -9,8 +9,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 
 // Plugins & 3tr Libraries
-import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { EmailComposer } from '@ionic-native/email-composer';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 import { Data } from '../providers/data/data';
 
